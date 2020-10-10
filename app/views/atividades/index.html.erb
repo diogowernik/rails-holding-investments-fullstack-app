@@ -10,30 +10,31 @@
 	<table class="table table-striped table-bordered table-hover">
           <thead>
             <tr>
-              <th>Codigo</th>
-              <th>Carteira</th>
-              <th>Valor</th>
-              <th>Data negociada</th>
-              <th>Quantidade</th>
-              <th>Movimento</th>
+              <th>Ativo</th> 
+              <th>Cod. (opç. ou subs)</th>
               <th>Tipo</th>
-              <th>Ativo</th>
-              <th colspan="3"></th>
+              <th>Movimento</th>
+              <th>Quantidade</th>
+              <th>Preço</th>
+              <th>Data de Negociação</th>
+              <th>Carteira</th>
+              
+              
+              <th colspan="2"></th>
             </tr>
           </thead>
         
           <tbody>
             <% @atividades.each do |atividade| %>
               <tr>
+                <td><%= atividade.ativo.ticker %></td> 
                 <td><%= atividade.codigo %></td>
-                <td><%= atividade.carteira %></td>
-                <td><%= atividade.valor %></td>
-                <td><%= atividade.data_negociada %></td>
-                <td><%= atividade.quantidade %></td>
+                <td><%= atividade.tipo.nome %></td>
                 <td><%= atividade.movimento %></td>
-                <td><%= atividade.tipo %></td>
-                <td><%= atividade.ativo %></td>
-                <td><%= link_to 'Show', atividade %></td>
+                <td><%= atividade.quantidade %></td>
+                <td>R$ <%= atividade.valor %></td>
+                <td><%= atividade.data_negociada %></td>
+                <td><%= atividade.carteira.nome %></td>
                 <td><%= link_to 'Edit', edit_atividade_path(atividade) %></td>
                 <td><%= link_to 'Destroy', atividade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>

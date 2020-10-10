@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Atividades</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Codigo</th>
+      <th>Carteira</th>
+      <th>Valor</th>
+      <th>Data negociada</th>
+      <th>Quantidade</th>
+      <th>Movimento</th>
+      <th>Tipo</th>
+      <th>Ativo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @atividades.each do |atividade| %>
+      <tr>
+        <td><%= atividade.codigo %></td>
+        <td><%= atividade.carteira %></td>
+        <td><%= atividade.valor %></td>
+        <td><%= atividade.data_negociada %></td>
+        <td><%= atividade.quantidade %></td>
+        <td><%= atividade.movimento %></td>
+        <td><%= atividade.tipo %></td>
+        <td><%= atividade.ativo %></td>
+        <td><%= link_to 'Show', atividade %></td>
+        <td><%= link_to 'Edit', edit_atividade_path(atividade) %></td>
+        <td><%= link_to 'Destroy', atividade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Atividade', new_atividade_path %>

@@ -1,0 +1,57 @@
+<%= form_with(model: atividade, local: true) do |form| %>
+  <% if atividade.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(atividade.errors.count, "error") %> prohibited this atividade from being saved:</h2>
+
+      <ul>
+      <% atividade.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :codigo %>
+    <%= form.text_field :codigo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :carteira_id %>
+    <%= form.text_field :carteira_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor %>
+    <%= form.text_field :valor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data_negociada %>
+    <%= form.date_select :data_negociada %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantidade %>
+    <%= form.number_field :quantidade %>
+  </div>
+
+  <div class="field">
+    <%= form.label :movimento %>
+    <%= form.text_field :movimento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo_id %>
+    <%= form.text_field :tipo_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ativo_id %>
+    <%= form.text_field :ativo_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -10,7 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_10_031508) do
+ActiveRecord::Schema.define(version: 2020_10_10_040131) do
+
+  create_table "atividades", force: :cascade do |t|
+    t.string "codigo"
+    t.integer "carteira_id"
+    t.decimal "valor"
+    t.date "data_negociada"
+    t.integer "quantidade"
+    t.string "movimento"
+    t.integer "tipo_id"
+    t.integer "ativo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ativo_id"], name: "index_atividades_on_ativo_id"
+    t.index ["carteira_id"], name: "index_atividades_on_carteira_id"
+    t.index ["tipo_id"], name: "index_atividades_on_tipo_id"
+  end
+
+  create_table "ativos", force: :cascade do |t|
+    t.string "ticker"
+    t.integer "tipo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tipo_id"], name: "index_ativos_on_tipo_id"
+  end
+
+  create_table "carteiras", force: :cascade do |t|
+    t.string "nome"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carteiras_on_user_id"
+  end
+
+  create_table "tipos", force: :cascade do |t|
+    t.string "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

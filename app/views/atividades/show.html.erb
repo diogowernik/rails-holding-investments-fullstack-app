@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @atividade.codigo %>
+</p>
+
+<p>
+  <strong>Carteira:</strong>
+  <%= @atividade.carteira %>
+</p>
+
+<p>
+  <strong>Valor:</strong>
+  <%= @atividade.valor %>
+</p>
+
+<p>
+  <strong>Data negociada:</strong>
+  <%= @atividade.data_negociada %>
+</p>
+
+<p>
+  <strong>Quantidade:</strong>
+  <%= @atividade.quantidade %>
+</p>
+
+<p>
+  <strong>Movimento:</strong>
+  <%= @atividade.movimento %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @atividade.tipo %>
+</p>
+
+<p>
+  <strong>Ativo:</strong>
+  <%= @atividade.ativo %>
+</p>
+
+<%= link_to 'Edit', edit_atividade_path(@atividade) %> |
+<%= link_to 'Back', atividades_path %>

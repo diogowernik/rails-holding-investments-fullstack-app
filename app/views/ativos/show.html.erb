@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ticker:</strong>
+  <%= @ativo.ticker %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @ativo.tipo %>
+</p>
+
+<%= link_to 'Edit', edit_ativo_path(@ativo) %> |
+<%= link_to 'Back', ativos_path %>

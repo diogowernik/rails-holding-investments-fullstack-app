@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @carteira.nome %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @carteira.user %>
+</p>
+
+<%= link_to 'Edit', edit_carteira_path(@carteira) %> |
+<%= link_to 'Back', carteiras_path %>

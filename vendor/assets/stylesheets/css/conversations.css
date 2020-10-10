@@ -1,0 +1,86 @@
+/* ========================================================================
+     Component: mailbox
+ ========================================================================== */
+.mb-boxes {
+  overflow: hidden; }
+  .mb-boxes .nav > li > a {
+    font-weight: 600;
+    color: #3a3f51;
+    margin: 5px 0;
+    transition: background-color 0.3s ease; }
+    @media screen and (prefers-reduced-motion: reduce) {
+      .mb-boxes .nav > li > a {
+        transition: none; } }
+    .mb-boxes .nav > li > a:hover, .mb-boxes .nav > li > a:focus {
+      background-color: #C0D0D3; }
+  .mb-boxes .nav > li.active > a {
+    background-color: #5d9cec !important;
+    color: #fff; }
+  @media (min-width: 992px) {
+    .mb-boxes {
+      height: auto !important;
+      visibility: visible !important;
+      display: block; } }
+
+@media (min-width: 992px) {
+  .mb-compose-button {
+    display: block;
+    width: 100%; }
+  .mb-toggle-button {
+    display: none; } }
+
+.mb-mails > tbody > tr > td {
+  border-top-color: transparent;
+  cursor: pointer; }
+
+.mb-mails .mb-mail-active {
+  background-color: #f7f8f9 !important; }
+
+.mb-mails .mb-mail-avatar {
+  float: left;
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px; }
+
+.mb-mails .mb-mail-date {
+  display: block;
+  float: right;
+  color: #909FA7;
+  font-size: 12px;
+  font-weight: bold; }
+
+.mb-mails .mb-mail-from {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1; }
+
+.mb-mails .mb-mail-meta {
+  overflow: hidden; }
+
+.mb-mails .mb-mail-subject {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 6px; }
+
+.mb-mails .mb-mail-preview {
+  clear: both;
+  margin-top: 10px;
+  color: #909FA7;
+  margin-top: 2px; }
+
+.mb-mails .mb-attachment {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #e4eaec; }
+
+.mb-view > tbody > tr > td {
+  cursor: auto; }
+
+.mb-view .mb-mail-to-list > a {
+  margin-right: 5px;
+  color: #909FA7; }
+.unreaded {
+    background: #f2f2f2;
+}

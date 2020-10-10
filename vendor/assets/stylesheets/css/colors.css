@@ -1,0 +1,47 @@
+/*sistema de cores*/
+
+
+.topnavbar {
+  background-repeat: repeat-x; }
+  .topnavbar .navbar-nav > .nav-item > .navbar-text {
+    color: #5d9cec; }
+  .topnavbar .navbar-nav > .nav-item > .nav-link,
+  .topnavbar .navbar-nav > .nav-item.show > .nav-link {
+    color: #5d9cec; }
+    .topnavbar .navbar-nav > .nav-item > .nav-link:hover, .topnavbar .navbar-nav > .nav-item > .nav-link:focus,
+    .topnavbar .navbar-nav > .nav-item.show > .nav-link:hover,
+    .topnavbar .navbar-nav > .nav-item.show > .nav-link:focus {
+      color: #5d9ced; }
+  .topnavbar .dropdown-item.active, .topnavbar .dropdown-item:active {
+    background-color: #FFFFFF; }
+
+
+
+.text-custom {
+    color: #5d9cec!important;
+}
+
+.btn-custom {
+    color: #fff;
+    background-color: #5d9cec;
+    border-color: #5d9cec;
+}
+
+.btn-custom:hover {
+    color: #fff;
+    background-color: #5d9ced;
+    border-color: #5d9ced;
+}
+
+.btn-outline-custom:hover {
+    color: #fff;
+    background-color: #5d9cec;
+    border-color: #5d9cec;
+}
+
+.btn-outline-custom {
+    color: #5d9cec;
+    background-color: transparent;
+    background-image: none;
+    border-color: #5d9cec;
+}

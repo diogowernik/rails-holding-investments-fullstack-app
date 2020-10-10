@@ -11,17 +11,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome %>
-  </div>
+<div class="row">
+    <div class="col-md-6">
+      <label>Nome da Carteira</label>
+      <%= form.text_field :nome, class: 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="col-md-6">
+      <label>Gestor</label>
+      <%= form.select :user_id, User.all.collect {|d| [d.email, d.id]}, {}, {class: 'form-control'} %>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 mt-4">
+		<div class="form-group">
+                <%= form.submit 'Enviar', class: 'btn btn-block btn-primary' %>
+         </div>
+     </div>
+</div>
 <% end %>

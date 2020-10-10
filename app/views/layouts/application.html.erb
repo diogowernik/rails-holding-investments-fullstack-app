@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Investapp</title>
+    <title>Minha Holding</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -15,7 +15,9 @@
       <%= render partial: "layouts/topnavbar" %>
       <section class="section-container">
 	       <div class="content-wrapper">
-          <%= yield %>
+	            <% if alert %><div class="alert alert-success m-5 text-center"><%= alert %></div><% end %>
+                <% if notice %><div class="alert alert-success m-5 text-center"><%= notice %></div><% end %>
+                <%= yield %>
         </div>
       </section>
     </div>

@@ -28,11 +28,11 @@ class TiposController < ApplicationController
 
     respond_to do |format|
       if @tipo.save
-        format.html { redirect_to @tipo, notice: 'Tipo was successfully created.' }
+        format.html { redirect_to tipos_url, notice: 'Tipo was successfully created.' }
         format.json { render :show, status: :created, location: @tipo }
       else
         format.html { render :new }
-        format.json { render json: @tipo.errors, status: :unprocessable_entity }
+        format.json { render json: tipos_url.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +42,11 @@ class TiposController < ApplicationController
   def update
     respond_to do |format|
       if @tipo.update(tipo_params)
-        format.html { redirect_to @tipo, notice: 'Tipo was successfully updated.' }
+        format.html { redirect_to tipos_url, notice: 'Tipo was successfully updated.' }
         format.json { render :show, status: :ok, location: @tipo }
       else
         format.html { render :edit }
-        format.json { render json: @tipo.errors, status: :unprocessable_entity }
+        format.json { render json: tipos_url.errors, status: :unprocessable_entity }
       end
     end
   end

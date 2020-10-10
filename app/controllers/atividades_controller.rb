@@ -28,11 +28,11 @@ class AtividadesController < ApplicationController
 
     respond_to do |format|
       if @atividade.save
-        format.html { redirect_to @atividade, notice: 'Atividade was successfully created.' }
+        format.html { redirect_to atividades_url, notice: 'Atividade was successfully created.' }
         format.json { render :show, status: :created, location: @atividade }
       else
         format.html { render :new }
-        format.json { render json: @atividade.errors, status: :unprocessable_entity }
+        format.json { render json: atividades_url.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +42,11 @@ class AtividadesController < ApplicationController
   def update
     respond_to do |format|
       if @atividade.update(atividade_params)
-        format.html { redirect_to @atividade, notice: 'Atividade was successfully updated.' }
+        format.html { redirect_to atividades_url, notice: 'Atividade was successfully updated.' }
         format.json { render :show, status: :ok, location: @atividade }
       else
         format.html { render :edit }
-        format.json { render json: @atividade.errors, status: :unprocessable_entity }
+        format.json { render json: atividades_url.errors, status: :unprocessable_entity }
       end
     end
   end

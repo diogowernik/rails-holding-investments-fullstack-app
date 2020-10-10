@@ -28,11 +28,11 @@ class AtivosController < ApplicationController
 
     respond_to do |format|
       if @ativo.save
-        format.html { redirect_to @ativo, notice: 'Ativo was successfully created.' }
+        format.html { redirect_to ativos_url, notice: 'Ativo was successfully created.' }
         format.json { render :show, status: :created, location: @ativo }
       else
         format.html { render :new }
-        format.json { render json: @ativo.errors, status: :unprocessable_entity }
+        format.json { render json: ativos_url.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +42,11 @@ class AtivosController < ApplicationController
   def update
     respond_to do |format|
       if @ativo.update(ativo_params)
-        format.html { redirect_to @ativo, notice: 'Ativo was successfully updated.' }
+        format.html { redirect_to ativos_url, notice: 'Ativo was successfully updated.' }
         format.json { render :show, status: :ok, location: @ativo }
       else
         format.html { render :edit }
-        format.json { render json: @ativo.errors, status: :unprocessable_entity }
+        format.json { render json: ativos_url.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -28,11 +28,11 @@ class CarteirasController < ApplicationController
 
     respond_to do |format|
       if @carteira.save
-        format.html { redirect_to @carteira, notice: 'Carteira was successfully created.' }
+        format.html { redirect_to carteiras_url, notice: 'Carteira was successfully created.' }
         format.json { render :show, status: :created, location: @carteira }
       else
         format.html { render :new }
-        format.json { render json: @carteira.errors, status: :unprocessable_entity }
+        format.json { render json: carteiras_url.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +42,11 @@ class CarteirasController < ApplicationController
   def update
     respond_to do |format|
       if @carteira.update(carteira_params)
-        format.html { redirect_to @carteira, notice: 'Carteira was successfully updated.' }
+        format.html { redirect_to carteiras_url, notice: 'Carteira was successfully updated.' }
         format.json { render :show, status: :ok, location: @carteira }
       else
         format.html { render :edit }
-        format.json { render json: @carteira.errors, status: :unprocessable_entity }
+        format.json { render json: carteiras_url.errors, status: :unprocessable_entity }
       end
     end
   end

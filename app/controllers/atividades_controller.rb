@@ -46,7 +46,7 @@ class AtividadesController < ApplicationController
         format.json { render :show, status: :ok, location: @atividade }
       else
         format.html { render :edit }
-        format.json { render json: atividades_url.errors, status: :unprocessable_entity }
+        format.json { render json: @atividades.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,7 +56,7 @@ class AtividadesController < ApplicationController
   def destroy
     @atividade.destroy
     respond_to do |format|
-      format.html { redirect_to atividades_url, notice: 'Atividade was successfully destroyed.' }
+      format.html { redirect_to @atividade, notice: 'Atividade was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -1,57 +1,62 @@
 <%= form_with(model: atividade, local: true) do |form| %>
-  <% if atividade.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(atividade.errors.count, "error") %> prohibited this atividade from being saved:</h2>
+	<% if atividade.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(atividade.errors.count, "error") %> prohibited this atividade from being saved:</h2>
+			<ul>
+				<% atividade.errors.full_messages.each do |message| %>
+					<li>
+						<%= message %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+<% end %>
 
-      <ul>
-      <% atividade.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="row">
+	<div class="col-md-4 mt-3">
+		<%= form.label :carteira_id %>
+			<%= form.select :carteira_id, Carteira.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
+	</div>
+	<div class="col-md-4 mt-3">
+		<%= form.label :tipo_id %>
+			<%= form.select :tipo_id, Tipo.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
+	</div>
+	<div class="col-md-4 mt-3">
+		<%= form.label :movimento %>
+			<%= form.select :movimento, [["Compra","Compra"], ["Venda","Venda"]], {}, {class: 'form-control'} %>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-4 mt-3">
+		<%= form.label :codigo %>
+			<%= form.text_field :codigo, class: 'form-control' %>
+	</div>
+	<div class="col-md-4 mt-3">
+		<%= form.label :ativo_id %>
+			<%= form.select :ativo_id, Ativo.all.collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-4 mt-3">
+		<%= form.label :quantidade %>
+			<%= form.number_field :quantidade, class: 'form-control' %>
+	</div>
+	<div class="col-md-4 mt-3">
+		<%= form.label :valor %>
+			<%= form.text_field :valor, class: 'form-control' %>
+	</div>
+	<div class="col-md-4 mt-4">
+		<label>Data da negociação</label>
+		</br>
+		<%= form.date_select :data_negociada, class: 'form-control' %>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 mt-4">
+		<div class="form-group">
+			<%= form.submit 'Enviar', class: 'btn btn-block btn-primary' %>
+		</div>
+	</div>
+</div>
 
-  <div class="field">
-    <%= form.label :codigo %>
-    <%= form.text_field :codigo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :carteira_id %>
-    <%= form.text_field :carteira_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :valor %>
-    <%= form.text_field :valor %>
-  </div>
-
-  <div class="field">
-    <%= form.label :data_negociada %>
-    <%= form.date_select :data_negociada %>
-  </div>
-
-  <div class="field">
-    <%= form.label :quantidade %>
-    <%= form.number_field :quantidade %>
-  </div>
-
-  <div class="field">
-    <%= form.label :movimento %>
-    <%= form.text_field :movimento %>
-  </div>
-
-  <div class="field">
-    <%= form.label :tipo_id %>
-    <%= form.text_field :tipo_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ativo_id %>
-    <%= form.text_field :ativo_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

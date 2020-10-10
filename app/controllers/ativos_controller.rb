@@ -32,7 +32,7 @@ class AtivosController < ApplicationController
         format.json { render :show, status: :created, location: @ativo }
       else
         format.html { render :new }
-        format.json { render json: ativos_url.errors, status: :unprocessable_entity }
+        format.json { render json: @ativo.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -46,7 +46,7 @@ class AtivosController < ApplicationController
         format.json { render :show, status: :ok, location: @ativo }
       else
         format.html { render :edit }
-        format.json { render json: ativos_url.errors, status: :unprocessable_entity }
+        format.json { render json: @ativo.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -1,0 +1,37 @@
+<%= form_with(model: investimento, local: true) do |form| %>
+  <% if investimento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(investimento.errors.count, "error") %> prohibited this investimento from being saved:</h2>
+
+      <ul>
+      <% investimento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="row">
+  <div class="col-md-4 mt-3">
+    <%= form.label :carteira_id %>
+    <%= form.text_field :carteira_id %>
+  </div>
+
+  <div class="col-md-4 mt-3">
+    <%= form.label :quantidade %>
+    <%= form.number_field :quantidade %>
+  </div>
+
+  <div class="col-md-4 mt-3">
+    <%= form.label :ticker %>
+    <%= form.text_field :ticker %>
+  </div>
+
+</div>
+<div class="row">
+	<div class="col-md-3 mt-4">
+		<div class="form-group">
+			<%= form.submit 'Enviar', class: 'btn btn-block btn-primary' %>
+		</div>
+	</div>
+</div>
+<% end %>

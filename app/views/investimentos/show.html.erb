@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Carteira:</strong>
+  <%= @investimento.carteira %>
+</p>
+
+<p>
+  <strong>Quantidade:</strong>
+  <%= @investimento.quantidade %>
+</p>
+
+<p>
+  <strong>Ticker:</strong>
+  <%= @investimento.ticker %>
+</p>
+
+<%= link_to 'Edit', edit_investimento_path(@investimento) %> |
+<%= link_to 'Back', investimentos_path %>

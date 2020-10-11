@@ -38,7 +38,7 @@
 	</div>
 	<div class="col-md-4 mt-3">
 		<%= form.label :investimento_id %> (criar se não existir)
-			<%= form.select :investimento_id, Investimento.all.collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
+			<%= form.select :investimento_id, Ativo.all.collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
 	</div>
 </div>
 <div class="row">

@@ -13,6 +13,7 @@
 <div class="row">
   <div class="col-md-4 mt-3">
     <%= form.label :carteira_id %>
+    <%= form.select :carteira_id, Carteira.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
     <%= form.text_field :carteira_id %>
   </div>
 
@@ -22,8 +23,8 @@
   </div>
 
   <div class="col-md-4 mt-3">
-    <%= form.label :ticker %>
-    <%= form.text_field :ticker %>
+    <label>Ativo</label>
+    <%= form.select :Ativo_id, Ativo.all.collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
   </div>
 
 </div>

@@ -36,6 +36,10 @@
 		<%= form.label :codigo %> (preencher no caso de opções ou subscrições)
 			<%= form.text_field :codigo, class: 'form-control' %>
 	</div>
+	<div class="col-md-4 mt-3">
+		<%= form.label :investimento_id %> (criar se não existir)
+			<%= form.select :investimento_id, Investimento.all.collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
+	</div>
 </div>
 <div class="row">
 	<div class="col-md-4 mt-3">

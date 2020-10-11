@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_10_040131) do
+ActiveRecord::Schema.define(version: 2020_10_11_042301) do
 
   create_table "atividades", force: :cascade do |t|
     t.string "codigo"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_040131) do
     t.integer "ativo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "investimento_id"
     t.index ["ativo_id"], name: "index_atividades_on_ativo_id"
     t.index ["carteira_id"], name: "index_atividades_on_carteira_id"
     t.index ["tipo_id"], name: "index_atividades_on_tipo_id"
@@ -42,6 +43,15 @@ ActiveRecord::Schema.define(version: 2020_10_10_040131) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carteiras_on_user_id"
+  end
+
+  create_table "investimentos", force: :cascade do |t|
+    t.integer "carteira_id"
+    t.integer "quantidade"
+    t.string "ticker"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["carteira_id"], name: "index_investimentos_on_carteira_id"
   end
 
   create_table "tipos", force: :cascade do |t|

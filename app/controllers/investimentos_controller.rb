@@ -28,7 +28,7 @@ class InvestimentosController < ApplicationController
 
     respond_to do |format|
       if @investimento.save
-        format.html { redirect_to @investimento, notice: 'Investimento was successfully created.' }
+        format.html { redirect_to investimentos_url, notice: 'Investimento was successfully created.' }
         format.json { render :show, status: :created, location: @investimento }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class InvestimentosController < ApplicationController
   def update
     respond_to do |format|
       if @investimento.update(investimento_params)
-        format.html { redirect_to @investimento, notice: 'Investimento was successfully updated.' }
+        format.html { redirect_to investimentos_url, notice: 'Investimento was successfully updated.' }
         format.json { render :show, status: :ok, location: @investimento }
       else
         format.html { render :edit }

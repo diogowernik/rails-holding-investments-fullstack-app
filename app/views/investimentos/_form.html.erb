@@ -14,12 +14,11 @@
   <div class="col-md-4 mt-3">
     <%= form.label :carteira_id %>
     <%= form.select :carteira_id, Carteira.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
-    <%= form.text_field :carteira_id %>
   </div>
 
   <div class="col-md-4 mt-3">
     <%= form.label :quantidade %>
-    <%= form.number_field :quantidade %>
+    <%= form.number_field :quantidade, class: 'form-control' %>
   </div>
 
   <div class="col-md-4 mt-3">

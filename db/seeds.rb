@@ -62,8 +62,8 @@ Ativo.create(ticker: 'HGFF11', tipo_id: 2)
 Ativo.create(ticker: 'MGFF11', tipo_id: 2)
 Ativo.create(ticker: 'BCFF11', tipo_id: 2)
 
-Carteira.create(ticker: 'Warren Buffet', user_id: 1)
-Carteira.create(ticker: 'Ray Dalio', user_id: 1)
+Carteira.create(nome: 'Warren Buffet', user_id: 1)
+Carteira.create(nome: 'Ray Dalio', user_id: 1)
 
 Investimento.create(carteira_id: 1, ativo_id: 1, quantidade: 200)
 Investimento.create(carteira_id: 1, ativo_id: 3, quantidade: 100)
@@ -78,6 +78,5 @@ Investimento.create(carteira_id: 2, ativo_id: 32, quantidade: 50)
 Investimento.create(carteira_id: 2, ativo_id: 34, quantidade: 50)
 
 
-Atividade.create(codigo: 'BBASI345', data_negociada: DateTime.new(2020, 09, 01), quantidade: 200, valor: 0.60, carteira_id: 1, movimento: "Venda", ativo_id: 1, tipo_id: 1, investimento_id: 1 )
 
 

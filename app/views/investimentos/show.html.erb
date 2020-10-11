@@ -2,7 +2,7 @@
 
 <p>
   <strong>Carteira:</strong>
-  <%= @investimento.carteira %>
+  <%= @investimento.carteira.nome %>
 </p>
 
 <p>
@@ -12,7 +12,7 @@
 
 <p>
   <strong>Ticker:</strong>
-  <%= @investimento.ticker %>
+  <%= @investimento.ativo.ticker %>
 </p>
 
 <%= link_to 'Edit', edit_investimento_path(@investimento) %> |

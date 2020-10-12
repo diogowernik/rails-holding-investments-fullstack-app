@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_11_042021) do
+ActiveRecord::Schema.define(version: 2020_10_12_203957) do
 
   create_table "atividades", force: :cascade do |t|
     t.integer "carteira_id"
@@ -40,6 +40,38 @@ ActiveRecord::Schema.define(version: 2020_10_11_042021) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carteiras_on_user_id"
+  end
+
+  create_table "deriva_moves", force: :cascade do |t|
+    t.integer "carteira_id"
+    t.integer "derivativo_id"
+    t.integer "estado_id"
+    t.decimal "valor"
+    t.date "data"
+    t.integer "quantidade"
+    t.string "movimento"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["carteira_id"], name: "index_deriva_moves_on_carteira_id"
+    t.index ["derivativo_id"], name: "index_deriva_moves_on_derivativo_id"
+    t.index ["estado_id"], name: "index_deriva_moves_on_estado_id"
+  end
+
+  create_table "derivativos", force: :cascade do |t|
+    t.string "codigo"
+    t.decimal "strike"
+    t.string "tipo"
+    t.date "vencimento"
+    t.integer "ativo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ativo_id"], name: "index_derivativos_on_ativo_id"
+  end
+
+  create_table "estados", force: :cascade do |t|
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "investimentos", force: :cascade do |t|

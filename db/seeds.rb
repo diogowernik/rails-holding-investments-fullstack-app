@@ -65,11 +65,12 @@ Ativo.create(ticker: 'BCFF11', tipo_id: 2)
 Carteira.create(nome: 'Warren Buffet', user_id: 1)
 Carteira.create(nome: 'Ray Dalio', user_id: 1)
 
-Investimento.create(carteira_id: 1, ativo_id: 1, quantidade: 200)
+Investimento.create(carteira_id: 1, ativo_id: 1, quantidade: 300)
 Investimento.create(carteira_id: 1, ativo_id: 3, quantidade: 100)
 Investimento.create(carteira_id: 1, ativo_id: 5, quantidade: 400)
 Investimento.create(carteira_id: 1, ativo_id: 25, quantidade: 50)
 Investimento.create(carteira_id: 1, ativo_id: 28, quantidade: 50)
+Investimento.create(carteira_id: 1, ativo_id: 10, quantidade: 100)
 
 Investimento.create(carteira_id: 2, ativo_id: 4, quantidade: 100)
 Investimento.create(carteira_id: 2, ativo_id: 6, quantidade: 400)
@@ -90,4 +91,26 @@ Atividade.create(investimento_id: 7, carteira_id: 2, ativo_id: 6, valor: 24.00, 
 Atividade.create(investimento_id: 8, carteira_id: 2, ativo_id: 32, valor: 96.90, quantidade: 50, movimento: 'Compra', data: DateTime.strptime('11/05/2020', '%d/%m/%Y'))
 Atividade.create(investimento_id: 9, carteira_id: 2, ativo_id: 34, valor: 10.30, quantidade: 50, movimento: 'Compra', data: DateTime.strptime('14/07/2020', '%d/%m/%Y'))
 Atividade.create(investimento_id: 10, carteira_id: 2, ativo_id: 1, valor: 28.20, quantidade: 200, movimento: 'Compra', data: DateTime.strptime('01/09/2020', '%d/%m/%Y'))
+
+
+Estado.create(status: 'Aberta')
+Estado.create(status: 'Exercicio')
+Estado.create(status: 'Po')
+Estado.create(status: 'Recompra')
+
+
+Derivativo.create(codigo: 'BBASI355', strike: 35.16,  tipo: 'Call', vencimento: DateTime.strptime('21/09/2020', '%d/%m/%Y') , ativo: 1)
+Derivativo.create(codigo: 'BBASI455', strike: 34.16,  tipo: 'Call', vencimento: DateTime.strptime('21/09/2020', '%d/%m/%Y') , ativo: 1)
+Derivativo.create(codigo: 'BBASU322', strike: 31.91,  tipo: 'Put', vencimento: DateTime.strptime('21/09/2020', '%d/%m/%Y') , ativo: 1)
+Derivativo.create(codigo: 'VIVTU480', strike: 47.53,  tipo: 'Put', vencimento: DateTime.strptime('21/09/2020', '%d/%m/%Y') , ativo: 10)
+Derivativo.create(codigo: 'BBDCJ210', strike: 21.65,  tipo: 'Call', vencimento: DateTime.strptime('19/10/2020', '%d/%m/%Y') , ativo: 8)
+Derivativo.create(codigo: 'ITUBJ249', strike: 24.86,  tipo: 'Call', vencimento: DateTime.strptime('19/10/2020', '%d/%m/%Y') , ativo: 6)
+
+
+Deriva_Move.create(carteira: 1, derivativo: 1,  estado: 3,  valor: 0.23, data: DateTime.strptime('02/09/2020', '%d/%m/%Y'), quantidade:200,  movimento:Venda)
+Deriva_Move.create(carteira: 1, derivativo: 2,  estado: 3,  valor: 0.60, data: DateTime.strptime('02/09/2020', '%d/%m/%Y'), quantidade:200,  movimento:Venda)
+Deriva_Move.create(carteira: 1, derivativo: 3,  estado: 2,  valor: 0.38, data: DateTime.strptime('09/09/2020', '%d/%m/%Y'), quantidade:100,  movimento:Venda)
+Deriva_Move.create(carteira: 1, derivativo: 4,  estado: 2,  valor: 0.40, data: DateTime.strptime('09/09/2020', '%d/%m/%Y'), quantidade:100,  movimento:Venda)
+Deriva_Move.create(carteira: 1, derivativo: 5,  estado: 4,  valor: 0.40, data: DateTime.strptime('22/09/2020', '%d/%m/%Y'), quantidade:100,  movimento:Venda)
+Deriva_Move.create(carteira: 1, derivativo: 5,  estado: 1,  valor: 0.28, data: DateTime.strptime('22/09/2020', '%d/%m/%Y'), quantidade:300,  movimento:Venda)
 

@@ -1,0 +1,52 @@
+<%= form_with(model: deriva_move, local: true) do |form| %>
+  <% if deriva_move.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(deriva_move.errors.count, "error") %> prohibited this deriva_move from being saved:</h2>
+
+      <ul>
+      <% deriva_move.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :carteira_id %>
+    <%= form.text_field :carteira_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :derivativo_id %>
+    <%= form.text_field :derivativo_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado_id %>
+    <%= form.text_field :estado_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor %>
+    <%= form.text_field :valor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.date_select :data %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantidade %>
+    <%= form.number_field :quantidade %>
+  </div>
+
+  <div class="field">
+    <%= form.label :movimento %>
+    <%= form.text_field :movimento %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

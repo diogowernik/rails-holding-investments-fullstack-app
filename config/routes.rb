@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :deriva_moves
+  resources :derivativos
+  resources :estados
   resources :investimentos
   resources :atividades
   resources :ativos

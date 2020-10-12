@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: MyString
+  strike: 9.99
+  tipo: MyString
+  vencimento: 2020-10-12
+  estado: one
+  ativo: one
+
+two:
+  codigo: MyString
+  strike: 9.99
+  tipo: MyString
+  vencimento: 2020-10-12
+  estado: two
+  ativo: two

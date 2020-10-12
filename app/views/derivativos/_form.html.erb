@@ -1,0 +1,42 @@
+<%= form_with(model: derivativo, local: true) do |form| %>
+  <% if derivativo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(derivativo.errors.count, "error") %> prohibited this derivativo from being saved:</h2>
+
+      <ul>
+      <% derivativo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :codigo %>
+    <%= form.text_field :codigo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :strike %>
+    <%= form.text_field :strike %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo %>
+    <%= form.text_field :tipo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vencimento %>
+    <%= form.date_select :vencimento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ativo_id %>
+    <%= form.text_field :ativo_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

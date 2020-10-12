@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Deriva Moves</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Carteira</th>
+      <th>Derivativo</th>
+      <th>Estado</th>
+      <th>Valor</th>
+      <th>Data</th>
+      <th>Quantidade</th>
+      <th>Movimento</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @deriva_moves.each do |deriva_move| %>
+      <tr>
+        <td><%= deriva_move.carteira %></td>
+        <td><%= deriva_move.derivativo %></td>
+        <td><%= deriva_move.estado %></td>
+        <td><%= deriva_move.valor %></td>
+        <td><%= deriva_move.data %></td>
+        <td><%= deriva_move.quantidade %></td>
+        <td><%= deriva_move.movimento %></td>
+        <td><%= link_to 'Show', deriva_move %></td>
+        <td><%= link_to 'Edit', edit_deriva_move_path(deriva_move) %></td>
+        <td><%= link_to 'Destroy', deriva_move, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Deriva Move', new_deriva_move_path %>

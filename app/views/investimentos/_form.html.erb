@@ -23,7 +23,8 @@
 
   <div class="col-md-4 mt-3">
     <label>Ativo</label>
-    <%= form.select :Ativo_id, Ativo.all.collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
+    <%= form.text_field :ativo_id, class: 'form-control' %>
+    <%#= form.select :Ativo_id, Ativo.all.collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
   </div>
 
 </div>

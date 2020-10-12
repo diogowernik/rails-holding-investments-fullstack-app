@@ -1,14 +1,28 @@
-<p id="notice"><%= notice %></p>
+<h3 class="h3-custom" id="minhas-paginas">
+	<em class="fa fa-vcard-o text-success"></em> &nbsp; Carteira / Portfolio de <%= @carteira.nome %>
+</h3>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @carteira.nome %>
-</p>
+<div class="table-responsive">
+	<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Ativo</th>
+      <th>Tipo</th>
+      <th>Quant.</th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>User:</strong>
-  <%= @carteira.user %>
-</p>
+  <tbody>
+    <% @carteira.investimentos.each do |investimento| %>
+      <tr>
+        <td><%= investimento.ativo.ticker %></td>
+        <td><%= investimento.ativo.tipo.nome %></td>
+        <td><%= investimento.quantidade %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
 
 <%= link_to 'Edit', edit_carteira_path(@carteira) %> |
 <%= link_to 'Back', carteiras_path %>

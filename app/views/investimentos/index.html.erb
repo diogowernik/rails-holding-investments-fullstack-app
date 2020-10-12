@@ -10,6 +10,7 @@
 	<table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Ativo</th>
       <th>Tipo</th>
       <th>Quantidade</th>
@@ -21,6 +22,7 @@
   <tbody>
     <% @investimentos.each do |investimento| %>
       <tr>
+        <td class="text-center"><%= investimento.id %></td>
         <td><%= investimento.ativo.ticker %></td>
         <td><%= investimento.ativo.tipo.nome %></td>
         <td><%= investimento.quantidade %></td>
@@ -31,7 +33,7 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
 
 <%= link_to 'New Investimento', new_investimento_path %>

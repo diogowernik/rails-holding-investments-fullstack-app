@@ -18,6 +18,7 @@
               <th>Preço</th>
               <th>Data de Negociação</th>
               <th>Carteira</th>
+              <th>Investimento Id</th>
               
               
               <th colspan="2"></th>
@@ -35,6 +36,7 @@
                 <td>R$ <%= atividade.valor %></td>
                 <td><%= atividade.data_negociada %></td>
                 <td><%= atividade.carteira.nome %></td>
+                <td class="text-center"><%= atividade.investimento_id %></td>
                 <td><%= link_to 'Edit', edit_atividade_path(atividade) %></td>
                 <td><%= link_to 'Destroy', atividade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>

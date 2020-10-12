@@ -69,6 +69,6 @@ class DerivaMovesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deriva_move_params
-      params.require(:deriva_move).permit(:carteira_id, :derivativo_id, :valor, :data, :quantidade, :movimento)
+      params.require(:deriva_move).permit(:carteira_id, :derivativo_id, :estado_id, :valor, :data, :quantidade, :movimento)
     end
 end

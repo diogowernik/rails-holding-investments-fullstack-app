@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_002913) do
+ActiveRecord::Schema.define(version: 2020_10_11_042021) do
 
   create_table "atividades", force: :cascade do |t|
     t.integer "carteira_id"
-    t.decimal "valor"
-    t.date "data_negociada"
-    t.integer "quantidade"
-    t.string "movimento"
     t.integer "ativo_id"
+    t.decimal "valor"
+    t.date "data"
+    t.integer "quantidade"
+    t.integer "investimento_id"
+    t.string "movimento"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "investimento_id"
     t.index ["ativo_id"], name: "index_atividades_on_ativo_id"
     t.index ["carteira_id"], name: "index_atividades_on_carteira_id"
   end
@@ -43,11 +43,11 @@ ActiveRecord::Schema.define(version: 2020_10_12_002913) do
   end
 
   create_table "investimentos", force: :cascade do |t|
+    t.integer "ativo_id"
     t.integer "carteira_id"
     t.integer "quantidade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "ativo_id"
     t.index ["ativo_id"], name: "index_investimentos_on_ativo_id"
     t.index ["carteira_id"], name: "index_investimentos_on_carteira_id"
   end

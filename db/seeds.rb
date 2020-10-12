@@ -71,12 +71,23 @@ Investimento.create(carteira_id: 1, ativo_id: 5, quantidade: 400)
 Investimento.create(carteira_id: 1, ativo_id: 25, quantidade: 50)
 Investimento.create(carteira_id: 1, ativo_id: 28, quantidade: 50)
 
-Investimento.create(carteira_id: 2, ativo_id: 2, quantidade: 300)
 Investimento.create(carteira_id: 2, ativo_id: 4, quantidade: 100)
 Investimento.create(carteira_id: 2, ativo_id: 6, quantidade: 400)
 Investimento.create(carteira_id: 2, ativo_id: 32, quantidade: 50)
 Investimento.create(carteira_id: 2, ativo_id: 34, quantidade: 50)
+Investimento.create(carteira_id: 2, ativo_id: 1, quantidade: 200)
+
+Atividade.create(investimento_id: 1, carteira_id: 1, ativo_id: 1, valor: 29.40, quantidade: 100, movimento: 'Compra', data: DateTime.strptime('12/03/2020', '%d/%m/%Y'))
+Atividade.create(investimento_id: 1, carteira_id: 1, ativo_id: 1, valor: 29.40, quantidade: 100, movimento: 'Compra', data: DateTime.strptime('24/04/2020', '%d/%m/%Y'))
+Atividade.create(investimento_id: 2, carteira_id: 1, ativo_id: 3, valor: 39.90, quantidade: 100, movimento: 'Compra', data: DateTime.strptime('08/05/2020', '%d/%m/%Y'))
+Atividade.create(investimento_id: 3, carteira_id: 1, ativo_id: 5, valor: 9.40, quantidade: 400, movimento: 'Compra', data: DateTime.strptime('25/09/2020', '%d/%m/%Y'))
+Atividade.create(investimento_id: 4, carteira_id: 1, ativo_id: 25, valor: 115.90, quantidade: 50, movimento: 'Compra', data: DateTime.strptime('30/09/2020', '%d/%m/%Y'))
+Atividade.create(investimento_id: 5, carteira_id: 1, ativo_id: 28, valor: 126.40, quantidade: 50, movimento: 'Compra', data: DateTime.strptime('02/09/2020', '%d/%m/%Y'))
 
 
-
+Atividade.create(investimento_id: 6, carteira_id: 2, ativo_id: 4, valor: 28.40, quantidade: 100, movimento: 'Compra', data: DateTime.strptime('03/07/2020', '%d/%m/%Y'))
+Atividade.create(investimento_id: 7, carteira_id: 2, ativo_id: 6, valor: 24.00, quantidade: 400, movimento: 'Compra', data: DateTime.strptime('14/08/2020', '%d/%m/%Y'))
+Atividade.create(investimento_id: 8, carteira_id: 2, ativo_id: 32, valor: 96.90, quantidade: 50, movimento: 'Compra', data: DateTime.strptime('11/05/2020', '%d/%m/%Y'))
+Atividade.create(investimento_id: 9, carteira_id: 2, ativo_id: 34, valor: 10.30, quantidade: 50, movimento: 'Compra', data: DateTime.strptime('14/07/2020', '%d/%m/%Y'))
+Atividade.create(investimento_id: 10, carteira_id: 2, ativo_id: 1, valor: 28.20, quantidade: 200, movimento: 'Compra', data: DateTime.strptime('01/09/2020', '%d/%m/%Y'))
 

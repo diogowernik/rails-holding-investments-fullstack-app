@@ -4,21 +4,19 @@
 	</button><% end %>
 </div>
 <h3 class="h3-custom" id="minhas-paginas">
-	<em class="fa fa-vcard-o text-success"></em> &nbsp; Atividades
+	<em class="fa fa-usd text-success"></em> &nbsp; Movimentos / Atividades
 </h3>
 <div class="table-responsive">
 	<table class="table table-striped table-bordered table-hover">
           <thead>
             <tr>
+              <th class="text-center">Invest Id</th>
               <th>Ativo</th> 
-              <th>Cod. (opç. ou subs)</th>
-              <th>Tipo</th>
               <th>Movimento</th>
               <th>Quantidade</th>
               <th>Preço</th>
               <th>Data de Negociação</th>
               <th>Carteira</th>
-              <th>Investimento Id</th>
               
               
               <th colspan="2"></th>
@@ -28,15 +26,13 @@
           <tbody>
             <% @atividades.each do |atividade| %>
               <tr>
+                <td class="text-center"><%= atividade.investimento_id %></td>
                 <td><%= atividade.ativo.ticker %></td> 
-                <td><%= atividade.codigo %></td>
-                <td><%= atividade.tipo.nome %></td>
                 <td><%= atividade.movimento %></td>
                 <td><%= atividade.quantidade %></td>
                 <td>R$ <%= atividade.valor %></td>
                 <td><%= atividade.data_negociada %></td>
                 <td><%= atividade.carteira.nome %></td>
-                <td class="text-center"><%= atividade.investimento_id %></td>
                 <td><%= link_to 'Edit', edit_atividade_path(atividade) %></td>
                 <td><%= link_to 'Destroy', atividade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>

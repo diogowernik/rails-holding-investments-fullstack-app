@@ -10,23 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_11_195544) do
+ActiveRecord::Schema.define(version: 2020_10_12_002913) do
 
   create_table "atividades", force: :cascade do |t|
-    t.string "codigo"
     t.integer "carteira_id"
     t.decimal "valor"
     t.date "data_negociada"
     t.integer "quantidade"
     t.string "movimento"
-    t.integer "tipo_id"
     t.integer "ativo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "investimento_id"
     t.index ["ativo_id"], name: "index_atividades_on_ativo_id"
     t.index ["carteira_id"], name: "index_atividades_on_carteira_id"
-    t.index ["tipo_id"], name: "index_atividades_on_tipo_id"
   end
 
   create_table "ativos", force: :cascade do |t|

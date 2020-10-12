@@ -18,10 +18,6 @@
 		<%= form.select :carteira_id, Carteira.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
 	</div>
 	<div class="col-md-4 mt-3">
-		<%= form.label :tipo_id %>
-		<%= form.select :tipo_id, Tipo.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
-	</div>
-	<div class="col-md-4 mt-3">
 		<%= form.label :movimento %>
 		<%= form.select :movimento, [["Compra","Compra"], ["Venda","Venda"]], {}, {class: 'form-control'} %>
 	</div>
@@ -31,10 +27,6 @@
 	<div class="col-md-4 mt-3">
 		<%= form.label :ativo_id %>
 		<%= form.select :ativo_id, Ativo.all.collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
-	</div>
-	<div class="col-md-4 mt-3">
-		<%= form.label :codigo %> (preencher no caso de opções ou subscrições)
-		<%= form.text_field :codigo, class: 'form-control' %>
 	</div>
 	<div class="col-md-4 mt-3">
 		<%= form.label :investimento_id %> (criar se não existir)

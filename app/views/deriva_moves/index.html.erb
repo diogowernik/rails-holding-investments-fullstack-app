@@ -1,39 +1,60 @@
-<p id="notice"><%= notice %></p>
+<div class="float-right"><%= link_to new_atividade_path do %>
+	<button class="btn btn-outline-success">
+		<em class="fa fa-plus-circle"></em> &nbsp; Nova movimentação
+	</button><% end %>
+</div>
+<h3 class="h3-custom" id="minhas-paginas">
+	<em class="fa fa-usd text-success"></em> &nbsp; Movimentação dos derivativos
+</h3>
+<div class="table-responsive">
+	<table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Derivativo</th>
+              <th>Estado</th>
+              <th>Valor</th>
+              <th>Data</th>
+              <th>Vencimento</th>
+              <th>Quantidade</th>
+              <th>Movimento</th>
+              <th>Resultado</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <% @deriva_moves.each do |deriva_move| %>
+              <tr>
+                <td><%= deriva_move.derivativo.codigo %></td>
+                <td><%= deriva_move.estado.status %></td>
+                <td>R$ <%= number_with_precision(deriva_move.valor, :precision => 2) %></td>
+                <td><%= deriva_move.data.strftime("%d/%m/%Y") %></td>
+                <td><%= deriva_move.derivativo.vencimento.strftime("%d/%m/%Y") %></td>
+                <td><%= deriva_move.quantidade %></td>
+                <td><%= deriva_move.movimento %></td>
+                <td>
+                    <!--1 - Aberta-->
+                    <!--2 - Exercicio-->
+                    <!--3 - Pó-->
+                    <!--4 - Recompra-->
+                    <% if deriva_move.estado_id == 3 or deriva_move.estado_id == 1   %>
+                        <span class="text-primary">
+                            R$ <%= number_with_precision(deriva_move.valor * deriva_move.quantidade, :precision => 2)%> 
+                        </span>
+                    <% end %>
+                    <% if deriva_move.estado_id == 2  %>
+                        Compra ( <%= deriva_move.quantidade %> <%= deriva_move.derivativo.ativo.ticker %> / 
+                        <span class="text-primary">
+                        R$ <%= number_with_precision(deriva_move.derivativo.strike - deriva_move.valor, :precision => 2)  %> 
+                        </span>)
+                    <% end %>
+                   
+                </td>
+                <td><%= link_to 'Edit', edit_deriva_move_path(deriva_move) %></td>
+                <td><%= link_to 'Destroy', deriva_move, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+    </table>
+</div>
 
-<h1>Deriva Moves</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Carteira</th>
-      <th>Derivativo</th>
-      <th>Estado</th>
-      <th>Valor</th>
-      <th>Data</th>
-      <th>Quantidade</th>
-      <th>Movimento</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @deriva_moves.each do |deriva_move| %>
-      <tr>
-        <td><%= deriva_move.carteira %></td>
-        <td><%= deriva_move.derivativo %></td>
-        <td><%= deriva_move.estado %></td>
-        <td><%= deriva_move.valor %></td>
-        <td><%= deriva_move.data %></td>
-        <td><%= deriva_move.quantidade %></td>
-        <td><%= deriva_move.movimento %></td>
-        <td><%= link_to 'Show', deriva_move %></td>
-        <td><%= link_to 'Edit', edit_deriva_move_path(deriva_move) %></td>
-        <td><%= link_to 'Destroy', deriva_move, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Deriva Move', new_deriva_move_path %>

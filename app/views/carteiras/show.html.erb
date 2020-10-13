@@ -40,6 +40,7 @@
               <th>Quantidade</th>
               <th>Preço</th>
               <th>Data de Negociação</th>
+              <th>Resultado</th>
           </tr>
         </thead>
     
@@ -50,8 +51,12 @@
               <td><%= atividade.ativo.ticker %></td> 
               <td><%= atividade.movimento %></td>
               <td><%= atividade.quantidade %></td>
-              <td>R$ <%= atividade.valor %></td>
-              <td><%= atividade.data %></td>
+              <td>R$ <%= number_with_precision(atividade.valor, :precision => 2) %></td>
+              <td><%= atividade.data.strftime("%d/%m/%Y") %></td>
+              <td>Compra ( <%= atividade.quantidade %> <%= atividade.ativo.ticker %> / 
+                        <span class="text-primary">
+                        R$ <%= number_with_precision(atividade.valor, :precision => 2)  %> 
+                        </span>)</td>
               <td><%= link_to 'Edit', edit_atividade_path(atividade) %></td>
               <td><%= link_to 'Destroy', atividade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
@@ -107,6 +112,11 @@
                         <span class="text-primary">
                         R$ <%= number_with_precision(dm.derivativo.strike - dm.valor, :precision => 2)  %> 
                         </span>)
+                    <% end %>
+                    <% if dm.estado_id == 4   %>
+                        <span class="text-primary">
+                            R$ <%= number_with_precision((dm.valor - dm.valor_recompra) * dm.quantidade, :precision => 2)%> 
+                        </span>
                     <% end %>
                    
                 </td>

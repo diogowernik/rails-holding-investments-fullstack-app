@@ -69,6 +69,7 @@ class CorretorasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def corretora_params
-      params.require(:corretora).permit(:nome, :corretagem, :corretagem_porcentagem, :corretagem_iss)
+      params.require(:corretora).permit(:nome, :corretagem_fiis, :corretagem_acoes, :corretagem_opcoes, :corretagem_exerc, :corretagem_exerc_porcent, :corretagem_exerc_iss)
     end
 end
+

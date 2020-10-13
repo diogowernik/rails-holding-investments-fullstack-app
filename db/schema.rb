@@ -46,9 +46,12 @@ ActiveRecord::Schema.define(version: 2020_10_13_145809) do
 
   create_table "corretoras", force: :cascade do |t|
     t.string "nome"
-    t.decimal "corretagem"
-    t.decimal "corretagem_porcentagem"
-    t.decimal "corretagem_iss"
+    t.decimal "corretagem_fiis"
+    t.decimal "corretagem_acoes"
+    t.decimal "corretagem_opcoes"
+    t.decimal "corretagem_exerc"
+    t.decimal "corretagem_exerc_porcent"
+    t.decimal "corretagem_exerc_iss"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -59,7 +62,9 @@ ActiveRecord::Schema.define(version: 2020_10_13_145809) do
     t.integer "estado_id"
     t.integer "corretora_id"
     t.decimal "valor"
+    t.decimal "valor_recompra"
     t.date "data"
+    t.date "data_recompra"
     t.integer "quantidade"
     t.integer "investimento_id"
     t.string "movimento"

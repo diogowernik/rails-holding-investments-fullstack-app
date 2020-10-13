@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_203957) do
+ActiveRecord::Schema.define(version: 2020_10_13_145809) do
 
   create_table "atividades", force: :cascade do |t|
     t.integer "carteira_id"
     t.integer "ativo_id"
+    t.integer "corretora_id"
     t.decimal "valor"
     t.date "data"
     t.integer "quantidade"
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_10_12_203957) do
     t.datetime "updated_at", null: false
     t.index ["ativo_id"], name: "index_atividades_on_ativo_id"
     t.index ["carteira_id"], name: "index_atividades_on_carteira_id"
+    t.index ["corretora_id"], name: "index_atividades_on_corretora_id"
   end
 
   create_table "ativos", force: :cascade do |t|
@@ -42,17 +44,29 @@ ActiveRecord::Schema.define(version: 2020_10_12_203957) do
     t.index ["user_id"], name: "index_carteiras_on_user_id"
   end
 
+  create_table "corretoras", force: :cascade do |t|
+    t.string "nome"
+    t.decimal "corretagem"
+    t.decimal "corretagem_porcentagem"
+    t.decimal "corretagem_iss"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "deriva_moves", force: :cascade do |t|
     t.integer "carteira_id"
     t.integer "derivativo_id"
     t.integer "estado_id"
+    t.integer "corretora_id"
     t.decimal "valor"
     t.date "data"
     t.integer "quantidade"
+    t.integer "investimento_id"
     t.string "movimento"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["carteira_id"], name: "index_deriva_moves_on_carteira_id"
+    t.index ["corretora_id"], name: "index_deriva_moves_on_corretora_id"
     t.index ["derivativo_id"], name: "index_deriva_moves_on_derivativo_id"
     t.index ["estado_id"], name: "index_deriva_moves_on_estado_id"
   end

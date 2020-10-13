@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Corretoras</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Corretagem</th>
+      <th>Corretagem porcentagem</th>
+      <th>Corretagem iss</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @corretoras.each do |corretora| %>
+      <tr>
+        <td><%= corretora.nome %></td>
+        <td><%= corretora.corretagem %></td>
+        <td><%= corretora.corretagem_porcentagem %></td>
+        <td><%= corretora.corretagem_iss %></td>
+        <td><%= link_to 'Show', corretora %></td>
+        <td><%= link_to 'Edit', edit_corretora_path(corretora) %></td>
+        <td><%= link_to 'Destroy', corretora, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Corretora', new_corretora_path %>

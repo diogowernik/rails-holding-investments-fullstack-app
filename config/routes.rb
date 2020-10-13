@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :corretoras
   resources :deriva_moves
   resources :derivativos
   resources :estados

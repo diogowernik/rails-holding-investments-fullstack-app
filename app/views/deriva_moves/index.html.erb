@@ -23,35 +23,35 @@
           </thead>
         
           <tbody>
-            <% @deriva_moves.each do |deriva_move| %>
+            <% @deriva_moves.each do |dm| %>
               <tr>
-                <td><%= deriva_move.derivativo.codigo %></td>
-                <td><%= deriva_move.estado.status %></td>
-                <td>R$ <%= number_with_precision(deriva_move.valor, :precision => 2) %></td>
-                <td><%= deriva_move.data.strftime("%d/%m/%Y") %></td>
-                <td><%= deriva_move.derivativo.vencimento.strftime("%d/%m/%Y") %></td>
-                <td><%= deriva_move.quantidade %></td>
-                <td><%= deriva_move.movimento %></td>
+                <td><%= dm.derivativo.codigo %></td>
+                <td><%= dm.estado.status %></td>
+                <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
+                <td><%= dm.data.strftime("%d/%m/%Y") %></td>
+                <td><%= dm.derivativo.vencimento.strftime("%d/%m/%Y") %></td>
+                <td><%= dm.quantidade %></td>
+                <td><%= dm.movimento %></td>
                 <td>
                     <!--1 - Aberta-->
                     <!--2 - Exercicio-->
                     <!--3 - Pó-->
                     <!--4 - Recompra-->
-                    <% if deriva_move.estado_id == 3 or deriva_move.estado_id == 1   %>
+                    <% if dm.estado_id == 3 or dm.estado_id == 1   %>
                         <span class="text-primary">
-                            R$ <%= number_with_precision(deriva_move.valor * deriva_move.quantidade, :precision => 2)%> 
+                            R$ <%= number_with_precision(dm.valor * dm.quantidade, :precision => 2)%> 
                         </span>
                     <% end %>
-                    <% if deriva_move.estado_id == 2  %>
-                        Compra ( <%= deriva_move.quantidade %> <%= deriva_move.derivativo.ativo.ticker %> / 
+                    <% if dm.estado_id == 2  %>
+                        Compra ( <%= dm.quantidade %> <%= dm.derivativo.ativo.ticker %> / 
                         <span class="text-primary">
-                        R$ <%= number_with_precision(deriva_move.derivativo.strike - deriva_move.valor, :precision => 2)  %> 
+                        R$ <%= number_with_precision(dm.derivativo.strike - dm.valor, :precision => 2)  %> 
                         </span>)
                     <% end %>
                    
                 </td>
-                <td><%= link_to 'Edit', edit_deriva_move_path(deriva_move) %></td>
-                <td><%= link_to 'Destroy', deriva_move, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= link_to 'Edit', edit_deriva_move_path(dm) %></td>
+                <td><%= link_to 'Destroy', dm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
             <% end %>
           </tbody>

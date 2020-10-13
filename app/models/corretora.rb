@@ -1,0 +1,2 @@
+class Corretora < ApplicationRecord
+end

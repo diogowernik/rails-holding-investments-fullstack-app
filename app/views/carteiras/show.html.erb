@@ -1,64 +1,120 @@
 <h3 class="h3-custom" id="minhas-paginas">
-	<em class="fa fa-vcard-o text-success"></em> &nbsp; Carteira / Portfolio de <%= @carteira.nome %>
+	<em class="fa fa-vcard-o text-success"></em> &nbsp; Carteira de <%= @carteira.nome %> (Ativos)
 </h3>
 
 <div class="table-responsive mb-5">
 	<table class="table table-striped table-bordered table-hover">
-  <thead>
-    <tr>
-      <th class="text-center">Id</th>
-      <th>Ativo</th>
-      <th>Tipo</th>
-      <th>Quant.</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @carteira.investimentos.each do |investimento| %>
-      <tr>
-        <td class="text-center"><%= investimento.id %></td>
-        <td><%= investimento.ativo.ticker %></td>
-        <td><%= investimento.ativo.tipo.nome %></td>
-        <td><%= investimento.quantidade %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <thead>
+          <tr>
+            <th class="text-center">Id</th>
+            <th>Ativo</th>
+            <th>Tipo</th>
+            <th>Quant.</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @carteira.investimentos.each do |investimento| %>
+            <tr>
+              <td class="text-center"><%= investimento.id %></td>
+              <td><%= investimento.ativo.ticker %></td>
+              <td><%= investimento.ativo.tipo.nome %></td>
+              <td><%= investimento.quantidade %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
 </div>
 
 <h3 class="h3-custom mt-5" id="minhas-paginas">
-	<em class="fa fa-usd text-success"></em> &nbsp; Movimentos / atividades
+	<em class="fa fa-usd text-success"></em> &nbsp; Mov. de Ativos
 </h3>
 
 <div class="table-responsive">
 	<table class="table table-striped table-bordered table-hover">
-  <thead>
-    <tr>
-        <th class="text-center">Invest. Id</th>
-        <th>Ativo</th> 
-        <th>Movimento</th>
-        <th>Quantidade</th>
-        <th>Preço</th>
-        <th>Data de Negociação</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @carteira.atividades.each do |atividade| %>
-      <tr>
-         <td class="text-center"><%= atividade.investimento_id %></td>
-        <td><%= atividade.ativo.ticker %></td> 
-        <td><%= atividade.movimento %></td>
-        <td><%= atividade.quantidade %></td>
-        <td>R$ <%= atividade.valor %></td>
-        <td><%= atividade.data %></td>
-        <td><%= link_to 'Edit', edit_atividade_path(atividade) %></td>
-        <td><%= link_to 'Destroy', atividade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <thead>
+          <tr>
+              <th class="text-center">Invest. Id</th>
+              <th>Ativo</th> 
+              <th>Movimento</th>
+              <th>Quantidade</th>
+              <th>Preço</th>
+              <th>Data de Negociação</th>
+          </tr>
+        </thead>
+    
+        <tbody>
+          <% @carteira.atividades.each do |atividade| %>
+            <tr>
+              <td class="text-center"><%= atividade.investimento_id %></td>
+              <td><%= atividade.ativo.ticker %></td> 
+              <td><%= atividade.movimento %></td>
+              <td><%= atividade.quantidade %></td>
+              <td>R$ <%= atividade.valor %></td>
+              <td><%= atividade.data %></td>
+              <td><%= link_to 'Edit', edit_atividade_path(atividade) %></td>
+              <td><%= link_to 'Destroy', atividade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
 </div>
 
-<%= link_to 'Edit', edit_carteira_path(@carteira) %> |
-<%= link_to 'Back', carteiras_path %>
+<h3 class="h3-custom mt-5" id="minhas-paginas">
+	<em class="fa fa-usd text-success"></em> &nbsp; Mov. de Derivativos
+</h3>
+
+<div class="table-responsive">
+	<table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+              <th class="text-center">Invest Id</th>
+              <th>Derivativo</th>
+              <th>Estado</th>
+              <th>Valor</th>
+              <th>Data</th>
+              <th>Vencimento</th>
+              <th>Quantidade</th>
+              <th>Movimento</th>
+              <th>Resultado</th>
+              <th colspan="3"></th>
+            </tr>
+        </thead>
+    
+        <tbody>
+          <% @carteira.deriva_moves.each do |dm| %>
+            <tr>
+                <td class="text-center"><%= dm.investimento_id %></td>
+                <td><%= dm.derivativo.codigo %></td>
+                <td><%= dm.estado.status %></td>
+                <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
+                <td><%= dm.data.strftime("%d/%m/%Y") %></td>
+                <td><%= dm.derivativo.vencimento.strftime("%d/%m/%Y") %></td>
+                <td><%= dm.quantidade %></td>
+                <td><%= dm.movimento %></td>
+                <td>
+                    <!--1 - Aberta-->
+                    <!--2 - Exercicio-->
+                    <!--3 - Pó-->
+                    <!--4 - Recompra-->
+                    <% if dm.estado_id == 3 or dm.estado_id == 1   %>
+                        <span class="text-primary">
+                            R$ <%= number_with_precision(dm.valor * dm.quantidade, :precision => 2)%> 
+                        </span>
+                    <% end %>
+                    <% if dm.estado_id == 2  %>
+                        Compra ( <%= dm.quantidade %> <%= dm.derivativo.ativo.ticker %> / 
+                        <span class="text-primary">
+                        R$ <%= number_with_precision(dm.derivativo.strike - dm.valor, :precision => 2)  %> 
+                        </span>)
+                    <% end %>
+                   
+                </td>
+                <td><%= link_to 'Edit', edit_deriva_move_path(dm) %></td>
+                <td><%= link_to 'Destroy', dm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+        </tbody>
+    </table>
+</div>
+

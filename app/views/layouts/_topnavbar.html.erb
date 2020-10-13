@@ -8,9 +8,36 @@
               <span class="navbar-toggler-icon"></span>
            </button>
         </div>
+        
         <div class="navbar-collapse collapse" id="topnavbar">
-           <ul class="nav navbar-nav mr-auto flex-column flex-lg-row">
-           </ul>
+        <ul class="nav navbar-nav mr-auto flex-column flex-lg-row">
+            
+        <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#dashboard" data-toggle="dropdown">Admin</a>
+            <div class="dropdown-menu animated fadeIn">
+                <%= link_to ativos_path, class: 'dropdown-item mb-1' do %>
+                    Ativos
+                <% end %>
+                <%= link_to derivativos_path, class: 'dropdown-item mb-1' do %>
+                    Derivativos
+                <% end %>
+                <%= link_to tipos_path, class: 'dropdown-item mb-1' do %>
+                     Tipos
+                <% end %>
+                <%= link_to investimentos_path, class: 'dropdown-item mb-1' do %>
+                     Investimentos
+                <% end %>
+                <%= link_to atividades_path, class: 'dropdown-item mb-1' do %>
+                     Mov. de Ativos
+                <% end %>
+                <%= link_to deriva_moves_path, class: 'dropdown-item mb-1' do %>
+                     Mov. de Derivativos
+                <% end %>
+            </div>
+        </li>
+        <% end %>
+        </ul>
            <ul class="navbar-nav flex-row">
               <% if(!user_signed_in?) %>
                   <li class="nav-item">
@@ -26,65 +53,44 @@
                          Carteiras
                         <% end %>
                     </li>
-                    <li class="nav-item">
-                        <%= link_to atividades_path, class: 'nav-link nav-link-custom' do %>
-                         Atividades
-                        <% end %>
-                    </li>
-                    <li class="nav-item">
-                        <%= link_to investimentos_path, class: 'nav-link nav-link-custom' do %>
-                         Investimentos
-                        <% end %>
-                    </li>
-                    <li class="nav-item">
-                        <%= link_to tipos_path, class: 'nav-link nav-link-custom' do %>
-                         Tipos
-                        <% end %>
-                    </li>
-                    <li class="nav-item">
-                        <%= link_to ativos_path, class: 'nav-link nav-link-custom' do %>
-                         Ativos
-                        <% end %>
-                    </li>
-                  
-                  <li class="nav-item dropdown dropdown-list">
-                     <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown">
-                         <%= image_tag avatar_url(current_user), class: 'align-self-start mx-2 circle thumb32' %>
-                     </a>
-                     <div class="dropdown-menu dropdown-menu-right">
-                        <div class="dropdown-item">
-                           <div class="list-group">
-                                
-                                  <div class="list-group-item list-group-item-action">
+                    <li class="nav-item dropdown dropdown-list">
+                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown">
+                             <%= image_tag avatar_url(current_user), class: 'align-self-start mx-2 circle thumb32' %>
+                         </a>
+                         <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-item">
+                               <div class="list-group">
+                                    
+                                      <div class="list-group-item list-group-item-action">
+                                         <div class="media">
+                                            <div class="align-self-start mr-2">
+                                               <em class="fa fa-cogs fa-2x text-info"></em>
+                                            </div>
+                                            <div class="media-body">
+                                               <p class="m-0">Área Administrativa</p>
+                                               <p class="m-0 text-muted text-sm">Minhas coisas</p>
+                                            </div>
+                                         </div>
+                                      </div>
+                                    
+                                      <div class="list-group-item list-group-item-action">
                                      <div class="media">
                                         <div class="align-self-start mr-2">
-                                           <em class="fa fa-cogs fa-2x text-info"></em>
+                                           <em class="fa fa-sign-out fa-2x text-warning"></em>
                                         </div>
                                         <div class="media-body">
-                                           <p class="m-0">Área Administrativa</p>
-                                           <p class="m-0 text-muted text-sm">Minhas coisas</p>
+                                          <%= link_to destroy_user_session_path, method: :delete do %>
+                                            <p class="m-0">Sair</p>
+                                            <p class="m-0 text-muted text-sm">Fazer Logout </p>
+                                          <% end %>
                                         </div>
                                      </div>
                                   </div>
-                                
-                                  <div class="list-group-item list-group-item-action">
-                                 <div class="media">
-                                    <div class="align-self-start mr-2">
-                                       <em class="fa fa-sign-out fa-2x text-warning"></em>
-                                    </div>
-                                    <div class="media-body">
-                                      <%= link_to destroy_user_session_path, method: :delete do %>
-                                        <p class="m-0">Sair</p>
-                                        <p class="m-0 text-muted text-sm">Fazer Logout </p>
-                                      <% end %>
-                                    </div>
-                                 </div>
-                              </div>
-                                
-                           </div>
-                        </div>
-                     </div>
-                  </li>
+                                    
+                               </div>
+                            </div>
+                         </div>
+                      </li>
               <% end %>
            </ul>
         </div>

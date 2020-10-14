@@ -1,14 +1,22 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Corretoras</h1>
-
-<table>
+<div class="float-right"><%= link_to new_corretora_path do %>
+	<button class="btn btn-outline-success">
+		<em class="fa fa-plus-circle"></em> &nbsp; Nova Corretora
+	</button><% end %>
+</div>
+<h3 class="h3-custom" id="minhas-paginas">
+	<em class="fa fa-vcard-o text-success"></em> &nbsp; Status
+</h3>
+<div class="table-responsive">
+	<table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
       <th>Nome</th>
-      <th>Corretagem</th>
-      <th>Corretagem porcentagem</th>
-      <th>Corretagem iss</th>
+      <th>Corret Ações</th>
+      <th>Corret Opções</th>
+      <th>Corret Fiis</th>
+      <th>Corret Exercicio</th>
+      <th>Corret Exercicio %</th>
+      
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,9 +25,12 @@
     <% @corretoras.each do |corretora| %>
       <tr>
         <td><%= corretora.nome %></td>
-        <td><%= corretora.corretagem %></td>
-        <td><%= corretora.corretagem_porcentagem %></td>
-        <td><%= corretora.corretagem_iss %></td>
+        <td><%= corretora.corretagem_acoes %></td>
+        <td><%= corretora.corretagem_opcoes %></td>
+        <td><%= corretora.corretagem_fiis %></td>
+        <td><%= corretora.corretagem_exerc %></td>
+        <td><%= corretora.corretagem_exerc_porcent * 100 %> % </td>
+        <td><%#= corretora.corretagem_exerc_iss %></td>
         <td><%= link_to 'Show', corretora %></td>
         <td><%= link_to 'Edit', edit_corretora_path(corretora) %></td>
         <td><%= link_to 'Destroy', corretora, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -28,6 +39,5 @@
   </tbody>
 </table>
 
-<br>
+</div>
 
-<%= link_to 'New Corretora', new_corretora_path %>

@@ -11,32 +11,41 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :codigo %>
-    <%= form.text_field :codigo %>
-  </div>
+<div class="row">
 
-  <div class="field">
-    <%= form.label :strike %>
-    <%= form.text_field :strike %>
-  </div>
-
-  <div class="field">
+  <div class="col-md-4 mt-4">
     <%= form.label :tipo %>
-    <%= form.text_field :tipo %>
+    <%= form.select :movimento, [["Call","Call"], ["Put","Put"]], {}, {class: 'form-control'} %>
+  </div>
+  <div class="col-md-4 mt-4">
+    <label> Ativo base </label>
+    <%= form.select :ativo_id, Ativo.all.collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
+  </div>
+  
+  <div class="col-md-4 mt-4">
+    <%= form.label :codigo %>
+    <%= form.text_field :codigo, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :vencimento %>
-    <%= form.date_select :vencimento %>
+  <div class="col-md-4 mt-4">
+    <%= form.label :strike %>
+    <%= form.text_field :strike, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :ativo_id %>
-    <%= form.text_field :ativo_id %>
+
+
+  <div class="col-md-4 mt-4">
+    <%= form.label :vencimento %> </br>
+    <%= form.date_select :vencimento, class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
+</div>
+<div class="row">
+	<div class="col-md-3 mt-4">
+		<div class="form-group">
+			<%= form.submit 'Enviar', class: 'btn btn-block btn-primary' %>
+		</div>
+	</div>
+</div>
 <% end %>

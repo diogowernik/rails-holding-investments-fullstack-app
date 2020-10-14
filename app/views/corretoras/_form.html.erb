@@ -11,27 +11,45 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="row">
+  <div class="col-md-4 mt-4">
     <%= form.label :nome %>
-    <%= form.text_field :nome %>
+    <%= form.text_field :nome, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :corretagem %>
-    <%= form.text_field :corretagem %>
+  <div class="col-md-4 mt-4">
+    <%= form.label :corretagem_acoes %>
+    <%= form.text_field :corretagem_acoes, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :corretagem_porcentagem %>
-    <%= form.text_field :corretagem_porcentagem %>
+  <div class="col-md-4 mt-4">
+    <%= form.label :corretagem_opcoes %>
+    <%= form.text_field :corretagem_opcoes, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :corretagem_iss %>
-    <%= form.text_field :corretagem_iss %>
+  <div class="col-md-4 mt-4">
+    <%= form.label :corretagem_fiis %>
+    <%= form.text_field :corretagem_fiis, class: 'form-control' %>
+  </div>
+  <div class="col-md-4 mt-4">
+    <%= form.label :corretagem_exerc %>
+    <%= form.text_field :corretagem_exerc, class: 'form-control' %>
+  </div>
+  <div class="col-md-4 mt-4">
+    <%= form.label :corretagem_exerc_porcent %>
+    <%= form.text_field :corretagem_exerc_porcent, class: 'form-control' %>
+  </div>
+    <div class="col-md-4 mt-4">
+    <%= form.label :corretagem_exerc_iss %>
+    <%= form.text_field :corretagem_exerc_iss, class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</div>
+<div class="row">
+	<div class="col-md-3 mt-4">
+		<div class="form-group">
+			<%= form.submit 'Enviar', class: 'btn btn-block btn-primary' %>
+		</div>
+	</div>
+</div>
 <% end %>

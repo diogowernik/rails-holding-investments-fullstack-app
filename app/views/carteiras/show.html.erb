@@ -1,3 +1,9 @@
+<div class="float-right"><%= link_to new_investimento_path do %>
+	<button class="btn btn-outline-success">
+		<em class="fa fa-plus-circle"></em> &nbsp; Novo Investimento
+	</button><% end %>
+</div>
+
 <h3 class="h3-custom" id="minhas-paginas">
 	<em class="fa fa-vcard-o text-success"></em> &nbsp; Carteira de <%= @carteira.nome %> (Ativos)
 </h3>
@@ -24,6 +30,12 @@
           <% end %>
         </tbody>
     </table>
+</div>
+
+<div class="float-right"><%= link_to new_atividade_path do %>
+	<button class="btn btn-outline-success">
+		<em class="fa fa-plus-circle"></em> &nbsp; Nova movimentação (Ativos)
+	</button><% end %>
 </div>
 
 <h3 class="h3-custom mt-5" id="minhas-paginas">
@@ -65,6 +77,12 @@
     </table>
 </div>
 
+<div class="float-right mt-5"><%= link_to new_deriva_move_path do %>
+	<button class="btn btn-outline-success">
+		<em class="fa fa-plus-circle"></em> &nbsp; Nova movimentação (Derivativos)
+	</button><% end %>
+</div>
+
 <h3 class="h3-custom mt-5" id="minhas-paginas">
 	<em class="fa fa-usd text-success"></em> &nbsp; Mov. de Derivativos
 </h3>
@@ -77,7 +95,6 @@
               <th>Derivativo</th>
               <th>Estado</th>
               <th>Valor</th>
-              <th>Data</th>
               <th>Vencimento</th>
               <th>Quantidade</th>
               <th>Movimento</th>
@@ -93,32 +110,16 @@
                 <td><%= dm.derivativo.codigo %></td>
                 <td><%= dm.estado.status %></td>
                 <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
-                <td><%= dm.data.strftime("%d/%m/%Y") %></td>
                 <td><%= dm.derivativo.vencimento.strftime("%d/%m/%Y") %></td>
                 <td><%= dm.quantidade %></td>
                 <td><%= dm.movimento %></td>
+                <!--resultado_derivativo está no aplication helper-->
                 <td>
-                    <!--1 - Aberta-->
-                    <!--2 - Exercicio-->
-                    <!--3 - Pó-->
-                    <!--4 - Recompra-->
-                    <% if dm.estado_id == 3 or dm.estado_id == 1   %>
-                        <span class="text-primary">
-                            R$ <%= number_with_precision(dm.valor * dm.quantidade, :precision => 2)%> 
-                        </span>
-                    <% end %>
-                    <% if dm.estado_id == 2  %>
-                        Compra ( <%= dm.quantidade %> <%= dm.derivativo.ativo.ticker %> / 
-                        <span class="text-primary">
-                        R$ <%= number_with_precision(dm.derivativo.strike - dm.valor, :precision => 2)  %> 
-                        </span>)
-                    <% end %>
-                    <% if dm.estado_id == 4   %>
-                        <span class="text-primary">
-                            R$ <%= number_with_precision((dm.valor - dm.valor_recompra) * dm.quantidade, :precision => 2)%> 
-                        </span>
-                    <% end %>
-                   
+                    <span class="text-primary"><%= resultado_aberta(dm) %></span>
+                    <span class="text-primary"><%= resultado_po(dm) %></span>
+                    <span class="text-primary"><%= resultado_exercicio(dm) %></span>
+                    <span class="text-<%= cor_resultado_recompra(dm) %>"><%= resultado_recompra(dm) %></span>
+                    
                 </td>
                 <td><%= link_to 'Edit', edit_deriva_move_path(dm) %></td>
                 <td><%= link_to 'Destroy', dm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -127,4 +128,5 @@
         </tbody>
     </table>
 </div>
+
 

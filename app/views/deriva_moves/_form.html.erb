@@ -11,52 +11,69 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="row">
+  <div class="col-md-4 mt-4">
     <%= form.label :carteira_id %>
-    <%= form.text_field :carteira_id %>
+    <%= form.select :carteira_id, Carteira.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
   </div>
 
-  <div class="field">
+  <div class="col-md-4 mt-4">
     <%= form.label :derivativo_id %>
-    <%= form.text_field :derivativo_id %>
+    <%= form.select :derivativo_id, Derivativo.all.collect {|d| [d.codigo, d.id]}, {}, {class: 'form-control'} %>
   </div>
 
-  <div class="field">
+  <div class="col-md-4 mt-4">
     <%= form.label :estado_id %>
-    <%= form.text_field :estado_id %>
+    <%= form.select :estado_id, Estado.all.collect {|d| [d.status, d.id]}, {}, {class: 'form-control'} %>
   </div>
   
-  <div class="field">
+  <div class="col-md-4 mt-4">
     <%= form.label :investimento_id %>
-    <%= form.text_field :investimento_id %>
+    <%= form.select :investimento_id, Investimento.all.collect {|d| [d.id, d.id]}, {}, {class: 'form-control'} %>
   </div>
   
-  <div class="field">
+  <div class="col-md-4 mt-4">
     <%= form.label :corretora_id %>
-    <%= form.text_field :corretora_id %>
+    <%= form.select :corretora_id, Corretora.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
+  </div>
+  <div class="col-md-4 mt-4">
+    <%= form.label :movimento %>
+    <%= form.select :movimento, [["Compra","Compra"], ["Venda","Venda"]], {}, {class: 'form-control'} %>
   </div>
 
-  <div class="field">
+  <div class="col-md-4 mt-4">
     <%= form.label :valor %>
-    <%= form.text_field :valor %>
+    <%= form.text_field :valor, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :data %>
+  <div class="col-md-4 mt-4">
+    <%= form.label :quantidade %>
+    <%= form.number_field :quantidade, class: 'form-control' %>
+  </div>
+  <div class="col-md-4 mt-4">
+    <%= form.label :data %></br>
     <%= form.date_select :data %>
   </div>
-
-  <div class="field">
-    <%= form.label :quantidade %>
-    <%= form.number_field :quantidade %>
+</div>
+<div class="row">  
+  <div class="col-md-12 mt-4">
+    <p>preencher apenas em caso de recompra</p>
   </div>
-
-  <div class="field">
-    <%= form.label :movimento %>
-    <%= form.text_field :movimento %>
+  <div class="col-md-6 mt-4">
+    <%= form.label :valor_recompra %>
+    <%= form.text_field :valor_recompra, class: 'form-control' %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="col-md-6 mt-4">
+    <%= form.label :data_recompra %></br>
+    <%= form.date_select :data_recompra %>
   </div>
+</div>
+
+<div class="row">
+	<div class="col-md-3 mt-4">
+		<div class="form-group">
+			<%= form.submit 'Enviar', class: 'btn btn-block btn-primary' %>
+		</div>
+	</div>
+</div>
 <% end %>

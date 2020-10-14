@@ -21,19 +21,18 @@
 		<%= form.label :movimento %>
 		<%= form.select :movimento, [["Compra","Compra"], ["Venda","Venda"]], {}, {class: 'form-control'} %>
 	</div>
-</div>
-<div class="row">
+	<div class="col-md-4 mt-3">
+		<%= form.label :investimento_id %> (criar se não existir)
+		<%= form.select :investimento_id, Investimento.all.collect {|d| [d.id, d.id]}, {}, {class: 'form-control'} %>
+	</div>
+
+
 
 	<div class="col-md-4 mt-3">
 		<%= form.label :ativo_id %>
 		<%= form.select :ativo_id, Ativo.all.collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
 	</div>
-	<div class="col-md-4 mt-3">
-		<%= form.label :investimento_id %> (criar se não existir)
-		<%= form.select :investimento_id, Investimento.all.collect {|d| [d.id, d.id]}, {}, {class: 'form-control'} %>
-	</div>
-</div>
-<div class="row">
+
 	<div class="col-md-4 mt-3">
 		<%= form.label :quantidade %>
 			<%= form.number_field :quantidade, class: 'form-control' %>

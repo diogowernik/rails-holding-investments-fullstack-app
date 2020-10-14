@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_13_145809) do
+ActiveRecord::Schema.define(version: 2020_10_14_204522) do
 
   create_table "atividades", force: :cascade do |t|
     t.integer "carteira_id"
@@ -56,25 +56,8 @@ ActiveRecord::Schema.define(version: 2020_10_13_145809) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "deriva_moves", force: :cascade do |t|
-    t.integer "carteira_id"
-    t.integer "derivativo_id"
-    t.integer "estado_id"
-    t.integer "corretora_id"
-    t.decimal "valor"
-    t.decimal "valor_recompra"
-    t.date "data"
-    t.date "data_recompra"
-    t.integer "quantidade"
-    t.integer "investimento_id"
-    t.string "movimento"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["carteira_id"], name: "index_deriva_moves_on_carteira_id"
-    t.index ["corretora_id"], name: "index_deriva_moves_on_corretora_id"
-    t.index ["derivativo_id"], name: "index_deriva_moves_on_derivativo_id"
-    t.index ["estado_id"], name: "index_deriva_moves_on_estado_id"
-  end
+# Could not dump table "deriva_moves" because of following StandardError
+#   Unknown type 'vencimento_id' for column 'vencimento'
 
   create_table "derivativos", force: :cascade do |t|
     t.string "codigo"
@@ -119,6 +102,12 @@ ActiveRecord::Schema.define(version: 2020_10_13_145809) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vencimentos", force: :cascade do |t|
+    t.date "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -19,7 +19,7 @@
   <tbody>
     <% @estados.each do |estado| %>
       <tr>
-        <td><%= estado.status %></td>
+        <td><%= link_to estado do %><%= estado.status %><% end %></td>
         <td><%= link_to 'Edit', edit_estado_path(estado) %></td>
         <td><%= link_to 'Destroy', estado, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

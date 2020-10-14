@@ -1,0 +1,2 @@
+class Vencimento < ApplicationRecord
+end

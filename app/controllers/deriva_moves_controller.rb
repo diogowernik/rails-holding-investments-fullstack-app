@@ -28,7 +28,7 @@ class DerivaMovesController < ApplicationController
 
     respond_to do |format|
       if @deriva_move.save
-        format.html { redirect_to @deriva_move, notice: 'Deriva move was successfully created.' }
+        format.html { redirect_to deriva_moves_url, notice: 'Deriva move was successfully created.' }
         format.json { render :show, status: :created, location: @deriva_move }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class DerivaMovesController < ApplicationController
   def update
     respond_to do |format|
       if @deriva_move.update(deriva_move_params)
-        format.html { redirect_to @deriva_move, notice: 'Deriva move was successfully updated.' }
+        format.html { redirect_to deriva_moves_url, notice: 'Deriva move was successfully updated.' }
         format.json { render :show, status: :ok, location: @deriva_move }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class DerivaMovesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deriva_move_params
-      params.require(:deriva_move).permit(:carteira_id, :derivativo_id, :estado_id, :valor, :data, :quantidade, :movimento, :investimento_id, :corretora_id, :valor_recompra, :data_recompra)
+      params.require(:deriva_move).permit(:carteira_id, :derivativo_id, :estado_id, :valor, :data, :quantidade, :movimento, :investimento_id, :corretora_id, :valor_recompra, :data_recompra, :resultado, :vencimento_id)
     end
 end

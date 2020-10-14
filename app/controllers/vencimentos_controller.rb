@@ -28,7 +28,7 @@ class VencimentosController < ApplicationController
 
     respond_to do |format|
       if @vencimento.save
-        format.html { redirect_to @vencimento, notice: 'Vencimento was successfully created.' }
+        format.html { redirect_to vencimentos_url, notice: 'Vencimento was successfully created.' }
         format.json { render :show, status: :created, location: @vencimento }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class VencimentosController < ApplicationController
   def update
     respond_to do |format|
       if @vencimento.update(vencimento_params)
-        format.html { redirect_to @vencimento, notice: 'Vencimento was successfully updated.' }
+        format.html { redirect_to vencimentos_url, notice: 'Vencimento was successfully updated.' }
         format.json { render :show, status: :ok, location: @vencimento }
       else
         format.html { render :edit }

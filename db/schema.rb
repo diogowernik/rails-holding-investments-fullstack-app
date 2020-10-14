@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_14_204522) do
+ActiveRecord::Schema.define(version: 2020_10_14_212345) do
 
   create_table "atividades", force: :cascade do |t|
     t.integer "carteira_id"
@@ -57,17 +57,18 @@ ActiveRecord::Schema.define(version: 2020_10_14_204522) do
   end
 
 # Could not dump table "deriva_moves" because of following StandardError
-#   Unknown type 'vencimento_id' for column 'vencimento'
+#   Unknown type '' for column 'vencimento'
 
   create_table "derivativos", force: :cascade do |t|
     t.string "codigo"
     t.decimal "strike"
     t.string "tipo"
-    t.date "vencimento"
     t.integer "ativo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "vencimento_id"
     t.index ["ativo_id"], name: "index_derivativos_on_ativo_id"
+    t.index ["vencimento_id"], name: "index_derivativos_on_vencimento_id"
   end
 
   create_table "estados", force: :cascade do |t|

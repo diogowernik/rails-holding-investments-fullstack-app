@@ -32,11 +32,10 @@
     <%= form.text_field :strike, class: 'form-control' %>
   </div>
 
-
-
-  <div class="col-md-4 mt-4">
-    <%= form.label :vencimento %> </br>
-    <%= form.date_select :vencimento, class: 'form-control' %>
+  
+    <div class="col-md-4 mt-4">
+    <%= form.label :vencimento_id %> </br>
+    <%= form.select :vencimento_id, Vencimento.all.collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {}, {class: 'form-control'} %>
   </div>
 
 

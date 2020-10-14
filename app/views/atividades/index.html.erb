@@ -31,7 +31,7 @@
                 <td><%= atividade.movimento %></td>
                 <td><%= atividade.quantidade %></td>
                 <td>R$ <%= atividade.valor %></td>
-                <td><%= atividade.data %></td>
+                <td><%= atividade.data.strftime("%d/%m/%Y") %></td>
                 <td><%= atividade.carteira.nome %></td>
                 <td><%= link_to 'Edit', edit_atividade_path(atividade) %></td>
                 <td><%= link_to 'Destroy', atividade, method: :delete, data: { confirm: 'Are you sure?' } %></td>

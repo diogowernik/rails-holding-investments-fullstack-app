@@ -14,6 +14,7 @@
       <th>Strike</th>
       <th>Tipo</th>
       <th>Vencimento</th>
+      <th>Vencimento</th>
       <th>Ativo</th>
       <th colspan="3"></th>
     </tr>
@@ -25,7 +26,7 @@
         <td><%= derivativo.codigo %></td>
         <td>R$ <%= derivativo.strike %></td>
         <td><%= derivativo.tipo %></td>
-        <td><%= derivativo.vencimento.strftime("%d/%m/%Y") %></td>
+        <td><%= derivativo.vencimento.data.strftime("%d/%m/%Y") %></td>
         <td><%= derivativo.ativo.ticker %></td>
         <td><%= link_to 'Show', derivativo %></td>
         <td><%= link_to 'Edit', edit_derivativo_path(derivativo) %></td>

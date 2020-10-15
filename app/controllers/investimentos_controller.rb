@@ -1,10 +1,12 @@
 class InvestimentosController < ApplicationController
   before_action :set_investimento, only: [:show, :edit, :update, :destroy]
+  
+  has_scope :por_carteira
 
   # GET /investimentos
   # GET /investimentos.json
   def index
-    @investimentos = Investimento.all
+    @investimentos = apply_scopes(Investimento).all
   end
 
   # GET /investimentos/1

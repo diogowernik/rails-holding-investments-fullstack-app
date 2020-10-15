@@ -1,8 +1,23 @@
+
+    
+        <%= form_tag investimentos_path, method: :get do %>
+        <div class="row">
+        <div class="col-md-4 mt-4 mb-4">
+            <%= select_tag :por_carteira, options_for_select(Carteira.all.collect {|t| [t.nome, t.id]}, selected: params[:por_carteira]), prompt: 'Carteira', class: 'form-control' %>
+        </div>
+        <div class="col-md-4 mt-4 mb-4">
+            <%= submit_tag 'Filtrar', class: 'btn btn-default' %>
+        </div>
+        </div>
+        <% end %> 
+    
+
 <div class="float-right"><%= link_to new_investimento_path do %>
 	<button class="btn btn-outline-success">
 		<em class="fa fa-plus-circle"></em> &nbsp; Novo Investimento
 	</button><% end %>
 </div>
+ 
 <h3 class="h3-custom" id="minhas-paginas">
 	<em class="fa fa-vcard-o text-success"></em> &nbsp; Investimentos / Portfolio
 </h3>

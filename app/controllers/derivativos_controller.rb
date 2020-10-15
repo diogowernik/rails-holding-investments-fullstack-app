@@ -69,6 +69,6 @@ class DerivativosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def derivativo_params
-      params.require(:derivativo).permit(:codigo, :strike, :tipo, :vencimento, :ativo_id, :vencimento_id)
+      params.require(:derivativo).permit(:codigo, :strike, :tipo, :ativo_id, :vencimento_id)
     end
 end

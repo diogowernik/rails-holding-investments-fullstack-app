@@ -29,7 +29,7 @@
                 <td><%= dm.derivativo.codigo %></td>
                 <td><%= dm.estado.status %></td>
                 <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
-                <td><%= dm.derivativo.vencimento.strftime("%d/%m/%Y") %></td>
+                <td><%= dm.derivativo.vencimento.data.strftime("%d/%m/%Y") %></td>
                 <td><%= dm.quantidade %></td>
                 <td><%= dm.movimento %></td>
                 <!--resultado_derivativo está no aplication helper-->

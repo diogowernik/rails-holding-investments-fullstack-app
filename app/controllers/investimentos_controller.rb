@@ -2,6 +2,9 @@ class InvestimentosController < ApplicationController
   before_action :set_investimento, only: [:show, :edit, :update, :destroy]
   
   has_scope :por_carteira
+  has_scope :por_ativo
+  has_scope :por_tipo
+  has_scope :por_corretora
 
   # GET /investimentos
   # GET /investimentos.json
@@ -71,6 +74,6 @@ class InvestimentosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def investimento_params
-      params.require(:investimento).permit(:carteira_id, :quantidade, :ativo_id)
+      params.require(:investimento).permit(:carteira_id, :ativo_id, :corretora_id, :tipo_id, :quantidade, :valor_medio)
     end
 end

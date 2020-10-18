@@ -198,9 +198,42 @@
 # Carteira.create(nome: 'Warren Buffet', user_id: 1)
 # Carteira.create(nome: 'Ray Dalio', user_id: 1)
 
+# Investimento.create(carteira_id: 1, ativo_id: 1, quantidade: 300)
+# Investimento.create(carteira_id: 1, ativo_id: 10, quantidade: 200)
+# Investimento.create(carteira_id: 1, ativo_id: 5, quantidade: 400)
+# Investimento.create(carteira_id: 1, ativo_id: 25, quantidade: 50)
+# Investimento.create(carteira_id: 1, ativo_id: 28, quantidade: 50)
+# Investimento.create(carteira_id: 1, ativo_id: 10, quantidade: 100)
+
+# Investimento.create(carteira_id: 2, ativo_id: 4, quantidade: 100)
+# Investimento.create(carteira_id: 2, ativo_id: 6, quantidade: 400)
+# Investimento.create(carteira_id: 2, ativo_id: 32, quantidade: 50)
+# Investimento.create(carteira_id: 2, ativo_id: 34, quantidade: 50)
+# Investimento.create(carteira_id: 2, ativo_id: 1, quantidade: 200)
+
 # Estado.create(status: 'Aberta')
 # Estado.create(status: 'Exercicio')
 # Estado.create(status: 'Po')
 # Estado.create(status: 'Recompra')
 
+# Vencimento.create(data: DateTime.strptime('21/09/2020', '%d/%m/%Y'))
+# Vencimento.create(data: DateTime.strptime('19/10/2020', '%d/%m/%Y'))
 
+# Derivativo.create(codigo: 'BBASI355', strike: 35.16,  tipo: 'Call', vencimento_id: 1 , ativo_id: 1)
+# Derivativo.create(codigo: 'BBASI455', strike: 34.16,  tipo: 'Call', vencimento_id: 1 , ativo_id: 1 )
+# Derivativo.create(codigo: 'BBASU322', strike: 31.91,  tipo: 'Put', vencimento_id: 1 , ativo_id: 1 )
+# Derivativo.create(codigo: 'VIVTU480', strike: 47.53,  tipo: 'Put', vencimento_id: 1 , ativo_id: 10 )
+# Derivativo.create(codigo: 'BBDCJ210', strike: 21.65,  tipo: 'Call', vencimento_id: 2 , ativo_id: 8 )
+# Derivativo.create(codigo: 'ITUBJ249', strike: 24.86,  tipo: 'Call', vencimento_id: 2 , ativo_id: 6 )
+
+# Corretora.create(nome: 'Clear', corretagem_fiis: 0.0, corretagem_acoes: 0.0, corretagem_opcoes: 0.0, corretagem_exerc: 0.0, corretagem_exerc_porcent:0.005, corretagem_exerc_iss:0.1)
+# Corretora.create(nome: 'Modal', corretagem_fiis: 1.49, corretagem_acoes: 1.49, corretagem_opcoes: 1.49, corretagem_exerc: 1.49, corretagem_exerc_porcent:0.0, corretagem_exerc_iss:0.0)
+# Corretora.create(nome: 'Capital', corretagem_fiis: 1.99, corretagem_acoes: 1.99, corretagem_opcoes: 1.99, corretagem_exerc: 1.99, corretagem_exerc_porcent:0.0, corretagem_exerc_iss:0.0)
+# Corretora.create(nome: 'XP', corretagem_fiis: 0.0, corretagem_acoes: 0.0, corretagem_opcoes: 0.0, corretagem_exerc: 0.0, corretagem_exerc_porcent:0.005, corretagem_exerc_iss:0.1)
+
+# DerivaMove.create(carteira_id: 1, derivativo_id: 1,  estado_id: 3,  valor: 0.23, data: DateTime.strptime('02/09/2020', '%d/%m/%Y'), quantidade:200,  movimento: 'Venda',  corretora_id: 1, investimento_id: 1)
+DerivaMove.create(carteira_id: 1, derivativo_id: 2,  estado_id: 3,  valor: 0.60, data: DateTime.strptime('02/09/2020', '%d/%m/%Y'), quantidade:200,  movimento: 'Venda',  corretora_id: 1, investimento_id: 1)
+DerivaMove.create(carteira_id: 1, derivativo_id: 3,  estado_id: 2, investimento_id: 1,  valor: 0.38, data: DateTime.strptime('09/09/2020', '%d/%m/%Y'), quantidade:100,  movimento: 'Venda',  corretora_id: 1)
+DerivaMove.create(carteira_id: 1, derivativo_id: 4,  estado_id: 2, investimento_id: 2,  valor: 0.40, data: DateTime.strptime('09/09/2020', '%d/%m/%Y'), quantidade:100,  movimento: 'Venda',  corretora_id: 1)
+DerivaMove.create(carteira_id: 1, derivativo_id: 5,  estado_id: 4,  valor: 0.40, data: DateTime.strptime('22/09/2020', '%d/%m/%Y'), quantidade:100,  movimento: 'Venda',  corretora_id: 1, valor_recompra: 0.04, data_recompra: DateTime.strptime('10/10/2020', '%d/%m/%Y') )
+DerivaMove.create(carteira_id: 1, derivativo_id: 5,  estado_id: 1,  valor: 0.28, data: DateTime.strptime('22/09/2020', '%d/%m/%Y'), quantidade:300,  movimento: 'Venda',  corretora_id: 1, investimento_id: 1)

@@ -36,6 +36,7 @@
     <%= form.label :corretora_id %>
     <%= form.select :corretora_id, Corretora.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
   </div>
+  
   <div class="col-md-4 mt-4">
     <%= form.label :movimento %>
     <%= form.select :movimento, [["Compra","Compra"], ["Venda","Venda"]], {}, {class: 'form-control'} %>

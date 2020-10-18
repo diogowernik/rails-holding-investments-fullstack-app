@@ -1,0 +1,16 @@
+<div class="float-right"><%= link_to new_deriva_move_path do %>
+	<button class="btn btn-outline-success">
+		<em class="fa fa-plus-circle"></em> &nbsp; Nova movimentação (Ativos)
+	</button><% end %>
+</div>
+<h3 class="h3-custom" id="minhas-paginas">
+	<em class="fa fa-usd text-success"></em> &nbsp; Seeds dos ativos
+</h3>
+
+    <% @ativo_moves.each do |ativo_move| %>
+
+AtivoMove.create(carteira_id: <%= ativo_move.carteira_id %>, tipo_id: <%= ativo_move.tipo_id %>,  ativo_id: <%= ativo_move.ativo_id %>,  valor: <%= ativo_move.valor %>, data: DateTime.strptime('<%= ativo_move.data.strftime("%d/%m/%Y") %>', '%d/%m/%Y'), quantidade: <%= ativo_move.quantidade %>,  movimento: '<%= ativo_move.movimento %>',  corretora_id: <%= ativo_move.corretora_id %>, investimento_id: <%= ativo_move.investimento_id %>)
+        </br>
+
+
+    <% end %>

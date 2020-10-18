@@ -8,6 +8,7 @@ class CreateCorretoras < ActiveRecord::Migration[5.2]
       t.decimal :corretagem_exerc
       t.decimal :corretagem_exerc_porcent
       t.decimal :corretagem_exerc_iss
+      t.string :moeda
 
       t.timestamps
     end

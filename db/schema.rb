@@ -10,22 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_14_212345) do
+ActiveRecord::Schema.define(version: 2020_10_18_001856) do
 
-  create_table "atividades", force: :cascade do |t|
-    t.integer "carteira_id"
-    t.integer "ativo_id"
-    t.integer "corretora_id"
+  create_table "ativo_moves", force: :cascade do |t|
     t.decimal "valor"
     t.date "data"
     t.integer "quantidade"
-    t.integer "investimento_id"
     t.string "movimento"
+    t.integer "tipo_id"
+    t.integer "ativo_id"
+    t.integer "investimento_id"
+    t.integer "corretora_id"
+    t.integer "carteira_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ativo_id"], name: "index_atividades_on_ativo_id"
-    t.index ["carteira_id"], name: "index_atividades_on_carteira_id"
-    t.index ["corretora_id"], name: "index_atividades_on_corretora_id"
+    t.index ["ativo_id"], name: "index_ativo_moves_on_ativo_id"
+    t.index ["carteira_id"], name: "index_ativo_moves_on_carteira_id"
+    t.index ["corretora_id"], name: "index_ativo_moves_on_corretora_id"
+    t.index ["investimento_id"], name: "index_ativo_moves_on_investimento_id"
+    t.index ["tipo_id"], name: "index_ativo_moves_on_tipo_id"
   end
 
   create_table "ativos", force: :cascade do |t|
@@ -52,21 +55,40 @@ ActiveRecord::Schema.define(version: 2020_10_14_212345) do
     t.decimal "corretagem_exerc"
     t.decimal "corretagem_exerc_porcent"
     t.decimal "corretagem_exerc_iss"
+    t.string "moeda"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-# Could not dump table "deriva_moves" because of following StandardError
-#   Unknown type '' for column 'vencimento'
+  create_table "deriva_moves", force: :cascade do |t|
+    t.integer "carteira_id"
+    t.integer "derivativo_id"
+    t.integer "estado_id"
+    t.integer "corretora_id"
+    t.decimal "valor"
+    t.decimal "valor_recompra"
+    t.date "data"
+    t.date "data_recompra"
+    t.integer "quantidade"
+    t.integer "investimento_id"
+    t.string "movimento"
+    t.integer "resultado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["carteira_id"], name: "index_deriva_moves_on_carteira_id"
+    t.index ["corretora_id"], name: "index_deriva_moves_on_corretora_id"
+    t.index ["derivativo_id"], name: "index_deriva_moves_on_derivativo_id"
+    t.index ["estado_id"], name: "index_deriva_moves_on_estado_id"
+  end
 
   create_table "derivativos", force: :cascade do |t|
     t.string "codigo"
     t.decimal "strike"
     t.string "tipo"
     t.integer "ativo_id"
+    t.integer "vencimento_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "vencimento_id"
     t.index ["ativo_id"], name: "index_derivativos_on_ativo_id"
     t.index ["vencimento_id"], name: "index_derivativos_on_vencimento_id"
   end
@@ -78,13 +100,18 @@ ActiveRecord::Schema.define(version: 2020_10_14_212345) do
   end
 
   create_table "investimentos", force: :cascade do |t|
+    t.integer "quantidade"
     t.integer "ativo_id"
     t.integer "carteira_id"
-    t.integer "quantidade"
+    t.integer "tipo_id"
+    t.integer "corretora_id"
+    t.decimal "valor_medio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ativo_id"], name: "index_investimentos_on_ativo_id"
     t.index ["carteira_id"], name: "index_investimentos_on_carteira_id"
+    t.index ["corretora_id"], name: "index_investimentos_on_corretora_id"
+    t.index ["tipo_id"], name: "index_investimentos_on_tipo_id"
   end
 
   create_table "tipos", force: :cascade do |t|

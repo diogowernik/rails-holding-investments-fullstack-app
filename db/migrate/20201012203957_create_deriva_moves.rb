@@ -12,6 +12,7 @@ class CreateDerivaMoves < ActiveRecord::Migration[5.2]
       t.integer :quantidade
       t.integer :investimento_id
       t.string :movimento
+      t.integer :resultado
 
       t.timestamps
     end

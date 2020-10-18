@@ -1,0 +1,67 @@
+<%= form_with(model: ativo_move, local: true) do |form| %>
+  <% if ativo_move.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ativo_move.errors.count, "error") %> prohibited this ativo_move from being saved:</h2>
+
+      <ul>
+      <% ativo_move.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :codigo %>
+    <%= form.text_field :codigo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :carteira_id %>
+    <%= form.text_field :carteira_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor %>
+    <%= form.text_field :valor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.date_select :data %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantidade %>
+    <%= form.number_field :quantidade %>
+  </div>
+
+  <div class="field">
+    <%= form.label :movimento %>
+    <%= form.text_field :movimento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo_id %>
+    <%= form.text_field :tipo_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ativo_id %>
+    <%= form.text_field :ativo_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :investimento_id %>
+    <%= form.text_field :investimento_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :corretora_id %>
+    <%= form.text_field :corretora_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

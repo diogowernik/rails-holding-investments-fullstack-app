@@ -1,0 +1,2 @@
+module AtivoMovesHelper
+end

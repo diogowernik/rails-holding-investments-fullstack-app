@@ -2,46 +2,104 @@
 	<em class="fa fa-vcard-o text-success"></em> &nbsp; Minha Holding (Classes e Sistema)
 </h3>
 
-
-<div class="col-lg-4">
-  <div class="card mb-3 border-success">
-     <div class="card-header">Ativo Moves</div>
-     <div class="card-body">
-         <ul>
-            <%= link_to ativo_moves_path, class: '' do %>
-                 <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Movimentações de Ativos</button>
-            <% end %>
-        </ul>
-        <ul>
-            <%= link_to new_ativo_move_path, class: '' do %>
-                 <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Criar nova movimentação</button>
-            <% end %>
-        </ul>
-     </div>
-  </div>
-</div>
-
-<div class="col-lg-4">
+<div class="row">
+    <div class="col-md-4">
+      <div class="card mb-3 border-success">
+         <div class="card-header">Ativo Moves</div>
+         <div class="card-body">
+             <ul>
+                <%= link_to ativo_moves_path, class: '' do %>
+                     <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Movimentações de Ativos</button>
+                <% end %>
+            </ul>
+            <ul>
+                <%= link_to new_ativo_move_path, class: '' do %>
+                     <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Criar nova movimentação</button>
+                <% end %>
+            </ul>
+         </div>
+      </div>
+      <div class="card mb-3 border-success">
+         <div class="card-header">Deriva Moves</div>
+         <div class="card-body">
+             <ul>
+                <%= link_to deriva_moves_path, class: '' do %>
+                     <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Movimentações de Derivativos</button>
+                <% end %>
+            </ul>
+            <ul>
+                <%= link_to new_deriva_move_path, class: '' do %>
+                     <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Criar nova movimentação</button>
+                <% end %>
+            </ul>
+         </div>
+      </div>
+    </div>
     
-</div>
-<div class="col-lg-4">
+    <div class="col-md-3">
+        <div class="card mb-3 border-success">
+         <div class="card-header">Carteiras</div>
+         <div class="card-body">
+             <ul>
+                <%= link_to carteiras_path, class: '' do %>
+                     <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Carteiras</button>
+                <% end %>
+            </ul>
+            <ul>
+                <%= link_to new_carteira_path, class: '' do %>
+                     <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Criar nova carteira</button>
+                <% end %>
+            </ul>
+         </div>
+      </div>
+        <div class="card mb-3 border-success">
+         <div class="card-header">Investimentos</div>
+         <div class="card-body">
+             <ul>
+                <%= link_to investimentos_path, class: '' do %>
+                     <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Investimentos</button>
+                <% end %>
+            </ul>
+            <ul>
+                <%= link_to new_investimento_path, class: '' do %>
+                     <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Criar novo Investimento</button>
+                <% end %>
+            </ul>
+         </div>
+        </div>
+    </div>
     
-</div>
+    <div class="col-md-3">
+      <div class="card mb-3 border-success">
+         <div class="card-header">Ativos</div>
+         <div class="card-body">
+             <ul>
+                <%= link_to ativos_path, class: '' do %>
+                     <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Ativos</button>
+                <% end %>
+            </ul>
+            <ul>
+                <%= link_to new_ativo_path, class: '' do %>
+                     <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Criar ativo</button>
+                <% end %>
+            </ul>
+         </div>
+      </div>
+      <div class="card mb-3 border-success">
+         <div class="card-header">Derivativos</div>
+         <div class="card-body">
+             <ul>
+                <%= link_to derivativos_path, class: '' do %>
+                     <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Derivativos</button>
+                <% end %>
+            </ul>
+            <ul>
+                <%= link_to new_derivativo_path, class: '' do %>
+                     <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Criar novo derivativo</button>
+                <% end %>
+            </ul>
+         </div>
+      </div>
+    </div>
 
-<div class="col-lg-4">
-  <div class="card mb-3 border-success">
-     <div class="card-header">Deriva Moves</div>
-     <div class="card-body">
-         <ul>
-            <%= link_to deriva_moves_path, class: '' do %>
-                 <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Movimentações de Derivativos</button>
-            <% end %>
-        </ul>
-        <ul>
-            <%= link_to new_deriva_move_path, class: '' do %>
-                 <button class="btn btn-pill-right btn-lg btn-outline-primary" type="button">Criar nova movimentação</button>
-            <% end %>
-        </ul>
-     </div>
-  </div>
 </div>

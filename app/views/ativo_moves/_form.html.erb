@@ -15,27 +15,27 @@
 
 
   <div class="col-md-4 mt-4">
-    <%= form.label :carteira_id %>
+    <%= form.label :carteira_id %> <%= link_to new_carteira_path do %> &nbsp; <small> (Nova)</small> <% end %>
     <%= form.select :carteira_id, Carteira.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
   </div>
   
     <div class="col-md-4 mt-4">
-    <%= form.label :investimento_id %>
-    <%= form.select :investimento_id, Investimento.all.collect {|d| [d.ativo.ticker, d.id]}, {}, {class: 'form-control'} %>
+    <%= form.label :investimento_id %> <%= link_to new_investimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
+    <%= form.select :investimento_id, Investimento.all.collect {|d| [d.custom_invest, d.id]}, {}, {class: 'form-control'} %>
   </div>
   
   <div class="col-md-4 mt-4">
-    <%= form.label :corretora_id %>
+    <%= form.label :corretora_id %> <%= link_to new_corretora_path do %> &nbsp; <small> (Nova)</small> <% end %>
     <%= form.select :corretora_id, Corretora.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
   </div>
 
   <div class="col-md-4 mt-4">
-    <%= form.label :tipo_id %>
+    <%= form.label :tipo_id %> <%= link_to new_tipo_path do %> &nbsp; <small> (Novo)</small> <% end %>
     <%= form.select :tipo_id, Tipo.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
   </div>
 
   <div class="col-md-4 mt-4">
-    <%= form.label :ativo_id %>
+    <%= form.label :ativo_id %> <%= link_to new_ativo_path do %> &nbsp; <small> (Novo)</small> <% end %>
     <%= form.select :ativo_id, Ativo.all.collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
   </div>
   

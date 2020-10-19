@@ -1,6 +1,7 @@
 class CarteirasController < ApplicationController
   before_action :set_carteira, only: [:show, :edit, :update, :destroy]
 
+
   # GET /carteiras
   # GET /carteiras.json
   def index
@@ -28,7 +29,7 @@ class CarteirasController < ApplicationController
 
     respond_to do |format|
       if @carteira.save
-        format.html { redirect_to carteiras_url, notice: 'Carteira was successfully created.' }
+        format.html { redirect_to session[:user_previous_url], notice: 'Carteira was successfully created.' }
         format.json { render :show, status: :created, location: @carteira }
       else
         format.html { render :new }

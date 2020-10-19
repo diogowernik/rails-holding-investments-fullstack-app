@@ -1,4 +1,28 @@
-<div class="float-right"><%= link_to new_deriva_move_path do %>
+<%= form_tag ativo_moves_path, method: :get, enforce_utf8: false do %>
+    <div class="row">
+        <div class="col-md-2 mt-4 mb-4">
+            <%= select_tag :por_carteira, options_for_select(Carteira.all.collect {|t| [t.nome, t.id]}, selected: params[:por_carteira]), prompt: 'Carteira', class: 'form-control' %>
+        </div>
+        <div class="col-md-2 mt-4 mb-4">
+            <%= select_tag :por_tipo, options_for_select(Tipo.all.collect {|t| [t.nome, t.id]}, selected: params[:por_tipo]), prompt: 'Tipo', class: 'form-control' %>
+        </div>
+        <div class="col-md-2 mt-4 mb-4">
+            <%= select_tag :por_corretora, options_for_select(Corretora.all.collect {|t| [t.nome, t.id]}, selected: params[:por_corretora]), prompt: 'Corretora', class: 'form-control' %>
+        </div>
+        <div class="col-md-2 mt-4 mb-4">
+            <%= select_tag :por_ativo, options_for_select(Ativo.all.collect {|t| [t.ticker, t.id]}, selected: params[:por_ativo]), prompt: 'Ativo', class: 'form-control' %>
+        </div>
+        <!--Como colocar mais informações no options_for_select-->
+        <div class="col-md-2 mt-4 mb-4">
+            <%= select_tag :por_investimento, options_for_select(Investimento.all.collect {|t| [t.ativo.ticker, t.id]}, selected: params[:por_investimento]), prompt: 'Investimento', class: 'form-control' %>
+        </div>
+        <div class="col-md-2 mt-4 mb-4">
+            <%= submit_tag 'Filtrar', class: 'btn btn-default', name: nil %>
+        </div>
+    </div>
+<% end %> 
+
+<div class="float-right"><%= link_to new_ativo_move_path do %>
 	<button class="btn btn-outline-success">
 		<em class="fa fa-plus-circle"></em> &nbsp; Nova movimentação (Ativos)
 	</button><% end %>
@@ -17,7 +41,7 @@
       <th>Movimento</th>
       <th>Tipo</th>
       <th>Ativo</th>
-      <th>Investimento salvo em:</th>
+      <th>Essa ordem criou ou </br> atualizou investimento em:</th>
       <th>Corretora</th>
       <th colspan="3"></th>
     </tr>
@@ -33,7 +57,10 @@
         <td><%= ativo_move.movimento %></td>
         <td><%= ativo_move.tipo.nome %></td>
         <td><%= ativo_move.ativo.ticker %></td>
-        <td><%= ativo_move.investimento.ativo.ticker %> / <%= ativo_move.investimento.corretora.nome %> / <%= ativo_move.investimento.carteira.nome %></td>
+        <td><%= ativo_move.investimento.carteira.nome %> / <%= ativo_move.investimento.tipo.nome %> / </br>
+        <%= ativo_move.investimento.corretora.nome %> / <%= ativo_move.investimento.ativo.ticker %> &nbsp;  
+        <%= link_to edit_investimento_path(ativo_move.investimento) do %><em class="fa fa-pencil"></em><% end %>
+        </td>
         <td><%= ativo_move.corretora.nome %></td>
         <td><%= link_to 'Show', ativo_move %></td>
         <td><%= link_to 'Edit', edit_ativo_move_path(ativo_move) %></td>

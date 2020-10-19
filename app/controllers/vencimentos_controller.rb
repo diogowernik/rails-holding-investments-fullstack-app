@@ -28,7 +28,7 @@ class VencimentosController < ApplicationController
 
     respond_to do |format|
       if @vencimento.save
-        format.html { redirect_to vencimentos_url, notice: 'Vencimento was successfully created.' }
+        format.html { redirect_to session[:user_previous_url], notice: 'Vencimento was successfully created.' }
         format.json { render :show, status: :created, location: @vencimento }
       else
         format.html { render :new }

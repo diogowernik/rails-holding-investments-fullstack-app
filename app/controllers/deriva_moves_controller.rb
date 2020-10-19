@@ -28,7 +28,7 @@ class DerivaMovesController < ApplicationController
 
     respond_to do |format|
       if @deriva_move.save
-        format.html { redirect_to deriva_moves_url, notice: 'Deriva move was successfully created.' }
+        format.html { redirect_to session[:user_previous_url], notice: 'Deriva move was successfully created.' }
         format.json { render :show, status: :created, location: @deriva_move }
       else
         format.html { render :new }

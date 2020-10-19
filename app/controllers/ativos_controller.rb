@@ -28,7 +28,7 @@ class AtivosController < ApplicationController
 
     respond_to do |format|
       if @ativo.save
-        format.html { redirect_to ativos_url, notice: 'Ativo was successfully created.' }
+        format.html { redirect_to session[:user_previous_url], notice: 'Ativo was successfully created.' }
         format.json { render :show, status: :created, location: @ativo }
       else
         format.html { render :new }

@@ -28,7 +28,7 @@ class CorretorasController < ApplicationController
 
     respond_to do |format|
       if @corretora.save
-        format.html { redirect_to @corretora, notice: 'Corretora was successfully created.' }
+        format.html { redirect_to session[:user_previous_url], notice: 'Corretora was successfully created.' }
         format.json { render :show, status: :created, location: @corretora }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CorretorasController < ApplicationController
   def update
     respond_to do |format|
       if @corretora.update(corretora_params)
-        format.html { redirect_to @corretora, notice: 'Corretora was successfully updated.' }
+        format.html { redirect_to corretoras_url, notice: 'Corretora was successfully updated.' }
         format.json { render :show, status: :ok, location: @corretora }
       else
         format.html { render :edit }

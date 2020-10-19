@@ -10,5 +10,9 @@ class Investimento < ApplicationRecord
   scope :por_ativo, ( -> (ativo) { where ativo_id: ativo } )
   scope :por_corretora, ( -> (corretora) { where corretora_id: corretora } )
   scope :por_tipo, ( -> (tipo) { where tipo_id: tipo } )
+  
+  def custom_invest
+    "#{carteira.nome} / #{ativo.ticker} / #{corretora.nome}"
+  end
 end
 

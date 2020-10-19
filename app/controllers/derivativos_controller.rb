@@ -42,7 +42,7 @@ class DerivativosController < ApplicationController
   def update
     respond_to do |format|
       if @derivativo.update(derivativo_params)
-        format.html { redirect_to derivativos_url, notice: 'Derivativo was successfully updated.' }
+        format.html { redirect_to session[:user_previous_url], notice: 'Derivativo was successfully updated.' }
         format.json { render :show, status: :ok, location: @derivativo }
       else
         format.html { render :edit }

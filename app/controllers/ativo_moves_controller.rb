@@ -1,10 +1,16 @@
 class AtivoMovesController < ApplicationController
   before_action :set_ativo_move, only: [:show, :edit, :update, :destroy]
+  
+  has_scope :por_carteira
+  has_scope :por_ativo
+  has_scope :por_tipo
+  has_scope :por_corretora
+  has_scope :por_investimento
 
   # GET /ativo_moves
   # GET /ativo_moves.json
   def index
-    @ativo_moves = AtivoMove.all
+    @ativo_moves = apply_scopes(AtivoMove).all
   end
 
   # GET /ativo_moves/1
@@ -28,7 +34,7 @@ class AtivoMovesController < ApplicationController
 
     respond_to do |format|
       if @ativo_move.save
-        format.html { redirect_to ativo_moves_url, notice: 'Ativo move was successfully created.' }
+        format.html { redirect_to session[:user_previous_url], notice: 'Ativo move was successfully created.' }
         format.json { render :show, status: :created, location: @ativo_move }
       else
         format.html { render :new }

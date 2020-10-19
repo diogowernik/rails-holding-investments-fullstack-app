@@ -28,7 +28,7 @@ class TiposController < ApplicationController
 
     respond_to do |format|
       if @tipo.save
-        format.html { redirect_to tipos_url, notice: 'Tipo was successfully created.' }
+        format.html { redirect_to session[:user_previous_url], notice: 'Tipo was successfully created.' }
         format.json { render :show, status: :created, location: @tipo }
       else
         format.html { render :new }

@@ -56,7 +56,7 @@ class CorretorasController < ApplicationController
   def destroy
     @corretora.destroy
     respond_to do |format|
-      format.html { redirect_to corretoras_url, notice: 'Corretora was successfully destroyed.' }
+      format.html { redirect_to session[:user_previous_url], notice: 'Corretora was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

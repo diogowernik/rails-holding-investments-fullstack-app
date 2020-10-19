@@ -42,7 +42,7 @@ class EstadosController < ApplicationController
   def update
     respond_to do |format|
       if @estado.update(estado_params)
-        format.html { redirect_to estados_url, notice: 'Estado was successfully updated.' }
+        format.html { redirect_to session[:user_previous_url], notice: 'Estado was successfully updated.' }
         format.json { render :show, status: :ok, location: @estado }
       else
         format.html { render :edit }

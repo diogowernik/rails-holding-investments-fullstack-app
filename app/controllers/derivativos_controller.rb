@@ -56,7 +56,7 @@ class DerivativosController < ApplicationController
   def destroy
     @derivativo.destroy
     respond_to do |format|
-      format.html { redirect_to derivativos_url, notice: 'Derivativo was successfully destroyed.' }
+      format.html { redirect_to session[:user_previous_url], notice: 'Derivativo was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

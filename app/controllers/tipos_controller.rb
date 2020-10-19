@@ -42,7 +42,7 @@ class TiposController < ApplicationController
   def update
     respond_to do |format|
       if @tipo.update(tipo_params)
-        format.html { redirect_to tipos_url, notice: 'Tipo was successfully updated.' }
+        format.html { redirect_to session[:user_previous_url], notice: 'Tipo was successfully updated.' }
         format.json { render :show, status: :ok, location: @tipo }
       else
         format.html { render :edit }

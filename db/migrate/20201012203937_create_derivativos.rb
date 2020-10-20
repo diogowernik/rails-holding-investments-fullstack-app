@@ -1,11 +1,15 @@
 class CreateDerivativos < ActiveRecord::Migration[5.2]
   def change
     create_table :derivativos do |t|
-      t.string :codigo
-      t.decimal :strike
-      t.string :tipo
+      
       t.references :ativo, foreign_key: true
       t.references :vencimento, foreign_key: true
+      
+      t.decimal :strike
+      
+      t.string :codigo
+      t.string :tipo
+      
 
       t.timestamps
     end

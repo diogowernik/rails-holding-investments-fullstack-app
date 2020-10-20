@@ -42,7 +42,7 @@ class DerivaMovesController < ApplicationController
   def update
     respond_to do |format|
       if @deriva_move.update(deriva_move_params)
-        format.html { redirect_to session[:user_previous_url], notice: 'Deriva move was successfully updated.' }
+        format.html { redirect_to deriva_moves_url, notice: 'Deriva move was successfully updated.' }
         format.json { render :show, status: :ok, location: @deriva_move }
       else
         format.html { render :edit }

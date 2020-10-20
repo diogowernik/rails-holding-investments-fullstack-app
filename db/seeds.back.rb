@@ -108,4 +108,3 @@ Investimento.create( carteira_id: 2, tipo_id: 3, ativo_id: 6, corretora_id: 3, v
 Investimento.create( carteira_id: 2, tipo_id: 4, ativo_id: 32, corretora_id: 2, valor_medio: 90.0, quantidade: 50, )
 Investimento.create( carteira_id: 2, tipo_id: 4, ativo_id: 34, corretora_id: 4, valor_medio: 10.0, quantidade: 200, )
 Investimento.create( carteira_id: 2, tipo_id: 1, ativo_id: 1, corretora_id: 1, valor_medio: 500.0, quantidade: 1, )
-

@@ -1,16 +1,131 @@
-<div class="float-right"><%= link_to new_deriva_move_path do %>
-	<button class="btn btn-outline-success">
-		<em class="fa fa-plus-circle"></em> &nbsp; Nova movimentação (Ativos)
-	</button><% end %>
-</div>
 <h3 class="h3-custom" id="minhas-paginas">
-	<em class="fa fa-usd text-success"></em> &nbsp; Seeds dos ativos
+	<em class="fa fa-usd text-success"></em> &nbsp; Seeds
 </h3>
 
-    <% @ativo_moves.each do |ativo_move| %>
+<% @ativos.each do |ativo| %>
+    Ativo.create(
+    tipo_id: <%= ativo.tipo_id %>, 
+    ticker: '<%= ativo.ticker %>'
+    )
+    </br>
+<% end %>
 
-AtivoMove.create(carteira_id: <%= ativo_move.carteira_id %>, tipo_id: <%= ativo_move.tipo_id %>,  ativo_id: <%= ativo_move.ativo_id %>,  valor: <%= ativo_move.valor %>, data: DateTime.strptime('<%= ativo_move.data.strftime("%d/%m/%Y") %>', '%d/%m/%Y'), quantidade: <%= ativo_move.quantidade %>,  movimento: '<%= ativo_move.movimento %>',  corretora_id: <%= ativo_move.corretora_id %>, investimento_id: <%= ativo_move.investimento_id %>)
-        </br>
+<% @ativo_moves.each do |ativo_move| %>
+    AtivoMove.create(
+    carteira_id: <%= ativo_move.carteira_id %>, 
+    tipo_id: <%= ativo_move.tipo_id %>,  
+    ativo_id: <%= ativo_move.ativo_id %>,  
+    corretora_id: <%= ativo_move.corretora_id %>, 
+    investimento_id: <%= ativo_move.investimento_id %>,
+    
+    valor: <%= ativo_move.valor %>, 
+    
+    data: DateTime.strptime('<%= ativo_move.data.strftime("%d/%m/%Y") %>', '%d/%m/%Y'), 
+    
+    quantidade: <%= ativo_move.quantidade %>,  
+    
+    movimento: '<%= ativo_move.movimento %>',  
 
+    )
+    </br>
+<% end %>
 
-    <% end %>
+<% @carteiras.each do |carteira| %>
+    Carteira.create(
+    nome: '<%= carteira.nome %>', 
+    user_id: <%= carteira.user_id %>
+    )
+    </br>
+<% end %>
+
+<% @corretoras.each do |corretora| %>
+    Corretora.create(
+    nome: '<%= corretora.nome %>', 
+    moeda: '<%= corretora.moeda %>', 
+    
+    corretagem_fiis: <%= corretora.corretagem_fiis %> , 
+    corretagem_acoes: <%= corretora.corretagem_acoes %> , 
+    corretagem_opcoes: <%= corretora.corretagem_opcoes %> , 
+    corretagem_exerc: <%= corretora.corretagem_exerc %> , 
+    corretagem_exerc_porcent: <%= corretora.corretagem_exerc_porcent %>, 
+    corretagem_exerc_iss: <%= corretora.corretagem_exerc_iss %> 
+    )
+    </br>
+<% end %>
+
+<% @deriva_moves.each do |deriva_move| %>
+    DerivaMove.create(
+    carteira_id: <%= deriva_move.carteira_id %>, 
+    derivativo_id: <%= deriva_move.derivativo_id %>,  
+    estado_id: <%= deriva_move.estado_id %>,  
+    corretora_id: <%= deriva_move.corretora_id %>, 
+    investimento_id: <%= deriva_move.investimento_id %>,
+    
+    valor: <%= deriva_move.valor %>,
+    valor_recompra: '<%= deriva_move.valor_recompra %>',
+    resultado: '<%= deriva_move.resultado %>',
+    
+    
+    data: DateTime.strptime('<%= deriva_move.data.strftime("%d/%m/%Y") %>', '%d/%m/%Y'), 
+    data_recompra: DateTime.strptime('<%= deriva_move.data_recompra.strftime("%d/%m/%Y") %>', '%d/%m/%Y'), 
+    
+    quantidade: <%= deriva_move.quantidade %>,  
+    
+    movimento: '<%= deriva_move.movimento %>'  
+    )
+    </br>
+<% end %>
+
+<% @derivativos.each do |derivativo| %>
+    Derivativo.create(
+    ativo_id: <%= derivativo.ativo_id %>, 
+    vencimento_id: <%= derivativo.vencimento_id %>, 
+    
+    codigo: '<%= derivativo.codigo %>',
+    tipo: '<%= derivativo.tipo %>',
+    
+    strike: '<%= derivativo.strike %>'
+    )
+    </br>
+<% end %>
+
+<% @estados.each do |estado| %>
+    Estado.create(
+    
+    status: '<%= estado.status %>'
+
+    )
+    </br>
+<% end %>
+
+<% @investimentos.each do |investimento| %>
+    Investimento.create(
+    carteira_id: <%= investimento.carteira_id %>, 
+    tipo_id: <%= investimento.tipo_id %>,  
+    ativo_id: <%= investimento.ativo_id %>,  
+    corretora_id: <%= investimento.corretora_id %>, 
+
+    valor_medio: <%= investimento.valor_medio %>, 
+    
+    quantidade: <%= investimento.quantidade %>,  
+    )
+    </br>
+<% end %>
+
+<% @tipos.each do |tipo| %>
+    Tipo.create(
+    
+    nome: '<%= tipo.nome %>'
+
+    )
+    </br>
+<% end %>
+
+<% @vencimentos.each do |vencimento| %>
+    Vencimento.create(
+    
+    data: DateTime.strptime('<%= vencimento.data.strftime("%d/%m/%Y") %>', '%d/%m/%Y')
+
+    )
+    </br>
+<% end %>

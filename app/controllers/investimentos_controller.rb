@@ -9,7 +9,8 @@ class InvestimentosController < ApplicationController
   # GET /investimentos
   # GET /investimentos.json
   def index
-    @investimentos = apply_scopes(Investimento).all
+    @investimentos = apply_scopes(Investimento.all).includes(:ativo).order("ativos.ticker asc")
+    
   end
 
   # GET /investimentos/1

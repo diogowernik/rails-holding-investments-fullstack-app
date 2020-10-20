@@ -79,7 +79,7 @@
     )
     </br>
 <% end %>
-
+</br>
 <% @investimentos.each do |investimento| %>
     Investimento.create(
     carteira_id: <%= investimento.carteira_id %>, 
@@ -93,7 +93,7 @@
     )
     </br>
 <% end %>
-
+</br>
 <% @ativo_moves.each do |ativo_move| %>
     AtivoMove.create(
     carteira_id: <%= ativo_move.carteira_id %>, 
@@ -113,7 +113,7 @@
     )
     </br>
 <% end %>
-
+</br>
 <% @derivativos.each do |derivativo| %>
     Derivativo.create(
     ativo_id: <%= derivativo.ativo_id %>, 
@@ -126,7 +126,7 @@
     )
     </br>
 <% end %>
-
+</br>
 <% @deriva_moves.each do |deriva_move| %>
     DerivaMove.create(
     carteira_id: <%= deriva_move.carteira_id %>, 
@@ -149,7 +149,7 @@
     )
     </br>
 <% end %>
-
+</br>
 
 
 

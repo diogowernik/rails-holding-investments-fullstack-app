@@ -13,12 +13,31 @@ user.password = '123456'
 user.password_confirmation = '123456'
 user.save!
 
+# independentes
+Vencimento.create( data: DateTime.strptime('21/09/2020', '%d/%m/%Y') )
+Vencimento.create( data: DateTime.strptime('19/10/2020', '%d/%m/%Y') )
+Vencimento.create( data: DateTime.strptime('20/11/2020', '%d/%m/%Y') )
+Vencimento.create( data: DateTime.strptime('20/12/2020', '%d/%m/%Y') )
+
+Corretora.create( nome: 'Clear', moeda: '', corretagem_fiis: 0.0 , corretagem_acoes: 0.0 , corretagem_opcoes: 0.0 , corretagem_exerc: 0.0 , corretagem_exerc_porcent: 0.005, corretagem_exerc_iss: 0.1 )
+Corretora.create( nome: 'Modal', moeda: '', corretagem_fiis: 1.49 , corretagem_acoes: 1.49 , corretagem_opcoes: 1.49 , corretagem_exerc: 1.49 , corretagem_exerc_porcent: 0.0, corretagem_exerc_iss: 0.0 )
+Corretora.create( nome: 'Capital', moeda: '', corretagem_fiis: 1.99 , corretagem_acoes: 1.99 , corretagem_opcoes: 1.99 , corretagem_exerc: 1.99 , corretagem_exerc_porcent: 0.0, corretagem_exerc_iss: 0.0 )
+Corretora.create( nome: 'XP', moeda: '', corretagem_fiis: 0.0 , corretagem_acoes: 0.0 , corretagem_opcoes: 0.0 , corretagem_exerc: 0.0 , corretagem_exerc_porcent: 0.005, corretagem_exerc_iss: 0.1 )
+
+Estado.create( status: 'Aberta' )
+Estado.create( status: 'Exercicio' )
+Estado.create( status: 'Po' )
+Estado.create( status: 'Recompra' )
+
 Tipo.create( nome: 'Caixas' )
 Tipo.create( nome: 'Garantias' )
 Tipo.create( nome: 'Ações' )
 Tipo.create( nome: 'Fiis' )
 Tipo.create( nome: 'Opções' )
+Tipo.create( nome: 'Imóveis' )
+Tipo.create( nome: 'Websites' )
 
+# dependentes
 Carteira.create( nome: 'Warren Buffet', user_id: 1 )
 Carteira.create( nome: 'Ray Dalio', user_id: 1 )
 
@@ -62,42 +81,7 @@ Ativo.create( tipo_id: 4, ticker: 'HGFF11' )
 Ativo.create( tipo_id: 4, ticker: 'MGFF11' )
 Ativo.create( tipo_id: 4, ticker: 'BCFF11' )
 Ativo.create( tipo_id: 4, ticker: 'HGRU11' )
-
-Estado.create( status: 'Aberta' )
-Estado.create( status: 'Exercicio' )
-Estado.create( status: 'Po' )
-Estado.create( status: 'Recompra' )
-
-Vencimento.create( data: DateTime.strptime('21/09/2020', '%d/%m/%Y') )
-Vencimento.create( data: DateTime.strptime('19/10/2020', '%d/%m/%Y') )
-
-Derivativo.create( ativo_id: 1, vencimento_id: 1, codigo: 'BBASI355', tipo: 'Call', strike: '35.16' )
-Derivativo.create( ativo_id: 1, vencimento_id: 1, codigo: 'BBASI455', tipo: 'Call', strike: '34.16' )
-Derivativo.create( ativo_id: 1, vencimento_id: 1, codigo: 'BBASU322', tipo: 'Put', strike: '31.91' )
-Derivativo.create( ativo_id: 10, vencimento_id: 1, codigo: 'VIVTU480', tipo: 'Put', strike: '47.53' )
-Derivativo.create( ativo_id: 8, vencimento_id: 2, codigo: 'BBDCJ210', tipo: 'Call', strike: '21.65' )
-Derivativo.create( ativo_id: 6, vencimento_id: 2, codigo: 'ITUBJ249', tipo: 'Call', strike: '24.86' )
-
-Corretora.create( nome: 'Clear', moeda: '', corretagem_fiis: 0.0 , corretagem_acoes: 0.0 , corretagem_opcoes: 0.0 , corretagem_exerc: 0.0 , corretagem_exerc_porcent: 0.005, corretagem_exerc_iss: 0.1 )
-Corretora.create( nome: 'Modal', moeda: '', corretagem_fiis: 1.49 , corretagem_acoes: 1.49 , corretagem_opcoes: 1.49 , corretagem_exerc: 1.49 , corretagem_exerc_porcent: 0.0, corretagem_exerc_iss: 0.0 )
-Corretora.create( nome: 'Capital', moeda: '', corretagem_fiis: 1.99 , corretagem_acoes: 1.99 , corretagem_opcoes: 1.99 , corretagem_exerc: 1.99 , corretagem_exerc_porcent: 0.0, corretagem_exerc_iss: 0.0 )
-Corretora.create( nome: 'XP', moeda: '', corretagem_fiis: 0.0 , corretagem_acoes: 0.0 , corretagem_opcoes: 0.0 , corretagem_exerc: 0.0 , corretagem_exerc_porcent: 0.005, corretagem_exerc_iss: 0.1 )
-
-AtivoMove.create( carteira_id: 1, tipo_id: 3, ativo_id: 10, corretora_id: 1, investimento_id: 2, valor: 30.0, data: DateTime.strptime('18/10/2020', '%d/%m/%Y'), quantidade: 200, movimento: 'Compra', )
-AtivoMove.create( carteira_id: 1, tipo_id: 3, ativo_id: 14, corretora_id: 1, investimento_id: 6, valor: 30.0, data: DateTime.strptime('18/10/2020', '%d/%m/%Y'), quantidade: 200, movimento: 'Compra', )
-AtivoMove.create( carteira_id: 2, tipo_id: 3, ativo_id: 6, corretora_id: 3, investimento_id: 8, valor: 30.0, data: DateTime.strptime('18/10/2020', '%d/%m/%Y'), quantidade: 200, movimento: 'Compra', )
-AtivoMove.create( carteira_id: 1, tipo_id: 4, ativo_id: 25, corretora_id: 4, investimento_id: 4, valor: 100.0, data: DateTime.strptime('05/10/2020', '%d/%m/%Y'), quantidade: 50, movimento: 'Compra', )
-AtivoMove.create( carteira_id: 2, tipo_id: 4, ativo_id: 34, corretora_id: 4, investimento_id: 10, valor: 10.0, data: DateTime.strptime('04/08/2020', '%d/%m/%Y'), quantidade: 200, movimento: 'Compra', )
-AtivoMove.create( carteira_id: 2, tipo_id: 4, ativo_id: 32, corretora_id: 2, investimento_id: 9, valor: 90.0, data: DateTime.strptime('12/10/2020', '%d/%m/%Y'), quantidade: 100, movimento: 'Compra', )
-
-DerivaMove.create( carteira_id: 1, derivativo_id: 1, estado_id: 3, corretora_id: 1, investimento_id: 1, valor: 0.23, valor_recompra: '', resultado: '', data: DateTime.strptime('02/09/2020', '%d/%m/%Y'), data_recompra: DateTime.strptime('18/10/2020', '%d/%m/%Y'), quantidade: 200, movimento: 'Venda' )
-DerivaMove.create( carteira_id: 1, derivativo_id: 2, estado_id: 3, corretora_id: 1, investimento_id: 1, valor: 0.6, valor_recompra: '', resultado: '', data: DateTime.strptime('02/09/2020', '%d/%m/%Y'), data_recompra: DateTime.strptime('18/10/2020', '%d/%m/%Y'), quantidade: 200, movimento: 'Venda' )
-DerivaMove.create( carteira_id: 1, derivativo_id: 3, estado_id: 2, corretora_id: 1, investimento_id: 6, valor: 0.38, valor_recompra: '', resultado:'' , data: DateTime.strptime('09/09/2020', '%d/%m/%Y'), data_recompra: DateTime.strptime('18/10/2020', '%d/%m/%Y'), quantidade: 100, movimento: 'Venda' )
-DerivaMove.create( carteira_id: 1, derivativo_id: 4, estado_id: 2, corretora_id: 1, investimento_id: 2, valor: 0.4, valor_recompra: '', resultado: '', data: DateTime.strptime('09/09/2020', '%d/%m/%Y'), data_recompra: DateTime.strptime('19/10/2020', '%d/%m/%Y'), quantidade: 100, movimento: 'Venda' )
-DerivaMove.create( carteira_id: 1, derivativo_id: 5, estado_id: 4, corretora_id: 1, investimento_id: 1, valor: 0.4, valor_recompra: '0.04', resultado: '', data: DateTime.strptime('22/09/2020', '%d/%m/%Y'), data_recompra: DateTime.strptime('10/10/2020', '%d/%m/%Y'), quantidade: 100, movimento: 'Venda' )
-DerivaMove.create( carteira_id: 1, derivativo_id: 5, estado_id: 1, corretora_id: 1, investimento_id: 2, valor: 0.28, valor_recompra: '', resultado: '', data: DateTime.strptime('22/09/2020', '%d/%m/%Y'), data_recompra: DateTime.strptime('18/10/2020', '%d/%m/%Y'), quantidade: 300, movimento: 'Venda' )
-
-Investimento.create( carteira_id: 1, tipo_id: 1, ativo_id: 1, corretora_id: 1, valor_medio: 500.0, quantidade: 1, )
+Investimento.create( carteira_id: 1, tipo_id: 3, ativo_id: 4, corretora_id: 1, valor_medio: 28.9, quantidade: 500, )
 Investimento.create( carteira_id: 1, tipo_id: 3, ativo_id: 10, corretora_id: 1, valor_medio: 45.34, quantidade: 200, )
 Investimento.create( carteira_id: 1, tipo_id: 3, ativo_id: 5, corretora_id: 1, valor_medio: 8.8, quantidade: 400, )
 Investimento.create( carteira_id: 1, tipo_id: 4, ativo_id: 25, corretora_id: 4, valor_medio: 112.45, quantidade: 50, )
@@ -108,3 +92,18 @@ Investimento.create( carteira_id: 2, tipo_id: 3, ativo_id: 6, corretora_id: 3, v
 Investimento.create( carteira_id: 2, tipo_id: 4, ativo_id: 32, corretora_id: 2, valor_medio: 90.0, quantidade: 50, )
 Investimento.create( carteira_id: 2, tipo_id: 4, ativo_id: 34, corretora_id: 4, valor_medio: 10.0, quantidade: 200, )
 Investimento.create( carteira_id: 2, tipo_id: 1, ativo_id: 1, corretora_id: 1, valor_medio: 500.0, quantidade: 1, )
+Investimento.create( carteira_id: 1, tipo_id: 3, ativo_id: 7, corretora_id: 3, valor_medio: 23.5, quantidade: 100, )
+AtivoMove.create( carteira_id: 1, tipo_id: 3, ativo_id: 4, corretora_id: 1, investimento_id: 1, valor: 28.03, data: DateTime.strptime('20/10/2020', '%d/%m/%Y'), quantidade: 500, movimento: 'Compra', )
+Derivativo.create( ativo_id: 14, vencimento_id: 3, codigo: 'BBASI355', tipo: 'Call', strike: '35.16' )
+Derivativo.create( ativo_id: 14, vencimento_id: 3, codigo: 'BBASI455', tipo: 'Call', strike: '34.16' )
+Derivativo.create( ativo_id: 14, vencimento_id: 3, codigo: 'BBASU322', tipo: 'Put', strike: '31.91' )
+Derivativo.create( ativo_id: 10, vencimento_id: 1, codigo: 'VIVTU480', tipo: 'Put', strike: '47.53' )
+Derivativo.create( ativo_id: 8, vencimento_id: 2, codigo: 'BBDCJ210', tipo: 'Call', strike: '21.65' )
+Derivativo.create( ativo_id: 6, vencimento_id: 2, codigo: 'ITUBJ249', tipo: 'Call', strike: '24.86' )
+DerivaMove.create( carteira_id: 1, derivativo_id: 1, estado_id: 3, corretora_id: 1, investimento_id: 6, valor: 0.23, valor_recompra: '', resultado: '', data: DateTime.strptime('02/09/2020', '%d/%m/%Y'), data_recompra: DateTime.strptime('18/10/2020', '%d/%m/%Y'), quantidade: 200, movimento: 'Venda' )
+DerivaMove.create( carteira_id: 1, derivativo_id: 2, estado_id: 3, corretora_id: 1, investimento_id: 6, valor: 0.6, valor_recompra: '', resultado: '', data: DateTime.strptime('02/09/2020', '%d/%m/%Y'), data_recompra: DateTime.strptime('18/10/2020', '%d/%m/%Y'), quantidade: 200, movimento: 'Venda' )
+DerivaMove.create( carteira_id: 1, derivativo_id: 3, estado_id: 2, corretora_id: 1, investimento_id: 6, valor: 0.38, valor_recompra: '', resultado: '', data: DateTime.strptime('09/09/2020', '%d/%m/%Y'), data_recompra: DateTime.strptime('18/10/2020', '%d/%m/%Y'), quantidade: 100, movimento: 'Venda' )
+DerivaMove.create( carteira_id: 1, derivativo_id: 4, estado_id: 2, corretora_id: 1, investimento_id: 2, valor: 0.4, valor_recompra: '', resultado: '', data: DateTime.strptime('09/09/2020', '%d/%m/%Y'), data_recompra: DateTime.strptime('19/10/2020', '%d/%m/%Y'), quantidade: 100, movimento: 'Venda' )
+DerivaMove.create( carteira_id: 1, derivativo_id: 5, estado_id: 4, corretora_id: 1, investimento_id: 1, valor: 0.4, valor_recompra: '0.04', resultado: '', data: DateTime.strptime('22/09/2020', '%d/%m/%Y'), data_recompra: DateTime.strptime('10/10/2020', '%d/%m/%Y'), quantidade: 100, movimento: 'Venda' )
+DerivaMove.create( carteira_id: 1, derivativo_id: 5, estado_id: 1, corretora_id: 1, investimento_id: 2, valor: 0.28, valor_recompra: '', resultado: '', data: DateTime.strptime('22/09/2020', '%d/%m/%Y'), data_recompra: DateTime.strptime('18/10/2020', '%d/%m/%Y'), quantidade: 300, movimento: 'Venda' )
+DerivaMove.create( carteira_id: 1, derivativo_id: 4, estado_id: 4, corretora_id: 1, investimento_id: 1, valor: 0.43, valor_recompra: '0.6', resultado: '', data: DateTime.strptime('20/10/2020', '%d/%m/%Y'), data_recompra: DateTime.strptime('20/10/2020', '%d/%m/%Y'), quantidade: 100, movimento: 'Venda' )

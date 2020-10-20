@@ -1,10 +1,16 @@
 class DerivaMovesController < ApplicationController
   before_action :set_deriva_move, only: [:show, :edit, :update, :destroy]
+  
+  has_scope :por_carteira
+  has_scope :por_derivativo
+  has_scope :por_estado
+  has_scope :por_corretora
+  has_scope :por_investimento
 
   # GET /deriva_moves
   # GET /deriva_moves.json
   def index
-    @deriva_moves = DerivaMove.all
+    @deriva_moves = apply_scopes(DerivaMove).all
   end
 
   # GET /deriva_moves/1

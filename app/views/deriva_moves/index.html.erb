@@ -1,3 +1,26 @@
+<%= form_tag deriva_moves_path, method: :get, enforce_utf8: false do %>
+    <div class="row">
+        <div class="col-md-2 mt-4 mb-4">
+            <%= select_tag :por_carteira, options_for_select(Carteira.all.collect {|t| [t.nome, t.id]}, selected: params[:por_carteira]), prompt: 'Carteira', class: 'form-control' %>
+        </div>
+        <div class="col-md-2 mt-4 mb-4">
+            <%= select_tag :por_estado, options_for_select(Estado.all.collect {|t| [t.status, t.id]}, selected: params[:por_estado]), prompt: 'Estado', class: 'form-control' %>
+        </div>
+        <div class="col-md-2 mt-4 mb-4">
+            <%= select_tag :por_corretora, options_for_select(Corretora.all.collect {|t| [t.nome, t.id]}, selected: params[:por_corretora]), prompt: 'Corretora', class: 'form-control' %>
+        </div>
+        <div class="col-md-2 mt-4 mb-4">
+            <%= select_tag :por_derivativo, options_for_select(Derivativo.all.collect {|t| [t.codigo, t.id]}, selected: params[:por_derivativo]), prompt: 'Derivativo', class: 'form-control' %>
+        </div>
+        <!--Como colocar mais informações no options_for_select-->
+        <div class="col-md-2 mt-4 mb-4">
+            <%= select_tag :por_investimento, options_for_select(Investimento.all.collect {|t| [t.ativo.ticker, t.id]}, selected: params[:por_investimento]), prompt: 'Investimento', class: 'form-control' %>
+        </div>
+        <div class="col-md-2 mt-4 mb-4">
+            <%= submit_tag 'Filtrar', class: 'btn btn-default', name: nil %>
+        </div>
+    </div>
+<% end %> 
 <div class="float-right"><%= link_to new_deriva_move_path do %>
 	<button class="btn btn-outline-success">
 		<em class="fa fa-plus-circle"></em> &nbsp; Nova movimentação (Derivativos)

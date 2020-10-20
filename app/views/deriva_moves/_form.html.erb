@@ -29,7 +29,7 @@
   
   <div class="col-md-4 mt-4">
     <%= form.label :investimento_id %>
-    <%= form.select :investimento_id, Investimento.all.collect {|d| [d.id, d.id]}, {}, {class: 'form-control'} %>
+    <%= form.select :investimento_id, Investimento.all.collect {|d| [d.custom_invest, d.id]}, {}, {class: 'form-control'} %>
   </div>
   
   <div class="col-md-4 mt-4">
@@ -60,19 +60,28 @@
     <%= form.date_select :data %>
   </div>
 </div>
-<div class="row">  
-  <div class="col-md-12 mt-4">
-    <p>preencher apenas em caso de recompra</p>
-  </div>
-  <div class="col-md-6 mt-4">
-    <%= form.label :valor_recompra %>
-    <%= form.text_field :valor_recompra, class: 'form-control' %>
-  </div>
-  <div class="col-md-6 mt-4">
-    <%= form.label :data_recompra %></br>
-    <%= form.date_select :data_recompra %>
-  </div>
+<div id="accordion">
+   <div class="card card-default mb-1 mt-4">
+      <div class="card-header" id="headingOne">
+         <h4 class="mb-0"><a class="text-inherit" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" href="">Em caso de recompra</a></h4>
+      </div>
+      <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion" style="">
+         <div class="card-body border-top">
+            <div class="row">  
+              <div class="col-md-5 mt-4">
+                <%= form.label :valor_recompra %>
+                <%= form.text_field :valor_recompra, class: 'form-control' %>
+              </div>
+              <div class="col-md-5 mt-4">
+                <%= form.label :data_recompra %></br>
+                <%= form.date_select :data_recompra %>
+              </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
+
 
 <div class="row">
 	<div class="col-md-3 mt-4">

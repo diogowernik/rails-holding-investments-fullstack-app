@@ -43,7 +43,7 @@ class CarteirasController < ApplicationController
   def update
     respond_to do |format|
       if @carteira.update(carteira_params)
-        format.html { redirect_to session[:user_previous_url], notice: 'Carteira was successfully updated.' }
+        format.html { redirect_to carteiras_url, notice: 'Carteira was successfully updated.' }
         format.json { render :show, status: :ok, location: @carteira }
       else
         format.html { render :edit }

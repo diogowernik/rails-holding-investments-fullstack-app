@@ -56,7 +56,7 @@ class CorretorasController < ApplicationController
   def destroy
     @corretora.destroy
     respond_to do |format|
-      format.html { redirect_to session[:user_previous_url], notice: 'Corretora was successfully destroyed.' }
+      format.html { redirect_to corretoras_url, notice: 'Corretora was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,7 +69,7 @@ class CorretorasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def corretora_params
-      params.require(:corretora).permit(:nome, :corretagem_fiis, :corretagem_acoes, :corretagem_opcoes, :corretagem_exerc, :corretagem_exerc_porcent, :corretagem_exerc_iss)
+      params.require(:corretora).permit(:nome, :corretagem_fiis, :corretagem_acoes, :corretagem_opcoes, :corretagem_exerc, :corretagem_exerc_porcent, :corretagem_exerc_iss, :moeda)
     end
 end
 

@@ -2,10 +2,94 @@
 	<em class="fa fa-usd text-success"></em> &nbsp; Seeds
 </h3>
 
+</br>
+
+
+
+
+</br>
+# independentes
+
+</br>
+<% @vencimentos.each do |vencimento| %>
+    Vencimento.create(
+    
+    data: DateTime.strptime('<%= vencimento.data.strftime("%d/%m/%Y") %>', '%d/%m/%Y')
+
+    )
+    </br>
+<% end %>
+</br>
+<% @corretoras.each do |corretora| %>
+    Corretora.create(
+    nome: '<%= corretora.nome %>', 
+    moeda: '<%= corretora.moeda %>', 
+    
+    corretagem_fiis: <%= corretora.corretagem_fiis %> , 
+    corretagem_acoes: <%= corretora.corretagem_acoes %> , 
+    corretagem_opcoes: <%= corretora.corretagem_opcoes %> , 
+    corretagem_exerc: <%= corretora.corretagem_exerc %> , 
+    corretagem_exerc_porcent: <%= corretora.corretagem_exerc_porcent %>, 
+    corretagem_exerc_iss: <%= corretora.corretagem_exerc_iss %> 
+    )
+    </br>
+<% end %>
+</br>
+
+<% @estados.each do |estado| %>
+    Estado.create(
+    
+    status: '<%= estado.status %>'
+
+    )
+    </br>
+<% end %>
+
+</br>
+
+<% @tipos.each do |tipo| %>
+    Tipo.create(
+    
+    nome: '<%= tipo.nome %>'
+
+    )
+    </br>
+<% end %>
+
+
+</br>
+# dependentes
+
+</br>
+
+
+<% @carteiras.each do |carteira| %>
+    Carteira.create(
+    nome: '<%= carteira.nome %>', 
+    user_id: <%= carteira.user_id %>
+    )
+    </br>
+<% end %>
+
+</br>
 <% @ativos.each do |ativo| %>
     Ativo.create(
     tipo_id: <%= ativo.tipo_id %>, 
     ticker: '<%= ativo.ticker %>'
+    )
+    </br>
+<% end %>
+
+<% @investimentos.each do |investimento| %>
+    Investimento.create(
+    carteira_id: <%= investimento.carteira_id %>, 
+    tipo_id: <%= investimento.tipo_id %>,  
+    ativo_id: <%= investimento.ativo_id %>,  
+    corretora_id: <%= investimento.corretora_id %>, 
+
+    valor_medio: <%= investimento.valor_medio %>, 
+    
+    quantidade: <%= investimento.quantidade %>,  
     )
     </br>
 <% end %>
@@ -30,25 +114,15 @@
     </br>
 <% end %>
 
-<% @carteiras.each do |carteira| %>
-    Carteira.create(
-    nome: '<%= carteira.nome %>', 
-    user_id: <%= carteira.user_id %>
-    )
-    </br>
-<% end %>
-
-<% @corretoras.each do |corretora| %>
-    Corretora.create(
-    nome: '<%= corretora.nome %>', 
-    moeda: '<%= corretora.moeda %>', 
+<% @derivativos.each do |derivativo| %>
+    Derivativo.create(
+    ativo_id: <%= derivativo.ativo_id %>, 
+    vencimento_id: <%= derivativo.vencimento_id %>, 
     
-    corretagem_fiis: <%= corretora.corretagem_fiis %> , 
-    corretagem_acoes: <%= corretora.corretagem_acoes %> , 
-    corretagem_opcoes: <%= corretora.corretagem_opcoes %> , 
-    corretagem_exerc: <%= corretora.corretagem_exerc %> , 
-    corretagem_exerc_porcent: <%= corretora.corretagem_exerc_porcent %>, 
-    corretagem_exerc_iss: <%= corretora.corretagem_exerc_iss %> 
+    codigo: '<%= derivativo.codigo %>',
+    tipo: '<%= derivativo.tipo %>',
+    
+    strike: '<%= derivativo.strike %>'
     )
     </br>
 <% end %>
@@ -76,56 +150,9 @@
     </br>
 <% end %>
 
-<% @derivativos.each do |derivativo| %>
-    Derivativo.create(
-    ativo_id: <%= derivativo.ativo_id %>, 
-    vencimento_id: <%= derivativo.vencimento_id %>, 
-    
-    codigo: '<%= derivativo.codigo %>',
-    tipo: '<%= derivativo.tipo %>',
-    
-    strike: '<%= derivativo.strike %>'
-    )
-    </br>
-<% end %>
 
-<% @estados.each do |estado| %>
-    Estado.create(
-    
-    status: '<%= estado.status %>'
 
-    )
-    </br>
-<% end %>
 
-<% @investimentos.each do |investimento| %>
-    Investimento.create(
-    carteira_id: <%= investimento.carteira_id %>, 
-    tipo_id: <%= investimento.tipo_id %>,  
-    ativo_id: <%= investimento.ativo_id %>,  
-    corretora_id: <%= investimento.corretora_id %>, 
 
-    valor_medio: <%= investimento.valor_medio %>, 
-    
-    quantidade: <%= investimento.quantidade %>,  
-    )
-    </br>
-<% end %>
 
-<% @tipos.each do |tipo| %>
-    Tipo.create(
-    
-    nome: '<%= tipo.nome %>'
 
-    )
-    </br>
-<% end %>
-
-<% @vencimentos.each do |vencimento| %>
-    Vencimento.create(
-    
-    data: DateTime.strptime('<%= vencimento.data.strftime("%d/%m/%Y") %>', '%d/%m/%Y')
-
-    )
-    </br>
-<% end %>

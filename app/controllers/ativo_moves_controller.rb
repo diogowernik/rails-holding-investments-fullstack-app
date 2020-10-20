@@ -48,7 +48,7 @@ class AtivoMovesController < ApplicationController
   def update
     respond_to do |format|
       if @ativo_move.update(ativo_move_params)
-        format.html { redirect_to session[:user_previous_url], notice: 'Ativo move was successfully updated.' }
+        format.html { redirect_to ativo_moves_url, notice: 'Ativo move was successfully updated.' }
         format.json { render :show, status: :ok, location: @ativo_move }
       else
         format.html { render :edit }

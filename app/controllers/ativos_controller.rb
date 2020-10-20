@@ -44,7 +44,7 @@ class AtivosController < ApplicationController
   def update
     respond_to do |format|
       if @ativo.update(ativo_params)
-        format.html { redirect_to session[:user_previous_url], notice: 'Ativo was successfully updated.' }
+        format.html { redirect_to ativos_url, notice: 'Ativo was successfully updated.' }
         format.json { render :show, status: :ok, location: @ativo }
       else
         format.html { render :edit }

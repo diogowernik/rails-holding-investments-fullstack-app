@@ -13,33 +13,33 @@
 
 <div class="row">
   <div class="col-md-4 mt-4">
-    <%= form.label :carteira_id %>
+    <%= form.label :carteira_id %> <%= link_to new_carteira_path do %> &nbsp; <small> (Nova)</small> <% end %>
     <%= form.select :carteira_id, Carteira.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
   </div>
 
   <div class="col-md-4 mt-4">
-    <%= form.label :derivativo_id %>
-    <%= form.select :derivativo_id, Derivativo.all.collect {|d| [d.codigo, d.id]}, {}, {class: 'form-control'} %>
+    <%= form.label :corretora_id %> <%= link_to new_corretora_path do %> &nbsp; <small> (Nova)</small> <% end %>
+    <%= form.select :corretora_id, Corretora.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
   </div>
 
   <div class="col-md-4 mt-4">
-    <%= form.label :estado_id %>
+    <%= form.label :estado_id %> <%= link_to new_estado_path do %> &nbsp; <small> (Novo)</small> <% end %>
     <%= form.select :estado_id, Estado.all.collect {|d| [d.status, d.id]}, {}, {class: 'form-control'} %>
   </div>
   
   <div class="col-md-4 mt-4">
-    <%= form.label :investimento_id %>
+    <%= form.label :investimento_id %> <%= link_to new_investimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
     <%= form.select :investimento_id, Investimento.all.collect {|d| [d.custom_invest, d.id]}, {}, {class: 'form-control'} %>
   </div>
-  
-  <div class="col-md-4 mt-4">
-    <%= form.label :corretora_id %>
-    <%= form.select :corretora_id, Corretora.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
+
+  <div class="col-md-4 mt-4"> <%= link_to new_derivativo_path do %> &nbsp; <small> (Novo)</small> <% end %>
+    <%= form.label :derivativo_id %>
+    <%= form.select :derivativo_id, Derivativo.all.collect {|d| [d.codigo, d.id]}, {}, {class: 'form-control'} %>
   </div>
   
   <div class="col-md-4 mt-4">
     <%= form.label :movimento %>
-    <%= form.select :movimento, [["Compra","Compra"], ["Venda","Venda"]], {}, {class: 'form-control'} %>
+    <%= form.select :movimento, [["Venda","Venda"], ["Compra","Compra"]], {}, {class: 'form-control'} %>
   </div>
 
   <div class="col-md-4 mt-4">
@@ -55,8 +55,8 @@
     <%= form.label :resultado %>
     <%= form.number_field :resultado, class: 'form-control' %>
   </div>
-  <div class="col-md-4 mt-4">
-    <%= form.label :data %></br>
+  <div class="col-md-4 mt-4 mb-3">
+    <%= form.label :data %> de Negociação</br>
     <%= form.date_select :data %>
   </div>
 </div>

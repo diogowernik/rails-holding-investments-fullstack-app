@@ -1,10 +1,14 @@
 class DerivativosController < ApplicationController
   before_action :set_derivativo, only: [:show, :edit, :update, :destroy]
+  
+  has_scope :por_ativo
+  has_scope :por_vencimento
+  has_scope :por_tipo
 
   # GET /derivativos
   # GET /derivativos.json
   def index
-    @derivativos = Derivativo.all
+    @derivativos = apply_scopes(Derivativo).all
   end
 
   # GET /derivativos/1
@@ -42,7 +46,7 @@ class DerivativosController < ApplicationController
   def update
     respond_to do |format|
       if @derivativo.update(derivativo_params)
-        format.html { redirect_to session[:user_previous_url], notice: 'Derivativo was successfully updated.' }
+        format.html { redirect_to derivativos_url, notice: 'Derivativo was successfully updated.' }
         format.json { render :show, status: :ok, location: @derivativo }
       else
         format.html { render :edit }

@@ -12,7 +12,7 @@ class Investimento < ApplicationRecord
   scope :por_tipo, ( -> (tipo) { where tipo_id: tipo } )
   
   def custom_invest
-    "#{carteira.nome} / #{ativo.ticker} / #{corretora.nome}"
+    "#{carteira.nome} / #{corretora.nome} / #{ativo.ticker}"
   end
 end
 

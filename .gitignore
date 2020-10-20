@@ -33,6 +33,6 @@
 /config/environments/development.rb
 
 /db/seed.production.rb
-/db/seed.rb
+/db/seeds.rb
 
 .env

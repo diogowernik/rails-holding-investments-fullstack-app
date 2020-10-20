@@ -32,7 +32,7 @@
     </table>
 </div>
 
-<div class="float-right"><%= link_to new_atividade_path do %>
+<div class="float-right"><%= link_to new_ativo_move_path do %>
 	<button class="btn btn-outline-success">
 		<em class="fa fa-plus-circle"></em> &nbsp; Nova movimentação (Ativos)
 	</button><% end %>
@@ -44,37 +44,43 @@
 
 <div class="table-responsive">
 	<table class="table table-striped table-bordered table-hover">
-        <thead>
-          <tr>
-              <th class="text-center">Invest. Id</th>
-              <th>Ativo</th> 
-              <th>Movimento</th>
-              <th>Quantidade</th>
-              <th>Preço</th>
-              <th>Data de Negociação</th>
-              <th>Resultado</th>
-          </tr>
-        </thead>
-    
-        <tbody>
-          <% @carteira.atividades.each do |atividade| %>
-            <tr>
-              <td class="text-center"><%= atividade.investimento_id %></td>
-              <td><%= atividade.ativo.ticker %></td> 
-              <td><%= atividade.movimento %></td>
-              <td><%= atividade.quantidade %></td>
-              <td>R$ <%= number_with_precision(atividade.valor, :precision => 2) %></td>
-              <td><%= atividade.data.strftime("%d/%m/%Y") %></td>
-              <td>Compra ( <%= atividade.quantidade %> <%= atividade.ativo.ticker %> / 
-                        <span class="text-primary">
-                        R$ <%= number_with_precision(atividade.valor, :precision => 2)  %> 
-                        </span>)</td>
-              <td><%= link_to 'Edit', edit_atividade_path(atividade) %></td>
-              <td><%= link_to 'Destroy', atividade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-          <% end %>
-        </tbody>
-    </table>
+  <thead>
+    <tr>
+      <th>Carteira</th>
+      <th>Valor</th>
+      <th>Data</th>
+      <th>Quantidade</th>
+      <th>Movimento</th>
+      <th>Tipo</th>
+      <th>Ativo</th>
+      <th>Essa ordem criou ou </br> atualizou investimento em:</th>
+      <th>Corretora</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @carteira.ativo_moves.each do |ativo_move| %>
+      <tr>
+        <td><%= ativo_move.carteira.nome %></td>
+        <td><%= ativo_move.valor %></td>
+        <td><%= ativo_move.data %></td>
+        <td><%= ativo_move.quantidade %></td>
+        <td><%= ativo_move.movimento %></td>
+        <td><%= ativo_move.tipo.nome %></td>
+        <td><%= ativo_move.ativo.ticker %></td>
+        <td><%= ativo_move.investimento.carteira.nome %> / <%= ativo_move.investimento.tipo.nome %> / </br>
+        <%= ativo_move.investimento.corretora.nome %> / <%= ativo_move.investimento.ativo.ticker %> &nbsp;  
+        <%= link_to edit_investimento_path(ativo_move.investimento) do %><em class="fa fa-pencil"></em><% end %>
+        </td>
+        <td><%= ativo_move.corretora.nome %></td>
+        <td><%= link_to 'Show', ativo_move %></td>
+        <td><%= link_to 'Edit', edit_ativo_move_path(ativo_move) %></td>
+        <td><%= link_to 'Destroy', ativo_move, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 </div>
 
 <div class="float-right mt-5"><%= link_to new_deriva_move_path do %>

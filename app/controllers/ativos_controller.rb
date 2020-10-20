@@ -1,10 +1,12 @@
 class AtivosController < ApplicationController
   before_action :set_ativo, only: [:show, :edit, :update, :destroy]
+  
+  has_scope :por_tipo
 
   # GET /ativos
   # GET /ativos.json
   def index
-    @ativos = Ativo.all
+    @ativos = apply_scopes(Ativo).all
   end
 
   # GET /ativos/1

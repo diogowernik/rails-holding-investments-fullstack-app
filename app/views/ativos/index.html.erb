@@ -1,3 +1,14 @@
+<%= form_tag ativos_path, method: :get, enforce_utf8: false do %>
+    <div class="row">
+        <div class="col-md-2 mt-4 mb-4">
+            <%= select_tag :por_tipo, options_for_select(Tipo.all.collect {|t| [t.nome, t.id]}, selected: params[:por_tipo]), prompt: 'Tipo', class: 'form-control' %>
+        </div>
+        <div class="col-md-2 mt-4 mb-4">
+            <%= submit_tag 'Filtrar', class: 'btn btn-default', name: nil %>
+        </div>
+    </div>
+<% end %> 
+
 <div class="float-right"><%= link_to new_ativo_path do %>
 	<button class="btn btn-outline-success">
 		<em class="fa fa-plus-circle"></em> &nbsp; Novo Ativo

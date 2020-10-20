@@ -12,15 +12,13 @@
   <% end %>
 <div class="row">
     <div class="col-md-6">
+      <%= form.label :tipo_id %> <%= link_to new_tipo_path do %> &nbsp; <small> (Novo)</small> <% end %>
+      <%= form.select :tipo_id, Tipo.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
+    </div>
+    <div class="col-md-6">
       <%= form.label :ticker %>
       <%= form.text_field :ticker, class: 'form-control' %>
     </div>
-  
-    <div class="col-md-6">
-      <%= form.label :tipo_id %>
-      <%= form.select :tipo_id, Tipo.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
-    </div>
-
 </div>
 <div class="row">
     <div class="col-md-3 mt-4">

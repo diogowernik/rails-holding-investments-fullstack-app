@@ -40,6 +40,8 @@
               <th>Status </br> 
               <input type="text" id="DerivaStatus" onkeyup="DerivaMoveStatusFunction()" placeholder="Status.." class="form-control">
               </th>
+              <th>Corretora</th>
+              <th>Carteira</th>
               <th>Vencimento
               </th>
               <th>Premio</th>
@@ -51,15 +53,18 @@
           </thead>
         
           <tbody>
-            <% @deriva_moves.each do |dm| %>
+            <% @deriva_moves.order("created_at desc").each do |dm| %>
             <tr>
                 <!--<td>-->
                 <!--    <#%= dm.investimento.carteira.nome %>  <%#= dm.investimento.corretora.nome %>  <%#= dm.investimento.ativo.ticker %> </br>-->
                     <!--Tem que ser igual a de cima com a de baixo-->
                 <!--    <%#= dm.carteira.nome %>  <%#= dm.corretora.nome %>  <%#= dm.derivativo.ativo.ticker %>-->
                 <!--</td>-->
+                
                 <td><%= dm.derivativo.codigo %></td>
                 <td><%= dm.estado.status %></td>
+                <td><%= dm.carteira.nome %></td>
+                <td><%= dm.corretora.nome %></td>
                 <td><%= dm.derivativo.vencimento.data.strftime("%d/%m/%Y") %></td>
                 <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
                 <td><%= dm.quantidade %></td>

@@ -2,7 +2,7 @@ class DerivaMovesController < ApplicationController
   before_action :set_deriva_move, only: [:show, :edit, :update, :destroy]
   
   has_scope :por_carteira
-  has_scope :por_derivativo
+  has_scope :por_vencimento
   has_scope :por_estado
   has_scope :por_corretora
   has_scope :por_investimento

@@ -25,7 +25,9 @@
 
   <div class="col-md-4 mt-4"> 
     <%= form.label :vencimento_id %> <%= link_to new_vencimento_path do %> &nbsp; <small> (Novo)</small> <% end %></br> 
-    <%= form.select :vencimento_id, Vencimento.where("data > ?", Time.now).collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {}, {class: 'form-control'} %>
+    <%#= form.select :vencimento_id, Vencimento.where("data > ?", Time.now).collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {}, {class: 'form-control'} %>
+    <%= form.select :vencimento_id, Vencimento.all.collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {}, {class: 'form-control'} %>
+
   </div>
   
   <div class="col-md-4 mt-4">

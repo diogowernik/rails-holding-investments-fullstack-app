@@ -34,7 +34,7 @@
 
   <div class="col-md-2 mt-4"> 
     <label>Filtro (Ativo Base)</label>
-    <input type="text" class="form-control" placeholder="Ex: BBAS" id="derivativo_filter"/>
+    <input type="text" class="form-control" placeholder="Ex: BBAS" maxlength="4" id="derivativo_filter"/>
   </div>
 
   <div class="col-md-2 mt-4"> <%= link_to new_derivativo_path do %> &nbsp; <small> (Novo)</small> <% end %>
@@ -138,3 +138,4 @@ $('#derivativo_filter').keyup(function () {
 });
 
 </script>
+

@@ -41,12 +41,12 @@
               <input type="text" id="DerivaStatus" onkeyup="DerivaMoveStatusFunction()" placeholder="Status.." class="form-control">
               </th>
               <th>Corretora</th>
-              <th>Carteira</th>
+              <!--<th>Carteira</th>-->
               <th>Vencimento
               </th>
               <th>Premio</th>
               <th>Quant</th>
-              <th>Result View</th>
+              <!--<th>Result View</th>-->
               <th>Result db</th>
               <th colspan="2"></th>
             </tr>
@@ -63,19 +63,19 @@
                 
                 <td><%= dm.derivativo.codigo %></td>
                 <td><%= dm.estado.status %></td>
-                <td><%= dm.carteira.nome %></td>
+                <!--<td><%#= dm.carteira.nome %></td>-->
                 <td><%= dm.corretora.nome %></td>
                 <td><%= dm.derivativo.vencimento.data.strftime("%d/%m/%Y") %></td>
                 <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
                 <td><%= dm.quantidade %></td>
                 <!--resultado_especificos está no aplication helper-->
-                <td>
-                    <span class="text-primary"><%= resultado_aberta(dm) %></span>
-                    <span class="text-primary"><%= resultado_po(dm) %></span>
-                    <span class="text-primary"><%= resultado_exercicio(dm) %></span>
-                    <span class="text-<%= cor_resultado_recompra(dm) %>"><%= resultado_recompra(dm) %></span>
+                <!--<td>-->
+                <!--    <span class="text-primary"><%#= resultado_aberta(dm) %></span>-->
+                <!--    <span class="text-primary"><%#= resultado_po(dm) %></span>-->
+                <!--    <span class="text-primary"><%#= resultado_exercicio(dm) %></span>-->
+                <!--    <span class="text-<%#= cor_resultado_recompra(dm) %>"><%#= resultado_recompra(dm) %></span>-->
                     
-                </td>
+                <!--</td>-->
                 <td><%= dm.resultado %></td>
                 <td><%= link_to 'Edit', edit_deriva_move_path(dm) %></td>
                 <td><%= link_to 'Destroy', dm, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -55,44 +55,18 @@
     <%= form.label :quantidade %>
     <%= form.number_field :quantidade, :required => true,  class: 'form-control' %>
   </div>
+  
+  <div id="recompra" class="col-md-4 mt-4" style="display:none">
+      <label> Apenas em caso de recompra</label>
+      <%= form.text_field :valor_recompra, class: 'form-control' %>
+      <label> Cola para recompra</label>
+      <input type="text" class="form-control" id="cola"/>
+  </div>
+
   <div id="resultado" class="col-md-4 mt-4" style="display:none" >
     <%= form.label :resultado %>
     <%= form.text_field :resultado, :required => true, class: 'form-control' %>
   </div>
-    <div id="recompra" class="col-md-4 mt-4" style="display:none">
-      <label> Apenas em caso de recompra</label>
-      <%= form.text_field :valor_recompra, class: 'form-control' %>
-    </div>
-
-<script>  
-$(document).ready(function(){
-    $('#deriva_move_estado_id').on('change', function() {
-      if ( this.value == '4')
-      {
-        $("#recompra").show();
-      }
-      else
-      {
-        $("#recompra").hide();
-      }
-    });
-});
-
-$(document).ready(function(){
-    $('#deriva_move_estado_id').on('change', function() {
-      if ( this.value == '2' || this.value == '4' )
-      {
-        $("#resultado").show();
-      }
-      else
-      {
-        $("#resultado").hide();
-      }
-    });
-});
-
-
-</script>    
     
   <div class="col-md-4 mt-4 mb-3" style="display:none">
     <%= form.label :data %> de Negociação</br>
@@ -128,7 +102,20 @@ function calculate(e)
 {
     $('#deriva_move_resultado').val($('#deriva_move_valor').val() * $('#deriva_move_quantidade').val());
 }
+
+$(document).ready(function(){
+    $('#deriva_move_valor').keyup(calculate2);
+    $('#deriva_move_valor_recompra').keyup(calculate2);
+    $('#deriva_move_quantidade').keyup(calculate2);
+    
+});
+function calculate2(e)
+{
+    $('#cola').val(  
+      $('#deriva_move_valor').val() * $('#deriva_move_quantidade').val() - $('#deriva_move_valor_recompra').val() * $('#deriva_move_quantidade').val() );
+}
 </script>
+
 
 
 
@@ -171,3 +158,33 @@ $('#derivativo_filter').keyup(function () {
         });
     });
 </script>
+
+<script>  
+$(document).ready(function(){
+    $('#deriva_move_estado_id').on('change', function() {
+      if ( this.value == '4')
+      {
+        $("#recompra").show();
+      }
+      else
+      {
+        $("#recompra").hide();
+      }
+    });
+});
+
+$(document).ready(function(){
+    $('#deriva_move_estado_id').on('change', function() {
+      if ( this.value == '2' || this.value == '4' )
+      {
+        $("#resultado").show();
+      }
+      else
+      {
+        $("#resultado").hide();
+      }
+    });
+});
+
+
+</script>    

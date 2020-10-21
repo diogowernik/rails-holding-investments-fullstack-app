@@ -123,16 +123,6 @@ function calculate2(e)
 
 <script>
 // jquery para filtrar derivativos
-$('#derivativo_filter').keyup(function () {
-      var valthis = $(this).val().toLowerCase();
-      var num = 0;
-      $('select#deriva_move_derivativo_id>option').each(function () {
-          var text = $(this).text().toLowerCase();
-          if(text.indexOf(valthis) !== -1)  
-              {$(this).show(); $(this).prop('selected',true);}
-          else{$(this).hide();}
-           });
-});
 
 $('#derivativo_filter').keyup(function () {
       var valthis = $(this).val().toLowerCase();

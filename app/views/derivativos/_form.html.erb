@@ -49,3 +49,16 @@
 	</div>
 </div>
 <% end %>
+
+<script>
+$('#derivativo_codigo').keyup(function () {
+      var valthis = $(this).val().toLowerCase();
+      var num = 0;
+      $('select#derivativo_ativo_id>option').each(function () {
+          var text = $(this).text().toLowerCase();
+          if(text.indexOf(valthis) !== -1)  
+              {$(this).show(); $(this).prop('selected',true);}
+          else{$(this).hide();}
+           });
+});
+</script>

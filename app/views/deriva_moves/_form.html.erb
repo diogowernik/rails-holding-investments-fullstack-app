@@ -44,12 +44,12 @@
 
   <div class="col-md-4 mt-4">
     <%= form.label :valor %>
-    <%= form.text_field :valor, class: 'form-control' %>
+    <%= form.text_field :valor, :required => true, class: 'form-control'  %>
   </div>
 
   <div class="col-md-4 mt-4">
     <%= form.label :quantidade %>
-    <%= form.number_field :quantidade, class: 'form-control' %>
+    <%= form.number_field :quantidade, :required => true,  class: 'form-control' %>
   </div>
   <div class="col-md-4 mt-4">
     <%= form.label :resultado %>
@@ -91,3 +91,15 @@
 	</div>
 </div>
 <% end %>
+
+<!--Jquery para calcular o resultado usar no caso de abertas ou pó.-->
+<script>
+$(document).ready(function(){
+    $('#deriva_move_valor').keyup(calculate);
+    $('#deriva_move_quantidade').keyup(calculate);
+});
+function calculate(e)
+{
+    $('#deriva_move_resultado').val($('#deriva_move_valor').val() * $('#deriva_move_quantidade').val());
+}
+</script>

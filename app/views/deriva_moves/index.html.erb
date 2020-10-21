@@ -33,14 +33,14 @@
 	<table class="table table-striped table-bordered table-hover">
           <thead>
             <tr>
-              <th class="text-center">Investimento</th>
+              <th>Invest id</th>
               <th>Derivativo</th>
-              <th>Estado</th>
-              <th>Valor</th>
+              <th>Status</th>
               <th>Vencimento</th>
-              <th>Quantidade</th>
-              <th>Movimento</th>
-              <th>Resultado</th>
+              <th>Premio</th>
+              <th>Quant</th>
+              <th>Result View</th>
+              <th>Result db</th>
               <th colspan="2"></th>
             </tr>
           </thead>
@@ -48,14 +48,17 @@
           <tbody>
             <% @deriva_moves.each do |dm| %>
             <tr>
-                <td class="text-center"><%= dm.investimento.carteira.nome %> / <%= dm.investimento.ativo.ticker %> / <%= dm.investimento.corretora_id %>  </td>
+                <td>
+                    <%= dm.investimento.carteira.nome %>  <%= dm.investimento.corretora.nome %>  <%= dm.investimento.ativo.ticker %> </br>
+                    <!--Tem que ser igual a de cima com a de baixo-->
+                    <%= dm.carteira.nome %>  <%= dm.corretora.nome %>  <%= dm.derivativo.ativo.ticker %>
+                </td>
                 <td><%= dm.derivativo.codigo %></td>
                 <td><%= dm.estado.status %></td>
-                <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
                 <td><%= dm.derivativo.vencimento.data.strftime("%d/%m/%Y") %></td>
+                <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
                 <td><%= dm.quantidade %></td>
-                <td><%= dm.movimento %></td>
-                <!--resultado_derivativo está no aplication helper-->
+                <!--resultado_especificos está no aplication helper-->
                 <td>
                     <span class="text-primary"><%= resultado_aberta(dm) %></span>
                     <span class="text-primary"><%= resultado_po(dm) %></span>
@@ -63,6 +66,7 @@
                     <span class="text-<%= cor_resultado_recompra(dm) %>"><%= resultado_recompra(dm) %></span>
                     
                 </td>
+                <td><%= dm.resultado %></td>
                 <td><%= link_to 'Edit', edit_deriva_move_path(dm) %></td>
                 <td><%= link_to 'Destroy', dm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>

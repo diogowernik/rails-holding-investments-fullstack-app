@@ -16,12 +16,13 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#dashboard" data-toggle="dropdown">Admin</a>
             <div class="dropdown-menu animated fadeIn">
+                <%= link_to carteiras_path, class: 'dropdown-item mb-1' do %>
+                     Carteiras
+                <% end %>
                 <%= link_to ativos_path, class: 'dropdown-item mb-1' do %>
                     Ativos
                 <% end %>
-                <%= link_to derivativos_path, class: 'dropdown-item mb-1' do %>
-                    Derivativos
-                <% end %>
+                
                 <%= link_to corretoras_path, class: 'dropdown-item mb-1' do %>
                     Corretoras
                 <% end %>
@@ -37,9 +38,7 @@
                 <%= link_to ativo_moves_path, class: 'dropdown-item mb-1' do %>
                      Mov. de Ativos
                 <% end %>
-                <%= link_to deriva_moves_path, class: 'dropdown-item mb-1' do %>
-                     Mov. de Derivativos
-                <% end %>
+                
                 <%= link_to vencimentos_path, class: 'dropdown-item mb-1' do %>
                      Venc. dos Derivativos
                 <% end %>
@@ -58,9 +57,16 @@
                   </li>
               <% else %>
                     <li class="nav-item">
-                        <%= link_to carteiras_path, class: 'nav-link nav-link-custom' do %>
-                         Carteiras
+                        <%= link_to deriva_moves_path, class: 'nav-link nav-link-custom' do %>
+                             Mov. de Derivativos
                         <% end %>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                    <%= link_to derivativos_path, class: 'nav-link nav-link-custom' do %>
+                        Derivativos
+                    <% end %>
                     </li>
                     <li class="nav-item dropdown dropdown-list">
                          <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown">

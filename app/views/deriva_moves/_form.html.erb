@@ -12,7 +12,16 @@
   <% end %>
 
 <div class="row">
-  <div class="col-md-4 mt-4">
+  <div class="col-md-2 mt-4"> 
+    <label>Filtro (Ativo Base)</label>
+    <input type="text" class="form-control" placeholder="Ex: BBAS" maxlength="4" id="derivativo_filter"/>
+  </div>
+
+  <div class="col-md-2 mt-4"> <%= link_to new_derivativo_path do %> &nbsp; <small> (Novo)</small> <% end %>
+    <%= form.label :derivativo_id %>
+    <%= form.select :derivativo_id, Derivativo.all.order("codigo asc").collect {|d| [d.codigo, d.id]}, {}, {class: 'form-control'} %>
+  </div>
+  <div class="col-md-4 mt-4" style="display:none">
     <%= form.label :carteira_id %> <%= link_to new_carteira_path do %> &nbsp; <small> (Nova)</small> <% end %>
     <%= form.select :carteira_id, Carteira.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
   </div>
@@ -31,18 +40,8 @@
     <%= form.label :investimento_id %> <%= link_to new_investimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
     <%= form.select :investimento_id, Investimento.all.collect {|d| [d.custom_invest, d.id]}, {}, {class: 'form-control'} %>
   </div>
-
-  <div class="col-md-2 mt-4"> 
-    <label>Filtro (Ativo Base)</label>
-    <input type="text" class="form-control" placeholder="Ex: BBAS" maxlength="4" id="derivativo_filter"/>
-  </div>
-
-  <div class="col-md-2 mt-4"> <%= link_to new_derivativo_path do %> &nbsp; <small> (Novo)</small> <% end %>
-    <%= form.label :derivativo_id %>
-    <%= form.select :derivativo_id, Derivativo.all.order("codigo asc").collect {|d| [d.codigo, d.id]}, {}, {class: 'form-control'} %>
-  </div>
   
-  <div class="col-md-4 mt-4">
+  <div class="col-md-4 mt-4" style="display:none">
     <%= form.label :movimento %>
     <%= form.select :movimento, [["Venda","Venda"], ["Compra","Compra"]], {}, {class: 'form-control'} %>
   </div>
@@ -56,36 +55,58 @@
     <%= form.label :quantidade %>
     <%= form.number_field :quantidade, :required => true,  class: 'form-control' %>
   </div>
-  <div class="col-md-4 mt-4">
+  <div id="resultado" class="col-md-4 mt-4" style="display:none" >
     <%= form.label :resultado %>
     <%= form.text_field :resultado, :required => true, class: 'form-control' %>
   </div>
-  <div class="col-md-4 mt-4 mb-3">
+    <div id="recompra" class="col-md-4 mt-4" style="display:none">
+      <label> Apenas em caso de recompra</label>
+      <%= form.text_field :valor_recompra, class: 'form-control' %>
+    </div>
+
+<script>  
+$(document).ready(function(){
+    $('#deriva_move_estado_id').on('change', function() {
+      if ( this.value == '4')
+      {
+        $("#recompra").show();
+      }
+      else
+      {
+        $("#recompra").hide();
+      }
+    });
+});
+
+$(document).ready(function(){
+    $('#deriva_move_estado_id').on('change', function() {
+      if ( this.value == '2' || this.value == '4' )
+      {
+        $("#resultado").show();
+      }
+      else
+      {
+        $("#resultado").hide();
+      }
+    });
+});
+
+
+</script>    
+    
+  <div class="col-md-4 mt-4 mb-3" style="display:none">
     <%= form.label :data %> de Negociação</br>
     <%= form.date_select :data %>
   </div>
 </div>
-<div id="accordion">
-   <div class="card card-default mb-1 mt-4">
-      <div class="card-header" id="headingOne">
-         <h4 class="mb-0"><a class="text-inherit" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" href="">Em caso de recompra</a></h4>
-      </div>
-      <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion" style="">
-         <div class="card-body border-top">
-            <div class="row">  
-              <div class="col-md-5 mt-4">
-                <%= form.label :valor_recompra %>
-                <%= form.text_field :valor_recompra, class: 'form-control' %>
-              </div>
-              <div class="col-md-5 mt-4">
-                <%= form.label :data_recompra %></br>
-                <%= form.date_select :data_recompra %>
-              </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
+
+
+ <div class="row" style="display:none">  
+    <div class="col-md-5 mt-4". >
+      <%= form.label :data_recompra %></br>
+      <%= form.date_select :data_recompra %>
+    </div>
+  </div>
 
 
 <div class="row">
@@ -137,5 +158,16 @@ $('#derivativo_filter').keyup(function () {
            });
 });
 
+
+
 </script>
 
+
+<script>
+      $(function() {
+        $('#colorselector').change(function(){
+            $('.colors').hide();
+            $('#' + $(this).val()).show();
+        });
+    });
+</script>

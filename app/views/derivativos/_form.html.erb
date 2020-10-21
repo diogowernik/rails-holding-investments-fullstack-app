@@ -14,23 +14,6 @@
 <div class="row">
 
   <div class="col-md-4 mt-4">
-    <%= form.label :tipo %>
-    <%= form.select :tipo, [["Call","Call"], ["Put","Put"]], {}, {class: 'form-control'} %>
-  </div>
-
-  <div class="col-md-4 mt-4">
-    <label> Ativo base </label> <%= link_to new_ativo_path do %> &nbsp; <small> (Novo)</small> <% end %>
-    <%= form.select :ativo_id, Ativo.where(:tipo_id => 3).collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
-  </div>
-
-  <div class="col-md-4 mt-4"> 
-    <%= form.label :vencimento_id %> <%= link_to new_vencimento_path do %> &nbsp; <small> (Novo)</small> <% end %></br> 
-    <%#= form.select :vencimento_id, Vencimento.where("data > ?", Time.now).collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {}, {class: 'form-control'} %>
-    <%= form.select :vencimento_id, Vencimento.all.collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {}, {class: 'form-control'} %>
-
-  </div>
-  
-  <div class="col-md-4 mt-4">
     <%= form.label :codigo %>
     <%= form.text_field :codigo, class: 'form-control' %>
   </div>
@@ -38,6 +21,24 @@
   <div class="col-md-4 mt-4">
     <%= form.label :strike %>
     <%= form.text_field :strike, class: 'form-control' %>
+  </div>
+
+  <div class="col-md-4 mt-4"> 
+    <%= form.label :vencimento_id %> <%= link_to new_vencimento_path do %> &nbsp; <small> (Novo)</small> <% end %></br> 
+    <%#= form.select :vencimento_id, Vencimento.where("data > ?", Time.now).collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {}, {class: 'form-control'} %>
+    <!--configurar selected-->
+    <%= form.select :vencimento_id, Vencimento.all.collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {}, {class: 'form-control'} %>
+
+  </div>
+  
+  <div class="col-md-4 mt-4">
+    <%= form.label :tipo %>
+    <%= form.select :tipo, [["Call","Call"], ["Put","Put"]], {}, {class: 'form-control'} %>
+  </div>
+
+  <div class="col-md-4 mt-4">
+    <label> Ativo base </label> <%= link_to new_ativo_path do %> &nbsp; <small> (Novo)</small> <% end %>
+    <%= form.select :ativo_id, Ativo.where(:tipo_id => 3).collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
   </div>
 
 </div>

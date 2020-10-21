@@ -32,9 +32,14 @@
     <%= form.select :investimento_id, Investimento.all.collect {|d| [d.custom_invest, d.id]}, {}, {class: 'form-control'} %>
   </div>
 
-  <div class="col-md-4 mt-4"> <%= link_to new_derivativo_path do %> &nbsp; <small> (Novo)</small> <% end %>
+  <div class="col-md-2 mt-4"> 
+    <label>Filtro (Ativo Base)</label>
+    <input type="text" class="form-control" placeholder="Ex: BBAS" id="derivativo_filter"/>
+  </div>
+
+  <div class="col-md-2 mt-4"> <%= link_to new_derivativo_path do %> &nbsp; <small> (Novo)</small> <% end %>
     <%= form.label :derivativo_id %>
-    <%= form.select :derivativo_id, Derivativo.all.collect {|d| [d.codigo, d.id]}, {}, {class: 'form-control'} %>
+    <%= form.select :derivativo_id, Derivativo.all.order("codigo asc").collect {|d| [d.codigo, d.id]}, {}, {class: 'form-control'} %>
   </div>
   
   <div class="col-md-4 mt-4">
@@ -102,4 +107,34 @@ function calculate(e)
 {
     $('#deriva_move_resultado').val($('#deriva_move_valor').val() * $('#deriva_move_quantidade').val());
 }
+</script>
+
+
+
+
+
+<script>
+// jquery para filtrar derivativos
+$('#derivativo_filter').keyup(function () {
+      var valthis = $(this).val().toLowerCase();
+      var num = 0;
+      $('select#deriva_move_derivativo_id>option').each(function () {
+          var text = $(this).text().toLowerCase();
+          if(text.indexOf(valthis) !== -1)  
+              {$(this).show(); $(this).prop('selected',true);}
+          else{$(this).hide();}
+           });
+});
+
+$('#derivativo_filter').keyup(function () {
+      var valthis = $(this).val().toLowerCase();
+      var num = 0;
+      $('select#deriva_move_investimento_id>option').each(function () {
+          var text = $(this).text().toLowerCase();
+          if(text.indexOf(valthis) !== -1)  
+              {$(this).show(); $(this).prop('selected',true);}
+          else{$(this).hide();}
+           });
+});
+
 </script>

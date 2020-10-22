@@ -6,6 +6,7 @@ class DerivaMove < ApplicationRecord
   belongs_to :corretora
   belongs_to :vencimento
   
+  
   scope :por_carteira, ( -> (carteira) { where carteira_id: carteira } )
   scope :por_derivativo, ( -> (derivativo) { where derivativo_id: derivativo } )
   scope :por_corretora, ( -> (corretora) { where corretora_id: corretora } )

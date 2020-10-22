@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :deriva_tipos
   resources :ativo_moves
   resources :vencimentos
   resources :corretoras

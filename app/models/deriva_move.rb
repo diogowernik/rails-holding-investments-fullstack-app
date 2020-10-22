@@ -5,6 +5,8 @@ class DerivaMove < ApplicationRecord
   belongs_to :investimento
   belongs_to :corretora
   belongs_to :vencimento
+  belongs_to :ativo
+  belongs_to :deriva_tipo
   
   
   scope :por_carteira, ( -> (carteira) { where carteira_id: carteira } )

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_224808) do
+ActiveRecord::Schema.define(version: 2020_10_22_215638) do
 
   create_table "ativo_moves", force: :cascade do |t|
     t.integer "tipo_id"
@@ -60,28 +60,13 @@ ActiveRecord::Schema.define(version: 2020_10_21_224808) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "deriva_moves", force: :cascade do |t|
-    t.integer "carteira_id"
-    t.integer "derivativo_id"
-    t.integer "estado_id"
-    t.integer "corretora_id"
-    t.integer "investimento_id"
-    t.decimal "valor"
-    t.decimal "valor_recompra"
-    t.decimal "resultado"
-    t.date "data"
-    t.date "data_recompra"
-    t.integer "quantidade"
-    t.string "movimento"
+# Could not dump table "deriva_moves" because of following StandardError
+#   Unknown type 'codigo' for column 'string'
+
+  create_table "deriva_tipos", force: :cascade do |t|
+    t.string "tipo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "vencimento_id"
-    t.index ["carteira_id"], name: "index_deriva_moves_on_carteira_id"
-    t.index ["corretora_id"], name: "index_deriva_moves_on_corretora_id"
-    t.index ["derivativo_id"], name: "index_deriva_moves_on_derivativo_id"
-    t.index ["estado_id"], name: "index_deriva_moves_on_estado_id"
-    t.index ["investimento_id"], name: "index_deriva_moves_on_investimento_id"
-    t.index ["vencimento_id"], name: "index_deriva_moves_on_vencimento_id"
   end
 
   create_table "derivativos", force: :cascade do |t|

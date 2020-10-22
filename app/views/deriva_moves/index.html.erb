@@ -47,6 +47,7 @@
               <th>Corretora</th>
               <!--<th>Carteira</th>-->
               <th>Tipo</th>
+              <th>Tipo</th>
               <th>Vencimento</th>
               <th>Premio</th>
               <th>Quant</th>
@@ -70,15 +71,15 @@
                 <!--<td><%#= dm.carteira.nome %></td>-->
                 <td><%= dm.corretora.nome %></td>
                 <td><%= dm.derivativo.tipo %></td>
+                <td><% if dm.deriva_tipo.present? %><%= dm.deriva_tipo.tipo %><% end %></td>
                 <td><% if dm.vencimento.present? %><%= dm.vencimento.data.strftime("%d/%m/%Y") %><% end %></td>
                 <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
                 <td><%= dm.quantidade %></td>
-                resultado_especificos está no aplication helper
-                <td>
-                    <span class="text-primary"><%#= resultado_aberta(dm) %></span>
-                    <span class="text-primary"><%#= resultado_po(dm) %></span>
-                    <span class="text-primary"><%#= resultado_exercicio(dm) %></span>
-                    <span class="text-<%#= cor_resultado_recompra(dm) %>"><%#= resultado_recompra(dm) %></span>
+                <td style="width: 140px;">
+                    <span class="text-primary"><%= resultado_aberta(dm) %></span>
+                    <span class="text-primary"><%= resultado_po(dm) %></span>
+                    <span class="text-primary"><%= resultado_exercicio(dm) %></span>
+                    <span class="text-<%= cor_resultado_recompra(dm) %>"><%= resultado_recompra(dm) %></span>
                     
                 </td>
                 <td><%= dm.resultado %></td>

@@ -39,8 +39,7 @@
       <th>Ativo</th>
       <th>Derivativo</th>
       <th>tipo</th>
-      <th>Status</th>
-      <th>Quantidade</th>
+      <th>Quant</th>
       <th>Corretora</th>
       <th>Preço Médio</th>
       <th>Resultado</th>
@@ -55,17 +54,17 @@
         <td><%= investimento.ativo.ticker %></td>
         <td></td>
         <td></td>
-        <td></td>
         <td><%= investimento.quantidade %></td>
         <td><%= investimento.corretora.nome %></td>
         <td><%= investimento.valor_medio %></td>
         <td></td>
       </tr>
-          <% investimento.deriva_moves.order("created_at desc").each do |dm| %>
+          <% investimento.deriva_moves.where(:estado_id => 1).each do |dm| %>
+              
+  
                   <td></td>
                   <td><%= dm.derivativo.codigo %></td>
                   <td><%= dm.derivativo.tipo %></td>
-                  <td><%= dm.estado.status %></td>
                   <td><%= dm.quantidade %></td>
                   <td></td>
                   <td></td>

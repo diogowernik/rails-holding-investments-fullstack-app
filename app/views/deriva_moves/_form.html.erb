@@ -41,6 +41,11 @@
     <%= form.select :investimento_id, Investimento.all.collect {|d| [d.custom_invest, d.id]}, {}, {class: 'form-control'} %>
   </div>
   
+  <div class="col-md-4 mt-4">
+    <%= form.label :vencimento_id %> <%= link_to new_vencimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
+    <%= form.select :vencimento_id, Vencimento.all.collect {|d| [d.data, d.id]}, {}, {class: 'form-control'} %>
+  </div>
+  
   <div class="col-md-4 mt-4" style="display:none">
     <%= form.label :movimento %>
     <%= form.select :movimento, [["Venda","Venda"], ["Compra","Compra"]], {}, {class: 'form-control'} %>
@@ -115,11 +120,6 @@ function calculate2(e)
       $('#deriva_move_valor').val() * $('#deriva_move_quantidade').val() - $('#deriva_move_valor_recompra').val() * $('#deriva_move_quantidade').val() );
 }
 </script>
-
-
-
-
-
 
 <script>
 // jquery para filtrar derivativos

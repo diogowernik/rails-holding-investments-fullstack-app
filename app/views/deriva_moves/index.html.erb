@@ -12,6 +12,10 @@
         <div class="col-md-2 mt-4 mb-4">
             <%= select_tag :por_derivativo, options_for_select(Derivativo.all.collect {|t| [t.codigo, t.id]}, selected: params[:por_derivativo]), prompt: 'Derivativo', class: 'form-control' %>
         </div>
+        <div class="col-md-2 mt-4 mb-4">
+            <%= select_tag :por_vencimento, options_for_select(Vencimento.all.collect {|t| [t.data.strftime("%d/%m/%Y"), t.id]}, selected: params[:por_vencimento]), prompt: 'Vencimento', class: 'form-control' %>
+        </div>
+        
         <!--Como colocar mais informações no options_for_select-->
         <div class="col-md-2 mt-4 mb-4">
             <%= select_tag :por_investimento, options_for_select(Investimento.all.collect {|t| [t.ativo.ticker, t.id]}, selected: params[:por_investimento]), prompt: 'Investimento', class: 'form-control' %>
@@ -42,8 +46,8 @@
               </th>
               <th>Corretora</th>
               <!--<th>Carteira</th>-->
-              <th>Vencimento
-              </th>
+              <th>Vencimento</th>
+              <th>Vencimento</th>
               <th>Premio</th>
               <th>Quant</th>
               <!--<th>Result View</th>-->
@@ -65,7 +69,8 @@
                 <td><%= dm.estado.status %></td>
                 <!--<td><%#= dm.carteira.nome %></td>-->
                 <td><%= dm.corretora.nome %></td>
-                <td><%= dm.derivativo.vencimento.data.strftime("%d/%m/%Y") %></td>
+                <td><%#= dm.derivativo.vencimento.data.strftime("%d/%m/%Y") %></td>
+                <td><% if dm.vencimento.present? %><%= dm.vencimento.data.strftime("%d/%m/%Y") %><% end %></td>
                 <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
                 <td><%= dm.quantidade %></td>
                 <!--resultado_especificos está no aplication helper-->

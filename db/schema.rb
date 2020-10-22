@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_001856) do
+ActiveRecord::Schema.define(version: 2020_10_21_224808) do
 
   create_table "ativo_moves", force: :cascade do |t|
     t.integer "tipo_id"
@@ -75,11 +75,13 @@ ActiveRecord::Schema.define(version: 2020_10_18_001856) do
     t.string "movimento"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "vencimento_id"
     t.index ["carteira_id"], name: "index_deriva_moves_on_carteira_id"
     t.index ["corretora_id"], name: "index_deriva_moves_on_corretora_id"
     t.index ["derivativo_id"], name: "index_deriva_moves_on_derivativo_id"
     t.index ["estado_id"], name: "index_deriva_moves_on_estado_id"
     t.index ["investimento_id"], name: "index_deriva_moves_on_investimento_id"
+    t.index ["vencimento_id"], name: "index_deriva_moves_on_vencimento_id"
   end
 
   create_table "derivativos", force: :cascade do |t|

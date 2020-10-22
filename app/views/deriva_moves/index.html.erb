@@ -69,7 +69,7 @@
                 <td><%= dm.estado.status %></td>
                 <!--<td><%#= dm.carteira.nome %></td>-->
                 <td><%= dm.corretora.nome %></td>
-                <td><%#= dm.derivativo.vencimento.data.strftime("%d/%m/%Y") %></td>
+                <td><%= dm.derivativo.vencimento.data.strftime("%d/%m/%Y") %></td>
                 <td><% if dm.vencimento.present? %><%= dm.vencimento.data.strftime("%d/%m/%Y") %><% end %></td>
                 <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
                 <td><%= dm.quantidade %></td>

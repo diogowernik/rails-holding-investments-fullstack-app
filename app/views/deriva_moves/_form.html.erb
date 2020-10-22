@@ -43,7 +43,7 @@
   
   <div class="col-md-4 mt-4">
     <%= form.label :vencimento_id %> <%= link_to new_vencimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
-    <%= form.select :vencimento_id, Vencimento.all.collect {|d| [d.data, d.id]}, {}, {class: 'form-control'} %>
+    <%= form.select :vencimento_id, Vencimento.all.collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {}, {class: 'form-control'} %>
   </div>
   
   <div class="col-md-4 mt-4" style="display:none">

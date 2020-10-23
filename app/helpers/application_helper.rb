@@ -25,14 +25,14 @@ module ApplicationHelper
   
   def resultado_exercicio(deriva_move) #Neste caso é realizada uma interação com a tabela investimentos 
     if deriva_move.estado_id == 2
-      if deriva_move.derivativo.tipo == "Put"
+      if deriva_move.deriva_tipo_id == 2
         "Compra ( #{deriva_move.quantidade}  
-        #{deriva_move.derivativo.ativo.ticker} /
-        #{number_with_precision(deriva_move.derivativo.strike - deriva_move.valor, :precision => 2)})" 
+        #{deriva_move.ativo.ticker} /
+        #{number_with_precision(deriva_move.strike - deriva_move.valor, :precision => 2)})" 
       else
         "Venda ( #{deriva_move.quantidade}  
-        #{deriva_move.derivativo.ativo.ticker} /
-        #{number_with_precision(deriva_move.derivativo.strike - deriva_move.valor, :precision => 2)})" 
+        #{deriva_move.ativo.ticker} /
+        #{number_with_precision(deriva_move.strike - deriva_move.valor, :precision => 2)})" 
       end
     end
   end

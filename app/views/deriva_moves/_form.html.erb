@@ -16,25 +16,24 @@
     <label>Filtro (Ativo Base)</label>
     <input type="text" class="form-control" placeholder="Ex: BBAS" maxlength="4" id="derivativo_filter"/>
   </div>
+  <div class="col-md-2 mt-4">
+    <label> Ativo base </label> <%= link_to new_ativo_path do %> &nbsp; <small> (Novo)</small> <% end %>
+    <%= form.select :ativo_id, Ativo.where(:tipo_id => 3).collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
+  </div>
   
   <div class="col-md-4 mt-4">
+    <%= form.label :investimento_id %> <%= link_to new_investimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
+    <%= form.select :investimento_id, Investimento.all.collect {|d| [d.custom_invest, d.id]}, {}, {class: 'form-control'} %>
+  </div>
+  
+  <div class="col-md-2 mt-4">
     <%= form.label :codigo %>
-    <%= form.text_field :codigo, class: 'form-control', value: @deriva_move.derivativo.codigo %>
+    <%= form.text_field :codigo, class: 'form-control' %>
   </div>
   
-  <div class="col-md-4 mt-4">
+  <div class="col-md-2 mt-4">
     <%= form.label :strike %>
-    <%= form.text_field :strike_total, class: 'form-control', value: @deriva_move.derivativo.strike %>
-  </div>
-  
-  <div class="col-md-4 mt-4">
-    <%= form.label :strike %>
-    <%= form.text_field :strike_total, class: 'form-control', value: @deriva_move.derivativo.strike * @deriva_move.quantidade %>
-  </div>
-  
-  <div class="col-md-4 mt-4">
-    <%= form.label :ativo_id %>
-    <%= form.number_field :ativo_id, class: 'form-control', value: @deriva_move.derivativo.ativo_id %>
+    <%= form.text_field :strike, class: 'form-control' %>
   </div>
   
   <div class="col-md-4 mt-4">
@@ -42,16 +41,13 @@
     <%= form.select :deriva_tipo_id, DerivaTipo.all.collect {|d| [d.tipo, d.id]}, {}, {class: 'form-control'} %>
   </div>
   
-  <div class="col-md-2 mt-4"> <%= link_to new_derivativo_path do %> &nbsp; <small> (Novo)</small> <% end %>
-    <%= form.label :derivativo_id %>
-    <%= form.select :derivativo_id, Derivativo.all.order("codigo asc").collect {|d| [d.codigo, d.id]}, {}, {class: 'form-control'} %>
-  </div>
-  <div class="col-md-4 mt-4" style="display:none">
+
+  <div class="col-md-2 mt-4">
     <%= form.label :carteira_id %> <%= link_to new_carteira_path do %> &nbsp; <small> (Nova)</small> <% end %>
     <%= form.select :carteira_id, Carteira.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
   </div>
 
-  <div class="col-md-4 mt-4">
+  <div class="col-md-2 mt-4">
     <%= form.label :corretora_id %> <%= link_to new_corretora_path do %> &nbsp; <small> (Nova)</small> <% end %>
     <%= form.select :corretora_id, Corretora.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
   </div>
@@ -62,18 +58,8 @@
   </div>
   
   <div class="col-md-4 mt-4">
-    <%= form.label :investimento_id %> <%= link_to new_investimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
-    <%= form.select :investimento_id, Investimento.all.collect {|d| [d.custom_invest, d.id]}, {}, {class: 'form-control'} %>
-  </div>
-  
-  <div class="col-md-4 mt-4">
     <%= form.label :vencimento_id %> <%= link_to new_vencimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
     <%= form.select :vencimento_id, Vencimento.all.collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {}, {class: 'form-control'} %>
-  </div>
-  
-  <div class="col-md-4 mt-4" style="display:none">
-    <%= form.label :movimento %>
-    <%= form.select :movimento, [["Venda","Venda"], ["Compra","Compra"]], {}, {class: 'form-control'} %>
   </div>
 
   <div class="col-md-4 mt-4">
@@ -98,10 +84,23 @@
     <%= form.text_field :resultado, :required => true, class: 'form-control' %>
   </div>
     
+  <!--Campos escondidos style="display:none"  -->
+  <div class="col-md-4 mt-4" style="display:none">
+    <%= form.label :strike_total %>
+    <%= form.text_field :strike_total, class: 'form-control' %>
+  </div>
+  
+  <div class="col-md-4 mt-4" style="display:none">
+    <%= form.label :movimento %>
+    <%= form.select :movimento, [["Venda","Venda"], ["Compra","Compra"]], {}, {class: 'form-control'} %>
+  </div>  
+    
+    
   <div class="col-md-4 mt-4 mb-3" style="display:none">
     <%= form.label :data %> de Negociação</br>
     <%= form.date_select :data %>
   </div>
+
 </div>
 
 
@@ -122,8 +121,10 @@
 </div>
 <% end %>
 
-<!--Jquery para calcular o resultado usar no caso de abertas ou pó.-->
+<!--Jquery para calcular o resultados .-->
 <script>
+
+// Resultado abertura ou pó
 $(document).ready(function(){
     $('#deriva_move_valor').keyup(calculate);
     $('#deriva_move_quantidade').keyup(calculate);
@@ -132,7 +133,7 @@ function calculate(e)
 {
     $('#deriva_move_resultado').val($('#deriva_move_valor').val() * $('#deriva_move_quantidade').val());
 }
-
+// Resultado cola valor de recompra
 $(document).ready(function(){
     $('#deriva_move_valor').keyup(calculate2);
     $('#deriva_move_valor_recompra').keyup(calculate2);
@@ -144,14 +145,30 @@ function calculate2(e)
     $('#cola').val(  
       $('#deriva_move_valor').val() * $('#deriva_move_quantidade').val() - $('#deriva_move_valor_recompra').val() * $('#deriva_move_quantidade').val() );
 }
+
+
+// Resultado strike_total
+$(document).ready(function(){
+    $('#deriva_move_strike').keyup(calculate3);
+    $('#deriva_move_quantidade').keyup(calculate3);
+});
+function calculate3(e)
+{
+    $('#deriva_move_strike_total').val($('#deriva_move_strike').val() * $('#deriva_move_quantidade').val());
+}
+
+
+
 </script>
+
+
 
 <script>
 // jquery para filtrar derivativos
 $('#derivativo_filter').keyup(function () {
       var valthis = $(this).val().toLowerCase();
       var num = 0;
-      $('select#deriva_move_derivativo_id>option').each(function () {
+      $('select#deriva_move_ativo_id>option').each(function () {
           var text = $(this).text().toLowerCase();
           if(text.indexOf(valthis) !== -1)  
               {$(this).show(); $(this).prop('selected',true);}
@@ -175,15 +192,7 @@ $('#derivativo_filter').keyup(function () {
 </script>
 
 
-<script>
-      $(function() {
-        $('#colorselector').change(function(){
-            $('.colors').hide();
-            $('#' + $(this).val()).show();
-        });
-    });
-</script>
-
+<!--Mostra e esconde campo recompra e resultado-->
 <script>  
 $(document).ready(function(){
     $('#deriva_move_estado_id').on('change', function() {
@@ -213,3 +222,15 @@ $(document).ready(function(){
 
 
 </script>    
+
+
+
+
+
+
+  
+  <!--Campo será removido-->
+  <!--<div class="col-md-2 mt-4"> <#%= link_to new_derivativo_path do %> &nbsp; <small> (Novo)</small> <#% end %>-->
+  <!--  <%#= form.label :derivativo_id %>-->
+  <!--  <%#= form.select :derivativo_id, Derivativo.all.order("codigo asc").collect {|d| [d.codigo, d.id]}, {}, {class: 'form-control'} %>-->
+  <!--</div>-->

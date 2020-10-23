@@ -73,7 +73,7 @@
                 <td><%= dm.vencimento.data.strftime("%d/%m/%Y") %></td>
                 <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
                 <td><%= dm.quantidade %></td>
-                <td style="width: 140px;">
+                <td style="width: 145px;">
                     <span class="text-primary"><%= resultado_aberta(dm) %></span>
                     <span class="text-primary"><%= resultado_po(dm) %></span>
                     <span class="text-primary"><% if dm.strike.present? %><%= resultado_exercicio(dm) %><% end %></span>

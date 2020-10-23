@@ -76,7 +76,7 @@
                 <td style="width: 140px;">
                     <span class="text-primary"><%= resultado_aberta(dm) %></span>
                     <span class="text-primary"><%= resultado_po(dm) %></span>
-                    <span class="text-primary"><%= resultado_exercicio(dm) %></span>
+                    <span class="text-primary"><% if dm.strike.present? %><%= resultado_exercicio(dm) %><% end %></span>
                     <span class="text-<%= cor_resultado_recompra(dm) %>"><%= resultado_recompra(dm) %></span>
                     
                 </td>

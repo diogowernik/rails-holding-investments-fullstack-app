@@ -106,8 +106,34 @@
     </table>
 </div>
 
-<div class="row mt-3 ml-2"><p><b>Resultado lucro: <span class="text-primary"> R$ <%= @deriva_moves.sum(:resultado) %></div></b></p></div>
-<div class="row mt-3 ml-2"><p><b>Garantias necessárias em caso de PUTs: <span class="text-primary"> R$ <%= @deriva_moves.sum(:strike_total) %></div></b></p></div>
+<div class="row mt-3 ml-2">
+    <p>
+      Resultado lucro: 
+          <span class="text-primary">
+               <b>
+                   <%= number_to_currency(@deriva_moves.sum(:resultado), unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %>
+                </b>
+         </span>
+     </p>
+
+
+    
+</div>
+<div class="row mt-3 ml-2">
+     <p>
+      
+          Garantias necessárias em caso de PUTs: 
+          
+          <span class="text-primary">
+              <b>
+               <%= number_to_currency(@deriva_moves.sum(:strike_total), unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %>
+               </b>
+          </span>
+            
+     </p>
+
+    
+</div>
 
 <!--Funcoes de filtro-->
 

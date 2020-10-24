@@ -107,6 +107,7 @@
 </div>
 
 <div class="row mt-3 ml-2"><p><b>Resultado lucro: <span class="text-primary"> R$ <%= @deriva_moves.sum(:resultado) %></div></b></p></div>
+<div class="row mt-3 ml-2"><p><b>Garantias necessárias em caso de PUTs: <span class="text-primary"> R$ <%= @deriva_moves.sum(:strike_total) %></div></b></p></div>
 
 <!--Funcoes de filtro-->
 

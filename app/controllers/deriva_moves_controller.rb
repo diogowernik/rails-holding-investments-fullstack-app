@@ -7,6 +7,7 @@ class DerivaMovesController < ApplicationController
   has_scope :por_corretora
   has_scope :por_investimento
   has_scope :por_deriva_tipo
+  has_scope :por_ativo
 
   # GET /deriva_moves
   # GET /deriva_moves.json

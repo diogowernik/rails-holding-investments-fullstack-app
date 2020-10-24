@@ -1,26 +1,32 @@
 <%= form_tag deriva_moves_path, method: :get, enforce_utf8: false do %>
     <div class="row">
-        <div class="col-md-2 mt-4 mb-4">
+        <div class="col-md-2 mt-4 ">
             <%= select_tag :por_carteira, options_for_select(Carteira.all.collect {|t| [t.nome, t.id]}, selected: params[:por_carteira]), prompt: 'Carteira', class: 'form-control' %>
         </div>
-        <div class="col-md-2 mt-4 mb-4">
+        <div class="col-md-2 mt-4 ">
             <%= select_tag :por_estado, options_for_select(Estado.all.collect {|t| [t.status, t.id]}, selected: params[:por_estado]), prompt: 'Estado', class: 'form-control' %>
         </div>
-        <div class="col-md-2 mt-4 mb-4">
+        <div class="col-md-2 mt-4 ">
             <%= select_tag :por_corretora, options_for_select(Corretora.all.collect {|t| [t.nome, t.id]}, selected: params[:por_corretora]), prompt: 'Corretora', class: 'form-control' %>
         </div>
-        <div class="col-md-2 mt-4 mb-4">
-            <%= select_tag :por_derivativo, options_for_select(Derivativo.all.collect {|t| [t.codigo, t.id]}, selected: params[:por_derivativo]), prompt: 'Derivativo', class: 'form-control' %>
+        <div class="col-md-2 mt-4 ">
+            <%= select_tag :por_ativo, options_for_select(Ativo.where(:tipo_id => 3).all.collect {|t| [t.ticker, t.id]}, selected: params[:por_ativo]), prompt: 'Ativo', class: 'form-control' %>
         </div>
-        <div class="col-md-2 mt-4 mb-4">
+        <div class="col-md-2 mt-4 ">
+            <%= select_tag :por_deriva_tipo, options_for_select(DerivaTipo.all.collect {|t| [t.tipo, t.id]}, selected: params[:por_deriva_tipo]), prompt: 'Tipo de Derivativo', class: 'form-control' %>
+        </div>
+        <!--<div class="col-md-2 mt-4 ">-->
+            <%#= select_tag :por_derivativo, options_for_select(Derivativo.all.collect {|t| [t.codigo, t.id]}, selected: params[:por_derivativo]), prompt: 'Derivativo', class: 'form-control' %>
+        <!--</div>-->
+        <div class="col-md-2 mt-4 ">
             <%= select_tag :por_vencimento, options_for_select(Vencimento.all.collect {|t| [t.data.strftime("%d/%m/%Y"), t.id]}, selected: params[:por_vencimento]), prompt: 'Vencimento', class: 'form-control' %>
         </div>
         
         <!--Como colocar mais informações no options_for_select-->
-        <div class="col-md-2 mt-4 mb-4">
+        <div class="col-md-2 mt-2 mb-4 ">
             <%= select_tag :por_investimento, options_for_select(Investimento.all.collect {|t| [t.ativo.ticker, t.id]}, selected: params[:por_investimento]), prompt: 'Investimento', class: 'form-control' %>
         </div>
-        <div class="col-md-2 mt-4 mb-4">
+        <div class="col-md-2 mt-2 mb-4 ">
             <%= submit_tag 'Filtrar', class: 'btn btn-default', name: nil %>
         </div>
     </div>

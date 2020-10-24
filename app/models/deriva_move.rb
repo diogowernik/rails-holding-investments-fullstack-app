@@ -10,10 +10,12 @@ class DerivaMove < ApplicationRecord
   
   
   scope :por_carteira, ( -> (carteira) { where carteira_id: carteira } )
-  scope :por_derivativo, ( -> (derivativo) { where derivativo_id: derivativo } )
+  # scope :por_derivativo, ( -> (derivativo) { where derivativo_id: derivativo } )
   scope :por_corretora, ( -> (corretora) { where corretora_id: corretora } )
   scope :por_estado, ( -> (estado) { where estado_id: estado } )
   scope :por_investimento, ( -> (investimento) { where investimento_id: investimento } )
   scope :por_vencimento, ( -> (vencimento) { where vencimento_id: vencimento } )
+  scope :por_ativo, ( -> (ativo) { where ativo_id: ativo } )
+  scope :por_deriva_tipo, ( -> (deriva_tipo) { where deriva_tipo_id: deriva_tipo } )
   
 end

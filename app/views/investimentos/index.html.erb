@@ -59,7 +59,8 @@
         <td><%= investimento.valor_medio %></td>
         <td></td>
       </tr>
-          <% investimento.deriva_moves.where(:estado_id => 1).each do |dm| %>
+          <%# investimento.deriva_moves.where(:estado_id => 1).each do |dm| %>
+          <% investimento.deriva_moves.each do |dm| %>
               
   
                   <td></td>

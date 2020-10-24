@@ -51,7 +51,7 @@
               <th>Premio</th>
               <th>Quant</th>
               <th>Resultado</th>
-              <th></th>
+              <th>Strike Total</th>
               <th colspan="2"></th>
             </tr>
           </thead>
@@ -80,9 +80,12 @@
                     <span class="text-<%= cor_resultado_recompra(dm) %>"><%= resultado_recompra(dm) %></span>
                     
                 </td>
-                <td><%= dm.resultado %></td>
-                <td><%= link_to 'Edit', edit_deriva_move_path(dm) %></td>
-                <td><%= link_to 'Destroy', dm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td>
+                <% if dm.strike_total.present? %>
+                  <%= number_to_currency(dm.strike_total, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true)  %>
+                <% end %>
+                </td>
+                
               </tr>
             <% end %>
           </tbody>
@@ -134,3 +137,6 @@ function DerivaMoveTivoFunction() {
 
 
 </script>
+
+<!--<td><%#= link_to 'Edit', edit_deriva_move_path(dm) %></td>-->
+<!--<td><%#= link_to 'Destroy', dm, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->

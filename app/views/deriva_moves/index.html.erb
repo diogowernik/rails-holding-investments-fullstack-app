@@ -50,8 +50,9 @@
               <th>Vencimento</th>
               <th>Premio</th>
               <th>Quant</th>
-              <th>Resultado</th>
+              <th>Strike</th>
               <th>Strike Total</th>
+              <th>Resultado</th>
               <th colspan="2"></th>
             </tr>
           </thead>
@@ -73,17 +74,22 @@
                 <td><%= dm.vencimento.data.strftime("%d/%m/%Y") %></td>
                 <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
                 <td><%= dm.quantidade %></td>
+                <td>
+                <% if dm.strike.present? %>
+                  <%= number_to_currency(dm.strike, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true)  %>
+                <% end %>
+                </td>
+                <td>
+                <% if dm.strike_total.present? %>
+                  <%= number_to_currency(dm.strike_total, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true)  %>
+                <% end %>
+                </td>
                 <td style="width: 145px;">
                     <span class="text-primary"><%= resultado_aberta(dm) %></span>
                     <span class="text-primary"><%= resultado_po(dm) %></span>
                     <span class="text-primary"><% if dm.strike.present? %><%= resultado_exercicio(dm) %><% end %></span>
                     <span class="text-<%= cor_resultado_recompra(dm) %>"><%= resultado_recompra(dm) %></span>
                     
-                </td>
-                <td>
-                <% if dm.strike_total.present? %>
-                  <%= number_to_currency(dm.strike_total, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true)  %>
-                <% end %>
                 </td>
                 <td><%= link_to 'Edit', edit_deriva_move_path(dm) %></td>
                 <td><%= link_to 'Destroy', dm, method: :delete, data: { confirm: 'Are you sure?' } %></td>

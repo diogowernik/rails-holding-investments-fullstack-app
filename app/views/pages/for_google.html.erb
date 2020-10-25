@@ -12,11 +12,10 @@
           <tbody>
             <% @calls_abertas.each do |dm| %>
             <tr>
-                <td><%= dm.codigo %></td>
-                <td><%= dm.ativo.ticker %></td>
                 <td><%= dm.carteira.nome %></td>
                 <td><%= dm.corretora.nome %></td>
-                <td><%= dm.deriva_tipo.tipo %></td>
+                <td><%= dm.codigo %></td>
+                <td><%= dm.ativo.ticker %></td>
                 <td><%= dm.vencimento.data.strftime("%d/%m/%Y") %></td>
                 <td><%= dm.valor %></td>
                 <td><%= dm.quantidade %></td>
@@ -47,12 +46,10 @@
           <tbody>
             <% @puts_abertas.each do |dm| %>
             <tr>
-
-                <td><%= dm.codigo %></td>
-                <td><%= dm.ativo.ticker %></td>
                 <td><%= dm.carteira.nome %></td>
                 <td><%= dm.corretora.nome %></td>
-                <td><%= dm.deriva_tipo.tipo %></td>
+                <td><%= dm.codigo %></td>
+                <td><%= dm.ativo.ticker %></td>
                 <td><%= dm.vencimento.data.strftime("%d/%m/%Y") %></td>
                 <td><%= dm.valor %></td>
                 <td><%= dm.quantidade %></td>

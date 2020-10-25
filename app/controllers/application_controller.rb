@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    before_action :authenticate_user!
+    before_action :authenticate_user!, only: [:show, :edit, :update, :destroy, :new, :seed, :index]
     before_action :set_previous_url, only: [:new]
 
     def set_previous_url

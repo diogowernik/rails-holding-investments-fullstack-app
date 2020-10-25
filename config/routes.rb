@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   get 'seed', to: 'pages#seed', as: 'pages_seed'
+  get 'for_google', to: 'pages#for_google', as: 'pages_for_google'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

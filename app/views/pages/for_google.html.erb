@@ -17,11 +17,11 @@
                 <td><%= dm.codigo %></td>
                 <td><%= dm.ativo.ticker %></td>
                 <td><%= dm.vencimento.data.strftime("%d/%m/%Y") %></td>
-                <td><%= dm.valor %></td>
+                <td><%= number_to_delimited(dm.valor, delimiter: '.', separator: ',') %></td>
                 <td><%= dm.quantidade %></td>
                 <td>
                 <% if dm.strike.present? %>
-                  <%= dm.strike  %>
+                  <%= number_to_delimited(dm.strike, delimiter: '.', separator: ',')  %>
                 <% end %>
                 </td>
             
@@ -51,11 +51,11 @@
                 <td><%= dm.codigo %></td>
                 <td><%= dm.ativo.ticker %></td>
                 <td><%= dm.vencimento.data.strftime("%d/%m/%Y") %></td>
-                <td><%= dm.valor %></td>
+                <td><%= number_to_delimited(dm.valor, delimiter: '.', separator: ',') %></td>
                 <td><%= dm.quantidade %></td>
                 <td>
                 <% if dm.strike.present? %>
-                  <%= dm.strike  %>
+                  <%= number_to_delimited(dm.strike, delimiter: '.', separator: ',')  %>
                 <% end %>
                 </td>
               </tr>

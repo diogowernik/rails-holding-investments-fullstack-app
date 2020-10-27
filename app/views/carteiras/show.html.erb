@@ -9,17 +9,14 @@
 </h3>
 
 <div class="row">
-    
     <% @acoes_da_carteira.each do |acao| %>
     <div class="col-md-4 mt-4">
           <div class="card">
              <div class="card-body text-center">
                 <h3 class="m-0"><%= acao.ativo.ticker %></h3>
-                <p class="text-muted"><%= acao.quantidade %> ações</p>
-                <p><%= acao.corretora.nome %></p>
              </div>
              <div class="list-group">
-                <% @calls_abertas.where(:investimento_id => acao.id).each do |call| %>
+                <% @calls_abertas.where(:ativo_id => acao.id).each do |call| %>
 
                      <a class="list-group-item" href="#">
                      <span class="badge badge-primary float-right"><%= call.quantidade %></span>
@@ -39,5 +36,6 @@
           </div>
     </div>
     <% end %>
+
      
 </div>

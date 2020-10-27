@@ -5,11 +5,15 @@ class DerivaTiposController < ApplicationController
   # GET /deriva_tipos.json
   def index
     @deriva_tipos = DerivaTipo.all
+    
   end
 
   # GET /deriva_tipos/1
   # GET /deriva_tipos/1.json
   def show
+    @acoes = Ativo.all.where(:tipo_id => 3)
+    @puts_abertas = DerivaMove.all.where(:estado_id => 1)
+    @investimentos = Investimento.all
   end
 
   # GET /deriva_tipos/new
@@ -19,6 +23,7 @@ class DerivaTiposController < ApplicationController
 
   # GET /deriva_tipos/1/edit
   def edit
+    
   end
 
   # POST /deriva_tipos

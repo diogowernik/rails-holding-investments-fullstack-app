@@ -12,7 +12,7 @@ class DerivaTiposController < ApplicationController
   # GET /deriva_tipos/1.json
   def show
     @acoes = Ativo.all.where(:tipo_id => 3)
-    @puts_abertas = DerivaMove.all.where(:estado_id => 1)
+    @puts_abertas = DerivaMove.all.where(:estado_id => 1).where(:deriva_tipo_id => 2)
     @investimentos = Investimento.all
   end
 

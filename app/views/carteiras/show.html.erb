@@ -5,134 +5,39 @@
 </div>
 
 <h3 class="h3-custom" id="minhas-paginas">
-	<em class="fa fa-vcard-o text-success"></em> &nbsp; Carteira de <%= @carteira.nome %> (Ativos)
+	<em class="fa fa-vcard-o text-success"></em> &nbsp; <%= @carteira.nome %> (Ações)
 </h3>
 
-<div class="table-responsive mb-5">
-	<table class="table table-striped table-bordered table-hover">
-        <thead>
-          <tr>
-            <th class="text-center">Id</th>
-            <th>Ativo</th>
-            <th>Tipo</th>
-            <th>Quant.</th>
-          </tr>
-        </thead>
-      
-        <tbody>
-          <% @carteira.investimentos.each do |investimento| %>
-            <tr>
-              <td class="text-center"><%= investimento.id %></td>
-              <td><%= investimento.ativo.ticker %></td>
-              <td><%= investimento.ativo.tipo.nome %></td>
-              <td><%= investimento.quantidade %></td>
-            </tr>
-          <% end %>
-        </tbody>
-    </table>
-</div>
-
-<div class="float-right"><%= link_to new_ativo_move_path do %>
-	<button class="btn btn-outline-success">
-		<em class="fa fa-plus-circle"></em> &nbsp; Nova movimentação (Ativos)
-	</button><% end %>
-</div>
-
-<h3 class="h3-custom mt-5" id="minhas-paginas">
-	<em class="fa fa-usd text-success"></em> &nbsp; Mov. de Ativos
-</h3>
-
-<div class="table-responsive">
-	<table class="table table-striped table-bordered table-hover">
-  <thead>
-    <tr>
-      <th>Carteira</th>
-      <th>Valor</th>
-      <th>Data</th>
-      <th>Quantidade</th>
-      <th>Movimento</th>
-      <th>Tipo</th>
-      <th>Ativo</th>
-      <th>Essa ordem criou ou </br> atualizou investimento em:</th>
-      <th>Corretora</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @carteira.ativo_moves.each do |ativo_move| %>
-      <tr>
-        <td><%= ativo_move.carteira.nome %></td>
-        <td><%= ativo_move.valor %></td>
-        <td><%= ativo_move.data %></td>
-        <td><%= ativo_move.quantidade %></td>
-        <td><%= ativo_move.movimento %></td>
-        <td><%= ativo_move.tipo.nome %></td>
-        <td><%= ativo_move.ativo.ticker %></td>
-        <td><%= ativo_move.investimento.carteira.nome %> / <%= ativo_move.investimento.tipo.nome %> / </br>
-        <%= ativo_move.investimento.corretora.nome %> / <%= ativo_move.investimento.ativo.ticker %> &nbsp;  
-        <%= link_to edit_investimento_path(ativo_move.investimento) do %><em class="fa fa-pencil"></em><% end %>
-        </td>
-        <td><%= ativo_move.corretora.nome %></td>
-        <td><%= link_to 'Show', ativo_move %></td>
-        <td><%= link_to 'Edit', edit_ativo_move_path(ativo_move) %></td>
-        <td><%= link_to 'Destroy', ativo_move, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-
-<div class="float-right mt-5"><%= link_to new_deriva_move_path do %>
-	<button class="btn btn-outline-success">
-		<em class="fa fa-plus-circle"></em> &nbsp; Nova movimentação (Derivativos)
-	</button><% end %>
-</div>
-
-<h3 class="h3-custom mt-5" id="minhas-paginas">
-	<em class="fa fa-usd text-success"></em> &nbsp; Mov. de Derivativos
-</h3>
-
-<div class="table-responsive">
-	<table class="table table-striped table-bordered table-hover">
-        <thead>
-          <tr>
-              <th class="text-center">Invest Id</th>
-              <th>Derivativo</th>
-              <th>Estado</th>
-              <th>Valor</th>
-              <th>Vencimento</th>
-              <th>Quantidade</th>
-              <th>Movimento</th>
-              <th>Resultado</th>
-              <th colspan="3"></th>
-            </tr>
-        </thead>
+<div class="row">
     
-        <tbody>
-          <% @carteira.deriva_moves.each do |dm| %>
-            <tr>
-                <td class="text-center"><%= dm.investimento_id %></td>
-                <td><%= dm.derivativo.codigo %></td>
-                <td><%= dm.estado.status %></td>
-                <td>R$ <%= number_with_precision(dm.valor, :precision => 2) %></td>
-                <td><%= dm.derivativo.vencimento.data.strftime("%d/%m/%Y") %></td>
-                <td><%= dm.quantidade %></td>
-                <td><%= dm.movimento %></td>
-                <!--resultado_derivativo está no aplication helper-->
-                <td>
-                    <span class="text-primary"><%= resultado_aberta(dm) %></span>
-                    <span class="text-primary"><%= resultado_po(dm) %></span>
-                    <span class="text-primary"><%= resultado_exercicio(dm) %></span>
-                    <span class="text-<%= cor_resultado_recompra(dm) %>"><%= resultado_recompra(dm) %></span>
-                    
-                </td>
-                <td><%= link_to 'Edit', edit_deriva_move_path(dm) %></td>
-                <td><%= link_to 'Destroy', dm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
-          <% end %>
-        </tbody>
-    </table>
+    <% @acoes_da_carteira.each do |acao| %>
+    <div class="col-md-4 mt-4">
+          <div class="card">
+             <div class="card-body text-center">
+                <h3 class="m-0"><%= acao.ativo.ticker %></h3>
+                <p class="text-muted"><%= acao.quantidade %> ações</p>
+                <p><%= acao.corretora.nome %></p>
+             </div>
+             <div class="list-group">
+                <% @calls_abertas.where(:investimento_id => acao.id).each do |call| %>
+
+                     <a class="list-group-item" href="#">
+                     <span class="badge badge-primary float-right"><%= call.quantidade %></span>
+                     <%= call.codigo %>
+                     </a>
+                <% end %>
+            </div>
+             
+             
+             <div class="card-body text-center bg-gray-lighter">
+                <div class="row">
+                   <div class="col-4"><a class="text-gray-dark" href="#"><em class="fa fa-pencil fa-2x"></em></a></div>
+                   <div class="col-4"><a class="text-gray-dark" href="#"><em class="fa fa-plus fa-2x"></em></a></div>
+                   <div class="col-4"><a class="text-gray-dark" href="#"><em class="fa fa-eye fa-2x"></em></a></div>
+                </div>
+             </div>
+          </div>
+    </div>
+    <% end %>
+     
 </div>
-
-

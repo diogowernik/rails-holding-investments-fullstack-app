@@ -66,6 +66,13 @@ class CarteirasController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_carteira
       @carteira = Carteira.find(params[:id])
+      @acoes_da_carteira = @carteira.investimentos.where(:tipo_id => 3).includes(:ativo).order("ativos.ticker asc")
+      @acoes_da_carteira_clear = @carteira.investimentos.where(:tipo_id => 3).where(:corretora_id => 1).includes(:ativo).order("ativos.ticker asc")
+      @fiis_da_carteira = @carteira.investimentos.where(:tipo_id => 4).includes(:ativo).order("ativos.ticker asc")
+      @calls = @carteira.deriva_moves.where(:deriva_tipo_id => 1)
+      @puts = @carteira.deriva_moves.where(:deriva_tipo_id => 2)
+      @calls_abertas = @carteira.deriva_moves.where(:deriva_tipo_id => 1).where(:estado_id => 1)
+      @puts_abertas = @carteira.deriva_moves.where(:deriva_tipo_id => 2).where(:estado_id => 1)
     end
 
     # Only allow a list of trusted parameters through.

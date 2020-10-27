@@ -11,9 +11,10 @@ class DerivaTiposController < ApplicationController
   # GET /deriva_tipos/1
   # GET /deriva_tipos/1.json
   def show
-    @acoes = Ativo.all.where(:tipo_id => 3)
+    @acoes = Ativo.all.where(:tipo_id => 3).order("ticker asc")
     @puts_abertas = DerivaMove.all.where(:estado_id => 1).where(:deriva_tipo_id => 2)
     @investimentos = Investimento.all
+    @carteiras = Carteira.all
   end
 
   # GET /deriva_tipos/new

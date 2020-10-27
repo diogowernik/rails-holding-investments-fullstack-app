@@ -20,10 +20,12 @@
              </div>
              <div class="list-group">
                <% @investimentos.where(:ativo_id => acao.id).each do |investimento| %>
+                  <% if investimento.quantidade != 0 %>
                      <a class="list-group-item" href="#">
                      <span class="badge badge-primary float-right"><%= investimento.quantidade %></span>
                      <%= investimento.ativo.ticker %> &nbsp;  &nbsp;  &nbsp; <%= investimento.corretora.nome %>
                      </a>
+                  <% end %>   
                 <% end %>
                 </br>
                 <% @puts_abertas.where(:ativo_id => acao.id).each do |put| %>

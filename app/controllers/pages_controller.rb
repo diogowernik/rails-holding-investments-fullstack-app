@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+
   def home
   end
   
@@ -18,5 +19,13 @@ class PagesController < ApplicationController
   def for_google
     @calls_abertas = DerivaMove.all.where(:estado_id => 1).where(:deriva_tipo_id => 1)
     @puts_abertas = DerivaMove.all.where(:estado_id => 1).where(:deriva_tipo_id => 2)
+  end
+  
+  def onde_investir_puts
+    @acoes = Ativo.all.where(:tipo_id => 3).order("ticker asc")
+    @garantias = Investimento.all.where(:tipo_id => 2)
+    @puts_abertas = DerivaMove.all.where(:estado_id => 1).where(:deriva_tipo_id => 2)
+    @investimentos = Investimento.all
+    @carteiras = Carteira.all
   end
 end

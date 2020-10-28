@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get 'seed', to: 'pages#seed', as: 'pages_seed'
   get 'for_google', to: 'pages#for_google', as: 'pages_for_google'
+  get 'onde-investir-puts', to: 'pages#onde_investir_puts', as: 'pages_onde_investir_puts'
+
 
   get 'deriva_moves/new_diogo/:carteira_id/:corretora_id', to: 'deriva_moves#new_diogo', as: 'new_diogo_move'
 

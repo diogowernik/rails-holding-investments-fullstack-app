@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_22_215638) do
+ActiveRecord::Schema.define(version: 2020_10_28_211733) do
 
   create_table "ativo_moves", force: :cascade do |t|
     t.integer "tipo_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2020_10_22_215638) do
     t.string "ticker"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "valor_atual"
     t.index ["tipo_id"], name: "index_ativos_on_tipo_id"
   end
 

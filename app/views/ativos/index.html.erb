@@ -22,7 +22,7 @@
       <thead>
         <tr>
           <th>Ticker</th>
-          <th>Tipo</th>
+          <th>Cotação</th>
           <th colspan="2"></th>
         </tr>
       </thead>
@@ -31,6 +31,7 @@
         <% @ativos.each do |ativo| %>
           <tr>
             <td><%= link_to ativo do %><%= ativo.ticker %><% end %></td>
+            <td><% if ativo.valor_atual.present? %><%= ativo.valor_atual %><% end %></td>
             <td><%= ativo.tipo.nome %></td>
             <td><%= link_to 'Edit', edit_ativo_path(ativo) %></td>
             <td><%= link_to 'Destroy', ativo, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -21,3 +21,4 @@
 //= require chosen-js/chosen.jquery.js
 //= require js/app_custom.js
 //= require sweetalert/dist/sweetalert.min.js
+

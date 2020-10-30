@@ -35,50 +35,27 @@
 	<table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-
+      <th>Carteira</th>
       <th>Ativo</th>
-      <th>Derivativo</th>
-      <th>tipo</th>
       <th>Quant</th>
       <th>Corretora</th>
       <th>Preço Médio</th>
-      <th>Resultado</th>
       <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @investimentos.where(:tipo_id => 3).each do |investimento| %>
+    <% @investimentos.each do |investimento| %>
       <tr>
-
+        <td><%= investimento.carteira.nome %></td>
         <td><%= investimento.ativo.ticker %></td>
-        <td></td>
-        <td></td>
         <td><%= investimento.quantidade %></td>
         <td><%= investimento.corretora.nome %></td>
         <td><%= investimento.valor_medio %></td>
-        <td></td>
+        <td><%= link_to 'Edit', edit_investimento_path(investimento) %></td>
+        <td><%= link_to 'Destroy', investimento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-          <%# investimento.deriva_moves.where(:estado_id => 1).each do |dm| %>
-          <% investimento.deriva_moves.each do |dm| %>
-              
-  
-                  <td></td>
-                  <td><%= dm.derivativo.codigo %></td>
-                  <td><%= dm.derivativo.tipo %></td>
-                  <td><%= dm.quantidade %></td>
-                  <td></td>
-                  <td></td>
-                  
-                  <td>
-                      <span class="text-primary"><%= resultado_aberta(dm) %></span>
-                      <span class="text-primary"><%= resultado_po(dm) %></span>
-                      <span class="text-primary"><%= resultado_exercicio(dm) %></span>
-                      <span class="text-<%= cor_resultado_recompra(dm) %>"><%= resultado_recompra(dm) %></span>
-                      
-                  </td>
-                </tr>
-            <% end %>
+            
     <% end %>
   </tbody>
 </table>

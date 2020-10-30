@@ -15,6 +15,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
 gem 'has_scope'
 gem 'awesome_nested_set', '~> 3.2.0'
+gem 'bootstrap-sass'
+gem 'x-editable-rails'
 
 
 group :development, :test do

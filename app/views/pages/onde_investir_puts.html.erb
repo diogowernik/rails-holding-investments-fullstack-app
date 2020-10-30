@@ -17,6 +17,9 @@
                    <% @garantias.where(:carteira_id => carteira.id).each do |garantia| %>
                        <p class="mt-0">
                            <%= garantia.ativo.ticker %>  /  <%= garantia.corretora.nome  %>
+                               <a>
+                              	     &nbsp;<i class="fa fa-pencil"></i>
+                                </a>
                         <p class="text-right">   
                            Disponível: <%= number_to_currency(garantia.valor_medio, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %>
                         </p>

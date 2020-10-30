@@ -23,6 +23,11 @@ class InvestimentosController < ApplicationController
     @investimento = Investimento.new
   end
 
+  def new_garantia
+    @investimento = Investimento.new
+    @carteira_id = params[:carteira_id]
+  end
+
   # GET /investimentos/1/edit
   def edit
   end

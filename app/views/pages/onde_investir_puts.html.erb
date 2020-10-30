@@ -10,15 +10,23 @@
     <div class="col-md-4 mt-4">
         <div class="card" id="garantias">
                <div class="card-body">
-                   <h3 class="m-0">Garantias</h3>
+                   <h3 class="m-0">Garantias
+                   <small class="float-right">
+                       <a href='<%= new_garantia_path(carteira_id: carteira.id) %>'>
+                          &nbsp;<i class="fa fa-plus-square-o"></i>
+                        </a>
+                  	
+                   </small>
+                   </h3>
                </div>
                <div class="card-body">
                    <!--Garantia está em investimentos-->
                    <% @garantias.where(:carteira_id => carteira.id).each do |garantia| %>
                        <p class="mt-0">
                            <%= garantia.ativo.ticker %>  /  <%= garantia.corretora.nome  %>
-                               <a>
+                               <%= link_to edit_investimento_path(garantia) do %>
                               	     &nbsp;<i class="fa fa-pencil"></i>
+                              	<% end %>
                                 </a>
                         <p class="text-right">   
                            Disponível: <%= number_to_currency(garantia.valor_medio, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %>
@@ -39,6 +47,11 @@
                <div class="card-body">
                   <h3 class="m-0">
                       <%= acao.ticker %> &nbsp; 
+                      <small class="float-right ml-2">
+                       <a href='<%= new_put_path(carteira_id: carteira.id, ativo_id: acao.id) %>'>
+                          &nbsp;<i class="fa fa-plus-square-o"></i>
+                        </a>
+                       </small>
                       <small class="text-primary"><% if acao.valor_atual.present? %><%= acao.valor_atual %><% end %></small>
                       <small class="text-primary float-right">
                         <% if acao.valor_atual.present? %>
@@ -61,10 +74,13 @@
   
                  <% @investimentos.where(:ativo_id => acao.id).where(:carteira_id => carteira.id).each do |investimento| %>
                     <% if investimento.quantidade != 0 %>
-                       <a class="list-group-item" href="#">
+                       <div class="list-group-item" href="#">
                        <span class="badge badge-primary float-right"><%= investimento.quantidade %></span>
                        <%= investimento.ativo.ticker %> &nbsp;  &nbsp;  &nbsp; <%= investimento.corretora.nome %>
-                       </a>
+                       <%= link_to edit_investimento_path(investimento) do %>
+                      	     &nbsp; &nbsp; <i class="fa fa-pencil"></i>
+                      	<% end %>
+                       </div>
                     <% end %>   
                   <% end %>
                   </br>

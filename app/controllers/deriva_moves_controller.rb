@@ -25,9 +25,9 @@ class DerivaMovesController < ApplicationController
     @deriva_move = DerivaMove.new
   end
   
-  def new_diogo
+  def new_put
     @deriva_move = DerivaMove.new
-    @corretora_id = params[:corretora_id]
+    @ativo_id = params[:ativo_id]
     @carteira_id = params[:carteira_id]
   end
 

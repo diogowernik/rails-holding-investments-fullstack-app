@@ -44,6 +44,7 @@
           <thead>
             <tr class="header">
               <!--<th>Invest</th>-->
+              <th>Carteira</th>
               <th style="width: 140px;"> Derivativo</br>
               <input type="text" id="DerivaTivo" onkeyup="DerivaMoveTivoFunction()" placeholder="Derivativo.." class="form-control mt-1">
               </th>
@@ -51,7 +52,6 @@
               <input type="text" id="DerivaStatus" onkeyup="DerivaMoveStatusFunction()" placeholder="Status.." class="form-control mt-1">
               </th>
               <th>Corretora</th>
-              <!--<th>Carteira</th>-->
               <th>Tipo</th>
               <th>Vencimento</th>
               <th>Premio</th>
@@ -71,10 +71,9 @@
                     <!--Tem que ser igual a de cima com a de baixo-->
                 <!--    <%#= dm.carteira.nome %>  <%#= dm.corretora.nome %>  <%#= dm.derivativo.ativo.ticker %>-->
                 <!--</td>-->
-                
+                <td><%= dm.carteira.nome %></td>
                 <td><%= dm.codigo %></td>
                 <td><%= dm.estado.status %></td>
-                <!--<td><%#= dm.carteira.nome %></td>-->
                 <td><%= dm.corretora.nome %></td>
                 <td><%= dm.deriva_tipo.tipo %></td>
                 <td><%= dm.vencimento.data.strftime("%d/%m/%Y") %></td>

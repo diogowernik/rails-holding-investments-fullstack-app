@@ -12,7 +12,7 @@
   <% end %>
 
 <div class="row">
-  <div class="col-md-2 mt-4"> 
+  <div class="col-md-2 mt-4" style="display:none"> 
     <label>Filtro (Ativo Base)</label>
     <input type="text" class="form-control" placeholder="Ex: BBAS" maxlength="4" id="derivativo_filter"/>
   </div>
@@ -23,22 +23,24 @@
   
   <div class="col-md-4 mt-4">
     <%= form.label :investimento_id %> <%= link_to new_investimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
-    <%= form.select :investimento_id, Investimento.all.collect {|d| [d.custom_invest, d.id]}, {}, {class: 'form-control'} %>
+    <%= form.select :investimento_id, Investimento.where(:carteira_id => @carteira_id).where(:ativo_id => @ativo_id).all.collect {|d| [d.custom_invest, d.id]}, {}, {class: 'form-control'} %>
   </div>
 
-  <div class="col-md-2 mt-4">
-    <%= form.label :corretora_id %> <%= link_to new_corretora_path do %> &nbsp; <small> (Nova)</small> <% end %>
-    <%= form.select :corretora_id, Corretora.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
-  </div>
+
   
-  <div class="col-md-2 mt-4">
+  <div class="col-md-4 mt-4">
     <%= form.label :codigo %>
     <%= form.text_field :codigo, class: 'form-control' %>
   </div>
   
-  <div class="col-md-2 mt-4">
+  <div class="col-md-4 mt-4">
     <%= form.label :strike %> <% if !(@deriva_move.new_record?) %> &nbsp; <small> <%= @deriva_move.derivativo.strike %></small> <% end %>
     <%= form.text_field :strike, class: 'form-control' %>
+  </div>
+  
+  <div class="col-md-4 mt-4">
+    <%= form.label :corretora_id %> <%= link_to new_corretora_path do %> &nbsp; <small> (Nova)</small> <% end %>
+    <%= form.select :corretora_id, Corretora.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
   </div>
   
   <div class="col-md-4 mt-4" style="display:none">
@@ -57,20 +59,21 @@
     <%= form.label :estado_id %> <%= link_to new_estado_path do %> &nbsp; <small> (Novo)</small> <% end %>
     <%= form.select :estado_id, Estado.all.collect {|d| [d.status, d.id]}, {}, {class: 'form-control'} %>
   </div>
-  
-  <div class="col-md-4 mt-4">
-    <%= form.label :vencimento_id %> <%= link_to new_vencimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
-    <%= form.select :vencimento_id, Vencimento.all.collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {:selected => 3}, {class: 'form-control'} %>
-  </div>
 
   <div class="col-md-4 mt-4" >
     <%= form.label :valor %>
     <%= form.text_field :valor, :required => true, class: 'form-control'  %>
   </div>
 
+
   <div class="col-md-4 mt-4">
     <%= form.label :quantidade %>
     <%= form.number_field :quantidade, :required => true,  class: 'form-control' %>
+  </div>
+
+  <div class="col-md-4 mt-4">
+    <%= form.label :vencimento_id %> <%= link_to new_vencimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
+    <%= form.select :vencimento_id, Vencimento.all.collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {:selected => 3}, {class: 'form-control'} %>
   </div>
   
   <div id="recompra" class="col-md-4 mt-4" style="display:none">

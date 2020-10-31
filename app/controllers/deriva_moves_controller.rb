@@ -30,6 +30,14 @@ class DerivaMovesController < ApplicationController
     @ativo_id = params[:ativo_id]
     @carteira_id = params[:carteira_id]
   end
+  
+  def new_put_from_investimentos
+    @deriva_move = DerivaMove.new
+    @ativo_id = params[:ativo_id]
+    @carteira_id = params[:carteira_id]
+    @investimento_id = params[:investimento_id]
+    @corretora_id = params[:corretora_id]
+  end
 
   # GET /deriva_moves/1/edit
   def edit
@@ -80,6 +88,7 @@ class DerivaMovesController < ApplicationController
     def set_deriva_move
       @deriva_move = DerivaMove.find(params[:id])
     end
+    
 
     # Only allow a list of trusted parameters through.
     def deriva_move_params

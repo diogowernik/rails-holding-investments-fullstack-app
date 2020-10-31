@@ -76,6 +76,9 @@
                     <% if investimento.quantidade != 0 %>
                        <div class="list-group-item" href="#">
                        <span class="badge badge-primary float-right"><%= investimento.quantidade %></span>
+                       <a href='<%= new_put_from_investimentos_path(carteira_id: carteira.id, ativo_id: acao.id, corretora_id: investimento.corretora.id, investimento_id: investimento.id) %>'>
+                          &nbsp;<i class="fa fa-plus-square-o mr-2"></i>
+                        </a>
                        <%= investimento.ativo.ticker %> &nbsp;  &nbsp;  &nbsp; <%= investimento.corretora.nome %>
                        <%= link_to edit_investimento_path(investimento) do %>
                       	     &nbsp; &nbsp; <i class="fa fa-pencil"></i>

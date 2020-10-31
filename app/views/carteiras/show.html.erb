@@ -1,41 +1,88 @@
+<%= render partial: "carteiras/navbar" %>
+
 <div class="float-right"><%= link_to new_investimento_path do %>
 	<button class="btn btn-outline-success">
 		<em class="fa fa-plus-circle"></em> &nbsp; Novo Investimento
 	</button><% end %>
 </div>
 
-<h3 class="h3-custom" id="minhas-paginas">
-	<em class="fa fa-vcard-o text-success"></em> &nbsp; <%= @carteira.nome %> (Ações)
+<h3 class="h3-custom mb-4" id="minhas-paginas">
+	Portfolio
+</h3>
+
+
+
+<h3 class="h4 mt-3" id="minhas-paginas">
+	Ações
 </h3>
 
 <div class="row">
-    <% @acoes_da_carteira.each do |acao| %>
     <div class="col-md-4 mt-4">
-          <div class="card">
-             <div class="card-body text-center">
-                <h3 class="m-0"><%= acao.ativo.ticker %></h3>
-             </div>
-             <div class="list-group">
-                <% @calls_abertas.where(:ativo_id => acao.id).each do |call| %>
-
-                     <a class="list-group-item" href="#">
-                     <span class="badge badge-primary float-right"><%= call.quantidade %></span>
-                     <%= call.codigo %>
-                     </a>
-                <% end %>
-            </div>
-             
-             
-             <div class="card-body text-center bg-gray-lighter">
-                <div class="row">
-                   <div class="col-4"><a class="text-gray-dark" href="#"><em class="fa fa-pencil fa-2x"></em></a></div>
-                   <div class="col-4"><a class="text-gray-dark" href="#"><em class="fa fa-plus fa-2x"></em></a></div>
-                   <div class="col-4"><a class="text-gray-dark" href="#"><em class="fa fa-eye fa-2x"></em></a></div>
-                </div>
-             </div>
-          </div>
+        <div class="card">
+               <div class="card-body">
+                   <h4 class="m-0">Alguma Info aqui
+                   
+                   </h4>
+               </div>
+               <div class="card-body">
+                  
+               </div>
+        </div>
+        
     </div>
-    <% end %>
-
-     
+        <div class="col-md-8 mt-4">
+            <% @corretoras.each do |corretora| %>
+            <div class="card">
+                   <div class="card-body">
+                       <h4 class="m-0"><%= corretora.nome %>
+                       
+                       </h4>
+                   </div>
+                   
+                   <div class="card-body">
+                       <div class="list-group">
+  
+                 <% @investimentos_acoes.where(:carteira_id => @carteira.id).where(:corretora_id => corretora.id).each do |investimento| %>
+                    <% if investimento.quantidade != 0 %>
+                       <div class="list-group-item" href="#">
+                           
+                       <span class="badge badge-primary float-right">
+                           <%= investimento.quantidade %> Ações
+                            <%= link_to edit_investimento_path(investimento) do %>
+                      	     &nbsp; &nbsp; <i class="fa fa-pencil text-white"></i>
+                      	    <% end %>
+                       </span>
+                       <%= investimento.ativo.ticker %> &nbsp;  &nbsp;  &nbsp; <%= investimento.corretora.nome %>
+                       <a href='<%= new_put_from_investimentos_path(
+                                   carteira_id: @carteira.id, 
+                                   ativo_id: investimento.ativo.id, 
+                                   corretora_id: investimento.corretora.id, 
+                                   investimento_id: investimento.id) %>'>
+                          <button class="btn btn-outline-green btn-xs ml-4" type="button">
+                             <i class="fa fa-opencart"></i> Nova put
+                           </button>
+                        </a>
+                        <a href='<%= new_call_from_investimentos_path(
+                                    carteira_id: @carteira.id, 
+                                    ativo_id: investimento.ativo.id, 
+                                    corretora_id: investimento.corretora.id, 
+                                    investimento_id: investimento.id) %>'>
+                          <button class="btn btn-outline-green btn-xs ml-4" type="button">
+                             <i class="fa fa-opencart"></i> Nova call
+                           </button>
+                        </a>
+                       </div>
+                    <% end %>   
+                  <% end %>
+                  </br>
+                  
+              </div>
+                   </div>
+                   
+            </div>
+            <% end %>
+        </div>
 </div>
+
+
+

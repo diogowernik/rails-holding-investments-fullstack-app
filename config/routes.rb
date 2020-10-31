@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :tipos
   resources :carteiras
   devise_for :users
-  root to: 'pages#home'
+  root to: 'carteiras#index'
   
   get 'seed', to: 'pages#seed', as: 'pages_seed'
   get 'for_google', to: 'pages#for_google', as: 'pages_for_google'

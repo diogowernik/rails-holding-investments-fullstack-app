@@ -7,17 +7,26 @@ class CarteirasController < ApplicationController
     @garantias = Investimento.all.where(:tipo_id => 2)
     @puts_abertas = DerivaMove.all.where(:estado_id => 1).where(:deriva_tipo_id => 2)
     @investimentos = Investimento.all
+    @carteiras = Carteira.all
   end
   
   def radar_calls
     @acoes = Ativo.all.where(:tipo_id => 3).order("ticker asc")
     @calls_abertas = DerivaMove.all.where(:estado_id => 1).where(:deriva_tipo_id => 1)
     @investimentos = Investimento.all
+    @carteiras = Carteira.all
   end
   
   def resultados_derivativos
+    @carteiras = Carteira.all
   end
-
+  
+  def show #portfolio
+    @carteiras = Carteira.all
+    @corretoras = Corretora.all
+    @investimentos_acoes = Investimento.all.includes(:ativo).where(:tipo_id => 3).order("ativos.ticker asc")
+    #@acoes = Ativo.all.where(:tipo_id => 3).order("ticker asc")
+  end
   # GET /carteiras
   # GET /carteiras.json
   def index
@@ -26,8 +35,7 @@ class CarteirasController < ApplicationController
 
   # GET /carteiras/1
   # GET /carteiras/1.json
-  def show
-  end
+
 
   # GET /carteiras/new
   def new

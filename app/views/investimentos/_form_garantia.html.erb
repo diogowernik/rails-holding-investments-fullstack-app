@@ -38,9 +38,11 @@
   </div>
 
   <div class="col-md-4 mt-4">
-    <%= form.label :valor_medio %>
+    <label>Garantias</label>
     <%= form.text_field :valor_medio, class: 'form-control' %>
   </div>
+  
+  <%= hidden_field_tag :previous_request, request.referer %>  
 
 </div>
 <div class="row">

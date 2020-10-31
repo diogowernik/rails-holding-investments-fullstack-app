@@ -41,6 +41,8 @@
     <%= form.label :valor_medio %>
     <%= form.text_field :valor_medio, class: 'form-control' %>
   </div>
+  
+  <%= hidden_field_tag :previous_request, request.referer %>
 
 </div>
 <div class="row">
@@ -51,3 +53,4 @@
 	</div>
 </div>
 <% end %>
+

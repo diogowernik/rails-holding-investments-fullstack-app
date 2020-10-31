@@ -1,6 +1,19 @@
 class CarteirasController < ApplicationController
-  before_action :set_carteira, only: [:show, :edit, :update, :destroy]
+  before_action :set_carteira, only: [:show, :edit, :update, :destroy, :radar_puts, :radar_calls, :resultados_derivativos]
 
+  
+  def radar_puts
+    @acoes = Ativo.all.where(:tipo_id => 3).order("ticker asc")
+    @garantias = Investimento.all.where(:tipo_id => 2)
+    @puts_abertas = DerivaMove.all.where(:estado_id => 1).where(:deriva_tipo_id => 2)
+    @investimentos = Investimento.all
+  end
+  
+  def radar_calls
+  end
+  
+  def resultados_derivativos
+  end
 
   # GET /carteiras
   # GET /carteiras.json

@@ -1,9 +1,5 @@
-<h3 class="h3-custom" id="minhas-paginas">
-	 Alocação das Puts
-</h3>
-<% @carteiras.each do |carteira| %>
 <h3 class="h4-custom mt-4" id="minhas-paginas">
-	<em class="fa fa-vcard-o text-success"></em> &nbsp; <%= carteira.nome %>
+	 Radar Puts (alocação) <small>&nbsp; <%= @carteira.nome %></small>
 </h3>
 
 <div class="row">
@@ -12,7 +8,7 @@
                <div class="card-body">
                    <h3 class="m-0">Garantias
                    <small class="float-right">
-                       <a href='<%= new_garantia_path(carteira_id: carteira.id) %>'>
+                       <a href='<%= new_garantia_path(carteira_id: @carteira.id) %>'>
                           &nbsp;<i class="fa fa-plus-square-o"></i>
                         </a>
                   	
@@ -21,18 +17,17 @@
                </div>
                <div class="card-body">
                    <!--Garantia está em investimentos-->
-                   <% @garantias.where(:carteira_id => carteira.id).each do |garantia| %>
+                   <% @garantias.where(:carteira_id => @carteira.id).each do |garantia| %>
                        <p class="mt-0">
                            <%= garantia.ativo.ticker %>  /  <%= garantia.corretora.nome  %>
-                               <%= link_to edit_investimento_path(garantia) do %>
-                              	     &nbsp;<i class="fa fa-pencil"></i>
-                              	<% end %>
-                                </a>
                         <p class="text-right">   
                            Disponível: <%= number_to_currency(garantia.valor_medio, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %>
+                           <%= link_to edit_investimento_path(garantia) do %>
+                          	     &nbsp;<i class="fa fa-pencil"></i>
+                          	<% end %>
                         </p>
                         <p class="text-right">
-                           Usada: <%= number_to_currency(@puts_abertas.where(:carteira_id => carteira.id).where(:corretora_id => garantia.corretora.id).sum(:strike_total), unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %>
+                           Usada: <%= number_to_currency(@puts_abertas.where(:carteira_id => @carteira.id).where(:corretora_id => garantia.corretora.id).sum(:strike_total), unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %>
                        </p>
                    <% end %>
                </div>
@@ -41,22 +36,22 @@
     </div>
     <div class="col-md-8 mt-4">
     <% @acoes.each do |acao| %>
-      <% if @investimentos.where(:ativo_id => acao.id).where(:carteira_id => carteira.id).sum(:quantidade)  + 
-            @puts_abertas.where(:ativo_id => acao.id).where(:carteira_id => carteira.id).sum(:quantidade) != 0 %> 
+      <% if @investimentos.where(:ativo_id => acao.id).where(:carteira_id => @carteira.id).sum(:quantidade)  + 
+            @puts_abertas.where(:ativo_id => acao.id).where(:carteira_id => @carteira.id).sum(:quantidade) != 0 %> 
             <div class="card">
                <div class="card-body">
                   <h3 class="m-0">
                       <%= acao.ticker %> &nbsp; 
                       <small class="float-right ml-2">
-                       <a href='<%= new_put_path(carteira_id: carteira.id, ativo_id: acao.id) %>'>
+                       <a href='<%= new_put_path(carteira_id: @carteira.id, ativo_id: acao.id) %>'>
                           &nbsp;<i class="fa fa-plus-square-o"></i>
                         </a>
                        </small>
                       <small class="text-primary"><% if acao.valor_atual.present? %><%= acao.valor_atual %><% end %></small>
                       <small class="text-primary float-right">
                         <% if acao.valor_atual.present? %>
-                            <%= number_to_currency(((@investimentos.where(:ativo_id => acao.id).where(:carteira_id => carteira.id).sum(:quantidade) +
-                                 @puts_abertas.where(:ativo_id => acao.id).where(:carteira_id => carteira.id).sum(:quantidade)) *
+                            <%= number_to_currency(((@investimentos.where(:ativo_id => acao.id).where(:carteira_id => @carteira.id).sum(:quantidade) +
+                                 @puts_abertas.where(:ativo_id => acao.id).where(:carteira_id => @carteira.id).sum(:quantidade)) *
                                  acao.valor_atual) , unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true)
                              %>
                         <% end %>
@@ -64,19 +59,19 @@
                   </h3>
                   
                   <p class="text-muted mt-2">
-                    <%= @investimentos.where(:ativo_id => acao.id).where(:carteira_id => carteira.id).sum(:quantidade) %> Ações + 
-                    <%= @puts_abertas.where(:ativo_id => acao.id).where(:carteira_id => carteira.id).sum(:quantidade)  %> Puts 
+                    <%= @investimentos.where(:ativo_id => acao.id).where(:carteira_id => @carteira.id).sum(:quantidade) %> Ações + 
+                    <%= @puts_abertas.where(:ativo_id => acao.id).where(:carteira_id => @carteira.id).sum(:quantidade)  %> Puts 
                   </p>
                   
                   
                </div>
                <div class="list-group">
   
-                 <% @investimentos.where(:ativo_id => acao.id).where(:carteira_id => carteira.id).each do |investimento| %>
+                 <% @investimentos.where(:ativo_id => acao.id).where(:carteira_id => @carteira.id).each do |investimento| %>
                     <% if investimento.quantidade != 0 %>
                        <div class="list-group-item" href="#">
                        <span class="badge badge-primary float-right"><%= investimento.quantidade %></span>
-                       <a href='<%= new_put_from_investimentos_path(carteira_id: carteira.id, ativo_id: acao.id, corretora_id: investimento.corretora.id, investimento_id: investimento.id) %>'>
+                       <a href='<%= new_put_from_investimentos_path(carteira_id: @carteira.id, ativo_id: acao.id, corretora_id: investimento.corretora.id, investimento_id: investimento.id) %>'>
                           &nbsp;<i class="fa fa-plus-square-o mr-2"></i>
                         </a>
                        <%= investimento.ativo.ticker %> &nbsp;  &nbsp;  &nbsp; <%= investimento.corretora.nome %>
@@ -87,7 +82,7 @@
                     <% end %>   
                   <% end %>
                   </br>
-                  <% @puts_abertas.where(:ativo_id => acao.id).where(:carteira_id => carteira.id).each do |put| %>
+                  <% @puts_abertas.where(:ativo_id => acao.id).where(:carteira_id => @carteira.id).each do |put| %>
                        <div class="list-group-item" href="#">
                        <span class="badge badge-primary float-right"><%= put.quantidade %></span>
                        <%= put.codigo %> &nbsp;  &nbsp;  &nbsp; <%= put.corretora.nome %>
@@ -112,4 +107,3 @@
     </div>
      
 </div>
-<% end %>

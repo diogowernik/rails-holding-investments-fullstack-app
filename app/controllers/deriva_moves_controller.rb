@@ -1,5 +1,5 @@
 class DerivaMovesController < ApplicationController
-  before_action :set_deriva_move, only: [:show, :edit, :update, :destroy]
+  before_action :set_deriva_move, only: [:show, :edit, :update, :destroy, :edit_put]
   
   has_scope :por_carteira
   has_scope :por_vencimento
@@ -41,6 +41,9 @@ class DerivaMovesController < ApplicationController
 
   # GET /deriva_moves/1/edit
   def edit
+  end
+  
+  def edit_put
   end
 
   # POST /deriva_moves

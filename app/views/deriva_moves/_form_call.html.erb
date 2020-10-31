@@ -18,58 +18,62 @@
   </div>
   <div class="col-md-2 mt-4" style="display:none">
     <label> Ativo base </label> <%= link_to new_ativo_path do %> &nbsp; <small> (Novo)</small> <% end %>
-    <%= form.select :ativo_id, Ativo.where(:tipo_id => 3).collect {|d| [d.ticker, d.id]}, {}, {class: 'form-control'} %>
+    <%= form.number_field :ativo_id, value: @ativo_id, class: 'form-control' %>
   </div>
   
-  <div class="col-md-4 mt-4" style="display:none">
+  <div class="col-md-4 mt-4">
     <%= form.label :investimento_id %> <%= link_to new_investimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
-    <%= form.select :investimento_id, Investimento.all.collect {|d| [d.custom_invest, d.id]}, {}, {class: 'form-control'} %>
+    <%= form.select :investimento_id, Investimento.where(:carteira_id => @carteira_id).where(:ativo_id => @ativo_id).all.collect {|d| [d.custom_invest, d.id]}, {}, {class: 'form-control'} %>
   </div>
+
+
   
-  <div class="col-md-2 mt-4">
+  <div class="col-md-4 mt-4">
     <%= form.label :codigo %>
     <%= form.text_field :codigo, class: 'form-control' %>
   </div>
   
-  <div class="col-md-2 mt-4" style="display:none">
+  <div class="col-md-4 mt-4">
     <%= form.label :strike %> <% if !(@deriva_move.new_record?) %> &nbsp; <small> <%= @deriva_move.derivativo.strike %></small> <% end %>
     <%= form.text_field :strike, class: 'form-control' %>
   </div>
   
+  <div class="col-md-4 mt-4">
+    <%= form.label :corretora_id %> <%= link_to new_corretora_path do %> &nbsp; <small> (Nova)</small> <% end %>
+    <%= form.select :corretora_id, Corretora.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
+  </div>
+  
   <div class="col-md-4 mt-4" style="display:none">
     <label>Tipo</label> <%= link_to new_deriva_tipo_path do %> &nbsp; <small> (Novo)</small> <% end %>
-    <%= form.select :deriva_tipo_id, DerivaTipo.all.collect {|d| [d.tipo, d.id]}, {}, {class: 'form-control'} %>
+    <%= form.number_field :deriva_tipo_id, value: 1, class: 'form-control' %> 
+    <!--2 é put-->
   </div>
   
 
   <div class="col-md-2 mt-4" style="display:none">
     <%= form.label :carteira_id %> <%= link_to new_carteira_path do %> &nbsp; <small> (Nova)</small> <% end %>
-    <%= form.select :carteira_id, Carteira.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
+    <%= form.number_field :carteira_id, value: @carteira_id, class: 'form-control' %>
   </div>
 
-  <div class="col-md-2 mt-4" style="display:none">
-    <%= form.label :corretora_id %> <%= link_to new_corretora_path do %> &nbsp; <small> (Nova)</small> <% end %>
-    <%= form.select :corretora_id, Corretora.all.collect {|d| [d.nome, d.id]}, {}, {class: 'form-control'} %>
-  </div>
-
-  <div class="col-md-4 mt-4">
+  <div class="col-md-4 mt-4" style="display:none">
     <%= form.label :estado_id %> <%= link_to new_estado_path do %> &nbsp; <small> (Novo)</small> <% end %>
     <%= form.select :estado_id, Estado.all.collect {|d| [d.status, d.id]}, {}, {class: 'form-control'} %>
   </div>
-  
-  <div class="col-md-4 mt-4" style="display:none">
-    <%= form.label :vencimento_id %> <%= link_to new_vencimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
-    <%= form.select :vencimento_id, Vencimento.all.collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {}, {class: 'form-control'} %>
-  </div>
 
-  <div class="col-md-4 mt-4" style="display:none">
+  <div class="col-md-4 mt-4" >
     <%= form.label :valor %>
     <%= form.text_field :valor, :required => true, class: 'form-control'  %>
   </div>
 
+
   <div class="col-md-4 mt-4">
     <%= form.label :quantidade %>
     <%= form.number_field :quantidade, :required => true,  class: 'form-control' %>
+  </div>
+
+  <div class="col-md-4 mt-4">
+    <%= form.label :vencimento_id %> <%= link_to new_vencimento_path do %> &nbsp; <small> (Novo)</small> <% end %>
+    <%= form.select :vencimento_id, Vencimento.all.collect {|d| [d.data.strftime("%d/%m/%Y"), d.id]}, {:selected => 3}, {class: 'form-control'} %>
   </div>
   
   <div id="recompra" class="col-md-4 mt-4" style="display:none">
@@ -116,8 +120,8 @@
       <%= form.date_select :data_recompra %>
     </div>
   </div>
-<%= hidden_field_tag :previous_request, request.referer %>
 
+<%= hidden_field_tag :previous_request, request.referer %>
 <div class="row">
 	<div class="col-md-3 mt-4">
 		<div class="form-group">

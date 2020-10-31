@@ -10,6 +10,9 @@ class CarteirasController < ApplicationController
   end
   
   def radar_calls
+    @acoes = Ativo.all.where(:tipo_id => 3).order("ticker asc")
+    @calls_abertas = DerivaMove.all.where(:estado_id => 1).where(:deriva_tipo_id => 1)
+    @investimentos = Investimento.all
   end
   
   def resultados_derivativos

@@ -39,7 +39,7 @@ class InvestimentosController < ApplicationController
 
     respond_to do |format|
       if @investimento.save
-        format.html { redirect_to session[:user_previous_url], notice: 'Investimento was successfully created.' }
+        format.html { redirect_to params[:previous_request], notice: 'Investimento was successfully created.' }
         format.json { render :show, status: :created, location: @investimento }
       else
         format.html { render :new }

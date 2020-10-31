@@ -1,5 +1,5 @@
 class DerivaMovesController < ApplicationController
-  before_action :set_deriva_move, only: [:show, :edit, :update, :destroy, :edit_put]
+  before_action :set_deriva_move, only: [:show, :edit, :update, :destroy, :edit_put, :edit_call]
   
   has_scope :por_carteira
   has_scope :por_vencimento
@@ -38,6 +38,20 @@ class DerivaMovesController < ApplicationController
     @investimento_id = params[:investimento_id]
     @corretora_id = params[:corretora_id]
   end
+  
+  def new_call
+    @deriva_move = DerivaMove.new
+    @ativo_id = params[:ativo_id]
+    @carteira_id = params[:carteira_id]
+  end
+  
+  def new_call_from_investimentos
+    @deriva_move = DerivaMove.new
+    @ativo_id = params[:ativo_id]
+    @carteira_id = params[:carteira_id]
+    @investimento_id = params[:investimento_id]
+    @corretora_id = params[:corretora_id]
+  end
 
   # GET /deriva_moves/1/edit
   def edit
@@ -53,7 +67,7 @@ class DerivaMovesController < ApplicationController
 
     respond_to do |format|
       if @deriva_move.save
-        format.html { redirect_to session[:user_previous_url], notice: 'Deriva move was successfully created.' }
+        format.html { redirect_to params[:previous_request], notice: 'Deriva move was successfully created.' }
         format.json { render :show, status: :created, location: @deriva_move }
       else
         format.html { render :new }
@@ -67,7 +81,7 @@ class DerivaMovesController < ApplicationController
   def update
     respond_to do |format|
       if @deriva_move.update(deriva_move_params)
-        format.html { redirect_to deriva_moves_url, notice: 'Deriva move was successfully updated.' }
+        format.html { redirect_to params[:previous_request], notice: 'Deriva move was successfully updated.' }
         format.json { render :show, status: :ok, location: @deriva_move }
       else
         format.html { render :edit }

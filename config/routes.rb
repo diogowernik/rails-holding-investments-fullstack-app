@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   get 'deriva_moves/new_put/:carteira_id/:ativo_id', to: 'deriva_moves#new_put', as: 'new_put'
   get 'deriva_moves/new_put_from_investimentos/:carteira_id/:ativo_id/:corretora_id/:investimento_id', to: 'deriva_moves#new_put_from_investimentos', as: 'new_put_from_investimentos'
   get 'deriva_moves/:id/edit_put', to: 'deriva_moves#edit_put', as: 'edit_put'
+  
+    get 'deriva_moves/new_call/:carteira_id/:ativo_id', to: 'deriva_moves#new_call', as: 'new_call'
+  get 'deriva_moves/new_call_from_investimentos/:carteira_id/:ativo_id/:corretora_id/:investimento_id', to: 'deriva_moves#new_call_from_investimentos', as: 'new_call_from_investimentos'
+  get 'deriva_moves/:id/edit_call', to: 'deriva_moves#edit_call', as: 'edit_call'
 
   get 'investimentos/new_garantia/:carteira_id/', to: 'investimentos#new_garantia', as: 'new_garantia'
 

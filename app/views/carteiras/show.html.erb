@@ -43,7 +43,7 @@
                        <div class="list-group">
   
                  <% @investimentos_acoes.where(:carteira_id => @carteira.id).where(:corretora_id => corretora.id).each do |investimento| %>
-                    <% if investimento.quantidade != 0 %>
+                    <%# if investimento.quantidade != 0 %>
                        <div class="list-group-item" href="#">
                            
                        <span class="badge badge-primary float-right">
@@ -72,7 +72,7 @@
                            </button>
                         </a>
                        </div>
-                    <% end %>   
+                    <%# end %>   
                   <% end %>
                   </br>
                   

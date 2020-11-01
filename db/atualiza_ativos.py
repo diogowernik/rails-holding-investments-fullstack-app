@@ -1,51 +1,51 @@
 print("Programa atualiza ativos foi executado.")
 
 # importar pacotes (pacotes já instalados)
-import yfinance as yf
-import pandas as pd
-import pandas_datareader.data as pdr
-import datetime as dt
+# import yfinance as yf
+# import pandas as pd
+# import pandas_datareader.data as pdr
+# import datetime as dt
 
 
 ## 1) Conecta com o banco de dados
 
+# import sqlite3
+# from sqlite3 import Error
+
+
+# def create_connection(db_file):
+#     """ create a database connection to the SQLite database
+#         specified by the db_file
+#     :param db_file: database file
+#     :return: Connection object or None
+#     """
+#     conn = None
+#     try:
+#         conn = sqlite3.connect(db_file)
+#     except Error as e:
+#         print(e)
+
+#     return conn.cursor()
+
+
+
+# tabela_conectada = create_connection('development.sqlite3')
+# tabela_conectada.execute("SELECT ticker, valor_atual FROM 'Ativos'")
+# print(tabela_conectada.fetchall())
+
+    
+# Com pandas
+
+
 import sqlite3
-from sqlite3 import Error
+import pandas as pd
 
+# Create your connection.
+tabela_conectada = sqlite3.connect('development.sqlite3')
 
-def create_connection(db_file):
-    """ create a database connection to the SQLite database
-        specified by the db_file
-    :param db_file: database file
-    :return: Connection object or None
-    """
-    conn = None
-    try:
-        conn = sqlite3.connect(development.sqlite3)
-    except Error as e:
-        print(e)
+df = pd.read_sql_query("SELECT * FROM Ativos", tabela_conectada)
 
-    return conn
-
-
-def select_all_ativos(conn):
-    """
-    Query all rows in the tasks table
-    :param conn: the Connection object
-    :return:
-    """
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM ativos")
-
-    rows = cur.fetchall()
-
-    for row in rows:
-        print(row)
-
-
-    
-    
-# development.sqlite3
+print(df.head(50))
 
 ## 2) Busca cotação 
 

@@ -130,7 +130,6 @@
 <% @deriva_moves.each do |deriva_move| %>
     DerivaMove.create(
     carteira_id: <%= deriva_move.carteira_id %>, 
-    derivativo_id: <%= deriva_move.derivativo_id %>,  
     estado_id: <%= deriva_move.estado_id %>,  
     corretora_id: <%= deriva_move.corretora_id %>, 
     investimento_id: <%= deriva_move.investimento_id %>,
@@ -145,7 +144,9 @@
     
     quantidade: <%= deriva_move.quantidade %>,  
     
-    movimento: '<%= deriva_move.movimento %>'  
+    movimento: '<%= deriva_move.movimento %>' ,
+    
+    codigo: '<%= deriva_move.codigo %>' ,
     )
     </br>
 <% end %>

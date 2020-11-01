@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_28_211733) do
+ActiveRecord::Schema.define(version: 2020_10_22_211653) do
 
   create_table "ativo_moves", force: :cascade do |t|
     t.integer "tipo_id"
@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 2020_10_28_211733) do
 
   create_table "ativos", force: :cascade do |t|
     t.integer "tipo_id"
+    t.decimal "valor"
     t.string "ticker"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "valor_atual"
     t.index ["tipo_id"], name: "index_ativos_on_tipo_id"
   end
 
@@ -61,8 +61,34 @@ ActiveRecord::Schema.define(version: 2020_10_28_211733) do
     t.datetime "updated_at", null: false
   end
 
-# Could not dump table "deriva_moves" because of following StandardError
-#   Unknown type 'codigo' for column 'string'
+  create_table "deriva_moves", force: :cascade do |t|
+    t.integer "carteira_id"
+    t.integer "estado_id"
+    t.integer "corretora_id"
+    t.integer "investimento_id"
+    t.integer "vencimento_id"
+    t.integer "ativo_id"
+    t.integer "deriva_tipo_id"
+    t.decimal "valor"
+    t.decimal "strike"
+    t.decimal "strike_total"
+    t.decimal "valor_recompra"
+    t.decimal "resultado"
+    t.date "data"
+    t.date "data_recompra"
+    t.integer "quantidade"
+    t.string "movimento"
+    t.string "codigo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ativo_id"], name: "index_deriva_moves_on_ativo_id"
+    t.index ["carteira_id"], name: "index_deriva_moves_on_carteira_id"
+    t.index ["corretora_id"], name: "index_deriva_moves_on_corretora_id"
+    t.index ["deriva_tipo_id"], name: "index_deriva_moves_on_deriva_tipo_id"
+    t.index ["estado_id"], name: "index_deriva_moves_on_estado_id"
+    t.index ["investimento_id"], name: "index_deriva_moves_on_investimento_id"
+    t.index ["vencimento_id"], name: "index_deriva_moves_on_vencimento_id"
+  end
 
   create_table "deriva_tipos", force: :cascade do |t|
     t.string "tipo"

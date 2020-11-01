@@ -4,12 +4,12 @@ class CreateDerivativos < ActiveRecord::Migration[5.2]
       
       t.references :ativo, foreign_key: true
       t.references :vencimento, foreign_key: true
+      t.references :deriva_tipo, foreign_key: true
       
       t.decimal :strike
       
       t.string :codigo
-      t.string :tipo
-      
+
 
       t.timestamps
     end

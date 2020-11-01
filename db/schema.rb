@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_10_22_211653) do
 
   create_table "ativos", force: :cascade do |t|
     t.integer "tipo_id"
-    t.decimal "valor"
+    t.decimal "valor_atual"
     t.string "ticker"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

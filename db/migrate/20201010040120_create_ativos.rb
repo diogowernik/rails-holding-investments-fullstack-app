@@ -3,7 +3,7 @@ class CreateAtivos < ActiveRecord::Migration[5.2]
     create_table :ativos do |t|
       
       t.references :tipo, foreign_key: true
-      t.decimal :valor
+      t.decimal :valor_atual
       t.string :ticker
       
 

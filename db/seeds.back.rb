@@ -7,6 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+user = User.new
+user.email = 'admin@portaisdobem.org'
+user.password = '123456'
+user.password_confirmation = '123456'
+user.save!
+
 # independentes
 Vencimento.create( data: DateTime.strptime('21/09/2020', '%d/%m/%Y') )
 Vencimento.create( data: DateTime.strptime('19/10/2020', '%d/%m/%Y') )

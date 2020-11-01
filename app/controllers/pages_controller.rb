@@ -14,6 +14,7 @@ class PagesController < ApplicationController
     @investimentos = Investimento.all
     @tipos = Tipo.all
     @vencimentos = Vencimento.all
+    @deriva_tipos = DerivaTipo.all
   end
   
   def for_google

@@ -20,6 +20,17 @@
     </br>
 <% end %>
 </br>
+
+<% @deriva_tipos.each do |deriva_tipo| %>
+    DerivaTipo.create(
+    
+    tipo: '<%= deriva_tipo.tipo %>'
+
+    )
+    </br>
+<% end %>
+</br>
+
 <% @corretoras.each do |corretora| %>
     Corretora.create(
     nome: '<%= corretora.nome %>', 
@@ -75,6 +86,7 @@
 <% @ativos.each do |ativo| %>
     Ativo.create(
     tipo_id: <%= ativo.tipo_id %>, 
+    valor_atual: '<%= ativo.valor_atual %>', 
     ticker: '<%= ativo.ticker %>'
     )
     </br>
@@ -133,8 +145,13 @@
     estado_id: <%= deriva_move.estado_id %>,  
     corretora_id: <%= deriva_move.corretora_id %>, 
     investimento_id: <%= deriva_move.investimento_id %>,
+    vencimento_id: <%= deriva_move.vencimento_id %>, 
+    ativo_id: <%= deriva_move.ativo_id %>,
+    deriva_tipo_id: <%= deriva_move.deriva_tipo_id %>,
     
     valor: <%= deriva_move.valor %>,
+    strike: <%= deriva_move.strike %>,
+    strike_total: <%= deriva_move.strike_total %>,
     valor_recompra: '<%= deriva_move.valor_recompra %>',
     resultado: '<%= deriva_move.resultado %>',
     

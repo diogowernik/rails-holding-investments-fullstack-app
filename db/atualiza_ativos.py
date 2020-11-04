@@ -1,67 +1,58 @@
-print("Programa atualiza ativos foi executado.")
-
-# importar pacotes (pacotes já instalados)
-# import yfinance as yf
-# import pandas as pd
-# import pandas_datareader.data as pdr
-# import datetime as dt
-
-
-## 1) Conecta com o banco de dados
-
-# import sqlite3
-# from sqlite3 import Error
-
-
-# def create_connection(db_file):
-#     """ create a database connection to the SQLite database
-#         specified by the db_file
-#     :param db_file: database file
-#     :return: Connection object or None
-#     """
-#     conn = None
-#     try:
-#         conn = sqlite3.connect(db_file)
-#     except Error as e:
-#         print(e)
-
-#     return conn.cursor()
-
-
-
-# tabela_conectada = create_connection('development.sqlite3')
-# tabela_conectada.execute("SELECT ticker, valor_atual FROM 'Ativos'")
-# print(tabela_conectada.fetchall())
-
-    
-# Com pandas
-
-
 import sqlite3
 import pandas as pd
+# import pandas_datareader.data as pdr
+import datetime as dt
+import yfinance as yf
+yf.pdr_override()
 
-# Create your connection.
-tabela_conectada = sqlite3.connect('development.sqlite3')
+def create_connection(db_file):
+    conn = None
+    try:
+        conn = sqlite3.connect(db_file)
+    except Exception as e:
+        print(e)
+    return conn
 
-df = pd.read_sql_query("SELECT * FROM Ativos", tabela_conectada)
+# Função para criar uma lista dos ativos do banco de dados
+conn = create_connection('development.sqlite3')
 
-print(df.head(50))
+cursor = conn.cursor()
+cursor.row_factory = lambda cursor, row: row[0]
+cursor.execute("SELECT ticker FROM 'Ativos' WHERE tipo_id = 3")
+ativos_do_meu_app = cursor.fetchall()
 
-## 2) Busca cotação 
+# Função para buscar ativos do yahoo e criar um dataframe com ticker e ultima cotação
+dados_dos_ativos_pelo_yahoo = yf.download(ativos_do_meu_app, period="1min")["Adj Close"]
+df_yahoo_banco = dados_dos_ativos_pelo_yahoo.dropna().T.reset_index()
+df_yahoo_banco.columns = ["ticker", "valor_atual"]
+df_yahoo_banco = df_yahoo_banco.set_index('ticker')
 
-# yf.pdr_override() # configuração do Yahoo Finance
-# pd.set_option('precision', 7)  # tamanho da casas decimasi
-# pd.set_option('use_inf_as_na', True)  # converter os valores 'inf' em NaN
+# Imprime o dataframe do yahoo
+print("DataFrame Yahoo.")
+print(df_yahoo_banco)
 
-# data_atual = dt.datetime.now() # Pegar data atual
+df_meu_banco = pd.read_sql_query("SELECT ticker, valor_atual FROM Ativos WHERE tipo_id = 3 ORDER BY ticker", conn, index_col="ticker")
 
-# codigos = ['SAPR4.SA', 'ITSA4.SA', 'CCRO3.SA'] # definir a lista de codigos para buscar a cotação
+print("DataFrame Diogo.")
+print(df_meu_banco)
 
+for index, row in df_meu_banco.iterrows():
+    df_meu_banco.loc[index]['valor_atual'] = df_yahoo_banco.loc[index]['valor_atual']
 
-## 3) Acessa a tabela Ativos no banco de dados e Atualiza o campo valor_atual 
+print("DataFrame Diogo atualizada")
+print(df_meu_banco)
 
+for index, row in df_meu_banco.iterrows():
+    query = f"Update Ativos set valor_atual = ? where ticker = ?"
+    params = (row['valor_atual'], index,)
+    cursor.execute(query, params)
 
-#
+conn.commit()
 
-### Teste script amigo
+df_meu_banco_final = pd.read_sql_query("SELECT ticker, valor_atual FROM Ativos WHERE tipo_id = 3 ORDER BY ticker", conn, index_col="ticker")
 
+print("Banco ao final")
+print(df_meu_banco_final)
+
+cursor.close()
+conn.close()

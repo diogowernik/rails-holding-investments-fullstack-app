@@ -1,0 +1,22 @@
+<%= form_with(model: ano, local: true) do |form| %>
+  <% if ano.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ano.errors.count, "error") %> prohibited this ano from being saved:</h2>
+
+      <ul>
+      <% ano.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ano %>
+    <%= form.number_field :ano %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

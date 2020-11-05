@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_22_211653) do
+ActiveRecord::Schema.define(version: 2020_11_05_174503) do
+
+  create_table "anos", force: :cascade do |t|
+    t.integer "ano"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "ativo_moves", force: :cascade do |t|
     t.integer "tipo_id"
@@ -37,6 +43,8 @@ ActiveRecord::Schema.define(version: 2020_10_22_211653) do
     t.string "ticker"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ticker_base"
+    t.string "ticker_yf"
     t.index ["tipo_id"], name: "index_ativos_on_tipo_id"
   end
 
@@ -128,6 +136,48 @@ ActiveRecord::Schema.define(version: 2020_10_22_211653) do
     t.index ["carteira_id"], name: "index_investimentos_on_carteira_id"
     t.index ["corretora_id"], name: "index_investimentos_on_corretora_id"
     t.index ["tipo_id"], name: "index_investimentos_on_tipo_id"
+  end
+
+  create_table "proventos", force: :cascade do |t|
+    t.integer "carteira_id"
+    t.integer "ano_id"
+    t.decimal "jan", default: "0.0"
+    t.decimal "fev", default: "0.0"
+    t.decimal "mar", default: "0.0"
+    t.decimal "abr", default: "0.0"
+    t.decimal "mai", default: "0.0"
+    t.decimal "jun", default: "0.0"
+    t.decimal "jul", default: "0.0"
+    t.decimal "ago", default: "0.0"
+    t.decimal "set", default: "0.0"
+    t.decimal "out", default: "0.0"
+    t.decimal "nov", default: "0.0"
+    t.decimal "dez", default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ano_id"], name: "index_proventos_on_ano_id"
+    t.index ["carteira_id"], name: "index_proventos_on_carteira_id"
+  end
+
+  create_table "sinteticos", force: :cascade do |t|
+    t.integer "carteira_id"
+    t.integer "ano_id"
+    t.decimal "jan", default: "0.0"
+    t.decimal "fev", default: "0.0"
+    t.decimal "mar", default: "0.0"
+    t.decimal "abr", default: "0.0"
+    t.decimal "mai", default: "0.0"
+    t.decimal "jun", default: "0.0"
+    t.decimal "jul", default: "0.0"
+    t.decimal "ago", default: "0.0"
+    t.decimal "set", default: "0.0"
+    t.decimal "out", default: "0.0"
+    t.decimal "nov", default: "0.0"
+    t.decimal "dez", default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ano_id"], name: "index_sinteticos_on_ano_id"
+    t.index ["carteira_id"], name: "index_sinteticos_on_carteira_id"
   end
 
   create_table "tipos", force: :cascade do |t|

@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Proventos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Carteira</th>
+      <th>Ano</th>
+      <th>Jan</th>
+      <th>Fev</th>
+      <th>Mar</th>
+      <th>Abr</th>
+      <th>Mai</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Ago</th>
+      <th>Set</th>
+      <th>Out</th>
+      <th>Nov</th>
+      <th>Dez</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @proventos.each do |provento| %>
+      <tr>
+        <td><%= provento.carteira %></td>
+        <td><%= provento.ano %></td>
+        <td><%= provento.jan %></td>
+        <td><%= provento.fev %></td>
+        <td><%= provento.mar %></td>
+        <td><%= provento.abr %></td>
+        <td><%= provento.mai %></td>
+        <td><%= provento.jun %></td>
+        <td><%= provento.jul %></td>
+        <td><%= provento.ago %></td>
+        <td><%= provento.set %></td>
+        <td><%= provento.out %></td>
+        <td><%= provento.nov %></td>
+        <td><%= provento.dez %></td>
+        <td><%= link_to 'Show', provento %></td>
+        <td><%= link_to 'Edit', edit_provento_path(provento) %></td>
+        <td><%= link_to 'Destroy', provento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Provento', new_provento_path %>

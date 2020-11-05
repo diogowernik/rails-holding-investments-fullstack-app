@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :sinteticos
+  resources :proventos
+  resources :anos
   resources :deriva_tipos
   resources :ativo_moves
   resources :vencimentos

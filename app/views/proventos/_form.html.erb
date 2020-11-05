@@ -1,0 +1,87 @@
+<%= form_with(model: provento, local: true) do |form| %>
+  <% if provento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(provento.errors.count, "error") %> prohibited this provento from being saved:</h2>
+
+      <ul>
+      <% provento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :carteira_id %>
+    <%= form.text_field :carteira_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ano_id %>
+    <%= form.text_field :ano_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :jan %>
+    <%= form.text_field :jan %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fev %>
+    <%= form.text_field :fev %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mar %>
+    <%= form.text_field :mar %>
+  </div>
+
+  <div class="field">
+    <%= form.label :abr %>
+    <%= form.text_field :abr %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mai %>
+    <%= form.text_field :mai %>
+  </div>
+
+  <div class="field">
+    <%= form.label :jun %>
+    <%= form.text_field :jun %>
+  </div>
+
+  <div class="field">
+    <%= form.label :jul %>
+    <%= form.text_field :jul %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ago %>
+    <%= form.text_field :ago %>
+  </div>
+
+  <div class="field">
+    <%= form.label :set %>
+    <%= form.text_field :set %>
+  </div>
+
+  <div class="field">
+    <%= form.label :out %>
+    <%= form.text_field :out %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nov %>
+    <%= form.text_field :nov %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dez %>
+    <%= form.text_field :dez %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

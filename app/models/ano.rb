@@ -1,0 +1,2 @@
+class Ano < ApplicationRecord
+end

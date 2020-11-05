@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  carteira: one
+  ano: one
+  jan: 9.99
+  fev: 9.99
+  mar: 9.99
+  abr: 9.99
+  mai: 9.99
+  jun: 9.99
+  jul: 9.99
+  ago: 9.99
+  set: 9.99
+  out: 9.99
+  nov: 9.99
+  dez: 9.99
+
+two:
+  carteira: two
+  ano: two
+  jan: 9.99
+  fev: 9.99
+  mar: 9.99
+  abr: 9.99
+  mai: 9.99
+  jun: 9.99
+  jul: 9.99
+  ago: 9.99
+  set: 9.99
+  out: 9.99
+  nov: 9.99
+  dez: 9.99

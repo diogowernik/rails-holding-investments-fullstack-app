@@ -1,0 +1,2 @@
+module SinteticosHelper
+end

@@ -87,7 +87,9 @@
     Ativo.create(
     tipo_id: <%= ativo.tipo_id %>, 
     valor_atual: '<%= ativo.valor_atual %>', 
-    ticker: '<%= ativo.ticker %>'
+    ticker: '<%= ativo.ticker %>',
+    ticker_base: '<%= ativo.ticker_base %>',
+    ticker_yf: '<%= ativo.ticker_yf %>'
     )
     </br>
 <% end %>

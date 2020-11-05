@@ -21,7 +21,9 @@
 	<table class="table table-striped table-bordered table-hover">
       <thead>
         <tr>
-          <th>Ticker</th>
+          <th>ticker</th>
+          <th>ticker_base</th>
+          <th>ticker_yf</th>
           <th>Cotação</th>
           <th colspan="2"></th>
         </tr>
@@ -31,6 +33,8 @@
         <% @ativos.each do |ativo| %>
           <tr>
             <td><%= link_to ativo do %><%= ativo.ticker %><% end %></td>
+            <td><%= link_to ativo do %><%= ativo.ticker_base %><% end %></td>
+            <td><%= link_to ativo do %><%= ativo.ticker_yf %><% end %></td>
             <td><% if ativo.valor_atual.present? %><%= ativo.valor_atual %><% end %></td>
             <td><%= ativo.tipo.nome %></td>
             <td><%= link_to 'Edit', edit_ativo_path(ativo) %></td>

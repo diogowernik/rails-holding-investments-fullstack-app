@@ -71,6 +71,6 @@ class AtivosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ativo_params
-      params.require(:ativo).permit(:ticker, :tipo_id, :valor_atual)
+      params.require(:ativo).permit(:ticker, :tipo_id, :valor_atual, :ticker_base, :ticker_yf)
     end
 end

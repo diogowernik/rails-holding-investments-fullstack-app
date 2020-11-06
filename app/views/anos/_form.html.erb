@@ -10,13 +10,18 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+<div class="row">
+  <div class="col-md-6">
     <%= form.label :ano %>
     <%= form.number_field :ano %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</div>
+<div class="row">
+    <div class="col-md-3 mt-4">
+		<div class="form-group">
+                <%= form.submit 'Enviar', class: 'btn btn-block btn-primary' %>
+         </div>
+     </div>
+</div>
 <% end %>

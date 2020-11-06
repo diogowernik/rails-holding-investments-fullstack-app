@@ -53,5 +53,13 @@ module ApplicationHelper
       end
     end
   end
+  
+  def sintetico_anual(sintetico)
+    sintetico.jan + sintetico.fev + sintetico.mar + 
+    sintetico.abr + sintetico.mai + sintetico.jun +
+    sintetico.jul + sintetico.ago + sintetico.set + 
+    sintetico.out + sintetico.nov + sintetico.dez
+  end
+
 
 end

@@ -28,7 +28,7 @@ class ProventosController < ApplicationController
 
     respond_to do |format|
       if @provento.save
-        format.html { redirect_to @provento, notice: 'Provento was successfully created.' }
+        format.html { redirect_to proventos_url, notice: 'Provento was successfully created.' }
         format.json { render :show, status: :created, location: @provento }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ProventosController < ApplicationController
   def update
     respond_to do |format|
       if @provento.update(provento_params)
-        format.html { redirect_to @provento, notice: 'Provento was successfully updated.' }
+        format.html { redirect_to proventos_url, notice: 'Provento was successfully updated.' }
         format.json { render :show, status: :ok, location: @provento }
       else
         format.html { render :edit }

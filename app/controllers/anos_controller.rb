@@ -28,7 +28,7 @@ class AnosController < ApplicationController
 
     respond_to do |format|
       if @ano.save
-        format.html { redirect_to @ano, notice: 'Ano was successfully created.' }
+        format.html { redirect_to anos_url, notice: 'Ano was successfully created.' }
         format.json { render :show, status: :created, location: @ano }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class AnosController < ApplicationController
   def update
     respond_to do |format|
       if @ano.update(ano_params)
-        format.html { redirect_to @ano, notice: 'Ano was successfully updated.' }
+        format.html { redirect_to anos_url, notice: 'Ano was successfully updated.' }
         format.json { render :show, status: :ok, location: @ano }
       else
         format.html { render :edit }

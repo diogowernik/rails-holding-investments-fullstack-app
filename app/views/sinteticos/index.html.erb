@@ -1,16 +1,15 @@
-<div class="float-right"><%= link_to new_ativo_path do %>
+<div class="float-right"><%= link_to new_sintetico_path do %>
 	<button class="btn btn-outline-success">
 		<em class="fa fa-plus-circle"></em> &nbsp; Novo Dividendos Sintéticos
 	</button><% end %>
 </div>
 <h3 class="h3-custom" id="minhas-paginas">
-	<em class="fa fa-vcard-o text-success"></em> &nbsp; Ativos
+	<em class="fa fa-vcard-o text-success"></em> &nbsp; Sinteticos
 </h3>
 <div class="table-responsive">
 	<table class="table table-striped table-bordered table-hover">
-  <thead>
+  <thead class="text-center">
     <tr>
-      <th>Carteira</th>
       <th>Ano</th>
       <th>Jan</th>
       <th>Fev</th>
@@ -28,28 +27,30 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="text-center">
     <% @sinteticos.each do |sintetico| %>
       <tr>
-        <td><%= sintetico.carteira %></td>
-        <td><%= sintetico.ano %></td>
-        <td><%= sintetico.jan %></td>
-        <td><%= sintetico.fev %></td>
-        <td><%= sintetico.mar %></td>
-        <td><%= sintetico.abr %></td>
-        <td><%= sintetico.mai %></td>
-        <td><%= sintetico.jun %></td>
-        <td><%= sintetico.jul %></td>
-        <td><%= sintetico.ago %></td>
-        <td><%= sintetico.set %></td>
-        <td><%= sintetico.out %></td>
-        <td><%= sintetico.nov %></td>
-        <td><%= sintetico.dez %></td>
-        <td><%= link_to 'Show', sintetico %></td>
-        <td><%= link_to 'Edit', edit_sintetico_path(sintetico) %></td>
-        <td><%= link_to 'Destroy', sintetico, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <td><%= sintetico.ano.ano %></td>
+       <td style="width: 82px"><%= number_to_currency(sintetico.jan , unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+       <td style="width: 82px"><%= number_to_currency(sintetico.fev , unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+       <td style="width: 82px"><%= number_to_currency(sintetico.mar , unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+       <td style="width: 82px"><%= number_to_currency(sintetico.abr , unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+       <td style="width: 82px"><%= number_to_currency(sintetico.mai , unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+       <td style="width: 82px"><%= number_to_currency(sintetico.jun , unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+       <td style="width: 82px"><%= number_to_currency(sintetico.jul , unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+       <td style="width: 82px"><%= number_to_currency(sintetico.ago , unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+        <td style="width: 82px"><%= number_to_currency(sintetico.set, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+        <td style="width: 82px"><%= number_to_currency(sintetico.out, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+        <td style="width: 82px"><%= number_to_currency(sintetico.nov, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+        <td style="width: 82px"><%= number_to_currency(sintetico.dez, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+        <td>
+          <%= link_to edit_sintetico_path(sintetico) do %>
+            <em class="fa fa-pencil"></em> 
+          <% end %>
+        </td>
+       </tr>
     <% end %>
+     
   </tbody>
 </table>
 

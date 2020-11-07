@@ -12,7 +12,8 @@ def create_connection(db_file):
         print(e)
     return conn
 
-conn = create_connection('development.sqlite3')
+#conn = create_connection('development.sqlite3')
+conn = create_connection('production.sqlite3')
 
 cursor = conn.cursor()
 

@@ -32,7 +32,7 @@ module ApplicationHelper
       else
         "Venda de #{deriva_move.quantidade}  
         #{deriva_move.ativo.ticker} -
-        #{number_with_precision(deriva_move.strike - deriva_move.valor, :precision => 2)}" 
+        #{number_with_precision(deriva_move.strike + deriva_move.valor, :precision => 2)}" 
       end
     end
   end

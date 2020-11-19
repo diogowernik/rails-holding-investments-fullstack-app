@@ -78,7 +78,7 @@
         </div></div>
         <div id="accordion">
         <% @vencimentos.order("created_at desc").each do |vencimento| %>
-            <% if @deriva_moves.where(:vencimento_id => vencimento.id).sum(:resultado) != 0 %>
+            <% if @deriva_moves.where(:vencimento_id => vencimento.id).where(:carteira_id => @carteira.id).sum(:resultado) != 0 %>
             
             
             <div class="card card-default mb-1">
@@ -88,7 +88,7 @@
                          <%= vencimento.data.strftime("%m / %Y") %>
                            <small class="text-primary float-right mr-1">
                                <b>
-                                   <%= number_to_currency(@deriva_moves.where(:vencimento_id => vencimento.id).sum(:resultado), unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %>
+                                   <%= number_to_currency(@deriva_moves.where(:vencimento_id => vencimento.id).where(:carteira_id => @carteira.id).sum(:resultado), unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %>
                                 </b>
                            </small> 
                            <small class="text-muted float-right mr-2">Resultado: </small>

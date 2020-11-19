@@ -80,6 +80,7 @@
                            <%= call.quantidade %> calls
                        </span>
                        <%= call.codigo %> &nbsp;  &nbsp;  &nbsp; <%= call.corretora.nome %> &nbsp;  &nbsp;  &nbsp;
+                       <%= number_to_percentage(((call.quantidade * call.valor) / call.strike_total * 100), precision: 2)  %> (yield sintético)
                        </div>
                   <% end %>
               </div>

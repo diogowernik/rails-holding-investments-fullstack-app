@@ -104,6 +104,7 @@
                            <%= put.quantidade %> puts
                        </span>
                        <%= put.codigo %> &nbsp;  &nbsp;  &nbsp; <%= put.corretora.nome %> &nbsp;  &nbsp;  &nbsp;
+                       <%= number_to_percentage(((put.quantidade * put.valor) / put.strike_total * 100), precision: 2)  %> (yield sintético)
                        </div>
                   <% end %>
               </div>

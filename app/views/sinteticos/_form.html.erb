@@ -80,7 +80,7 @@
     <%= form.label :dez %>
     <%= form.text_field :dez %>
   </div>
-
+<%= hidden_field_tag :previous_request, request.referer %>
 </div>
 <div class="row">
     <div class="col-md-3 mt-4">

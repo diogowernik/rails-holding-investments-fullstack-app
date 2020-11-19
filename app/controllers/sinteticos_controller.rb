@@ -28,7 +28,7 @@ class SinteticosController < ApplicationController
 
     respond_to do |format|
       if @sintetico.save
-        format.html { redirect_to sinteticos_url, notice: 'Sintetico was successfully created.' }
+        format.html { redirect_to params[:previous_request], notice: 'Sintetico was successfully created.' }
         format.json { render :show, status: :created, location: @sintetico }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class SinteticosController < ApplicationController
   def update
     respond_to do |format|
       if @sintetico.update(sintetico_params)
-        format.html { redirect_to sinteticos_url, notice: 'Sintetico was successfully updated.' }
+        format.html { redirect_to params[:previous_request], notice: 'Sintetico was successfully updated.' }
         format.json { render :show, status: :ok, location: @sintetico }
       else
         format.html { render :edit }

@@ -56,7 +56,11 @@
                   <tbody class="text-center">
                     <% @sinteticos.where(:carteira_id => @carteira.id).each do |sintetico| %>
                       <tr>
-                        <td><%= sintetico.ano.ano %></td>
+                        <td><%= sintetico.ano.ano %></br>
+                            <%= link_to edit_sintetico_path(sintetico) do %>
+                                <em class="fa fa-pencil"></em> 
+                             <% end %>
+                        </td>
                        <td style="width: 82px"><%= number_to_currency(sintetico.jan , unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
                        <td style="width: 82px"><%= number_to_currency(sintetico.fev , unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
                        <td style="width: 82px"><%= number_to_currency(sintetico.mar , unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
@@ -70,12 +74,6 @@
                         <td style="width: 82px"><%= number_to_currency(sintetico.nov, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
                         <td style="width: 82px"><%= number_to_currency(sintetico.dez, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
                         <td style="width: 82px"><%= number_to_currency(sintetico_anual(sintetico), unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
-                
-                        <td>
-                          <%= link_to edit_sintetico_path(sintetico) do %>
-                            <em class="fa fa-pencil"></em> 
-                          <% end %>
-                        </td>
                        </tr>
                     <% end %>
                      

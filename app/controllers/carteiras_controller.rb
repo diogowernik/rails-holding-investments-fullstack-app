@@ -25,6 +25,7 @@ class CarteirasController < ApplicationController
     @carteiras = Carteira.all
     @vencimentos = Vencimento.all
     @deriva_moves = DerivaMove.all
+    @sinteticos = Sintetico.all
   end
   # GET /carteiras
   # GET /carteiras.json

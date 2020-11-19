@@ -21,11 +21,10 @@ class CarteirasController < ApplicationController
     @carteiras = Carteira.all
   end
   
-  def show #portfolio
+  def show #derivamoves
     @carteiras = Carteira.all
-    @corretoras = Corretora.all
-    @investimentos_acoes = Investimento.all.includes(:ativo).where(:tipo_id => 3).order("ativos.ticker asc")
-    #@acoes = Ativo.all.where(:tipo_id => 3).order("ticker asc")
+    @vencimentos = Vencimento.all
+    @deriva_moves = DerivaMove.all
   end
   # GET /carteiras
   # GET /carteiras.json

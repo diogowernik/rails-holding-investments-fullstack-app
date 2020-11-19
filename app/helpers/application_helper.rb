@@ -23,7 +23,7 @@ module ApplicationHelper
     end
   end
   
-  def resultado_exercicio(deriva_move) #Neste caso é realizada uma interação com a tabela investimentos 
+  def resultado_exercicio(deriva_move) #Neste caso seria realizada uma interação com a tabela investimentos 
     if deriva_move.estado_id == 2
       if deriva_move.deriva_tipo_id == 2
         "Compra / #{deriva_move.quantidade}  

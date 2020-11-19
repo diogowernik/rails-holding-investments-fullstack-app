@@ -5,20 +5,7 @@
 </h3>
 
 <div class="row">
-    <div class="col-md-4 mt-4">
-        <div class="card" id="garantias">
-               <div class="card-body">
-                   <h3 class="m-0">Algo aqui
-                   
-                   </h3>
-               </div>
-               <div class="card-body">
-                  
-                     
-               </div>
-        </div>
-        
-    </div>
+
     <div class="col-md-8 mt-4">
     <% @acoes.each do |acao| %>
       <% if @investimentos.where(:ativo_id => acao.id).where(:carteira_id => @carteira.id).sum(:quantidade)  + 
@@ -88,5 +75,18 @@
       <% end %>
     <% end %>
     </div>
-     
+    <div class="col-md-4 mt-4">
+        <div class="card" id="garantias">
+               <div class="card-body">
+                   <h3 class="m-0">Algo aqui
+                   
+                   </h3>
+               </div>
+               <div class="card-body">
+                  
+                     
+               </div>
+        </div>
+        
+    </div>
 </div>

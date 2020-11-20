@@ -25,7 +25,7 @@ ativos_do_meu_app = cursor.fetchall()
 # Busca no yahoo os ativos do app e retorna um DataFrame com ticker(index) e valor atual
 dados_dos_ativos_pelo_yahoo = yf.download(ativos_do_meu_app, period="1min")["Adj Close"]
 df_yahoo_banco = dados_dos_ativos_pelo_yahoo.T.reset_index()
-df_yahoo_banco.columns = ["ticker_yf", "valor_atual", "valor_repetido"]
+df_yahoo_banco.columns = ["ticker_yf", "valor_atual"]
 df_yahoo_banco = df_yahoo_banco.set_index('ticker_yf')
 # print(df_yahoo_banco)
 # Acessa o banco de dados e retorna um DataFrame com ticker(index) e valor atual

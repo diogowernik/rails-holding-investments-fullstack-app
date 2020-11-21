@@ -24,7 +24,27 @@
     <ul class="navbar-nav flex-row">
       <li class="nav-item active">
         <%= link_to carteira_path(@carteira), class: 'nav-link' do %>
-             Mov. de Derivativos
+             Index
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to dividendo_sintetico_path(@carteira), class: 'nav-link' do %>
+             Dividendo Sintético
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to meus_proventos_path(@carteira), class: 'nav-link' do %>
+             Proventos
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to alocacao_puts_path(@carteira), class: 'nav-link' do %>
+             Alocação das Puts
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to alocacao_calls_path(@carteira), class: 'nav-link' do %>
+             Alocação das Calls
         <% end %>
       </li>
       <li class="nav-item">
@@ -33,9 +53,9 @@
         <% end %>
       </li>
       <li class="nav-item">
-            <%= link_to radar_calls_path(@carteira), class: 'nav-link' do %>
-                 Radar Call
-            <% end %>
+          <%= link_to radar_calls_path(@carteira), class: 'nav-link' do %>
+               Radar Call
+          <% end %>
       </li>
     </ul>
   </div>

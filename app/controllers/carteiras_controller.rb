@@ -1,8 +1,21 @@
 class CarteirasController < ApplicationController
-  before_action :set_carteira, only: [:show, :edit, :update, :destroy, :radar_puts, :radar_calls, :resultados_derivativos]
+  before_action :set_carteira, only: [:show, :edit, :update, :destroy, :radar_puts, :radar_calls, :resultados_derivativos, :meus_proventos, :dividendo_sintetico, :alocacao_calls, :alocacao_puts    ]
 
+  def radar_calls
+    @carteiras = Carteira.all
+    @calls_abertas = DerivaMove.all.where(:estado_id => 1).where(:deriva_tipo_id => 1)
+  end 
   
-  def radar_puts
+  def radar_puts 
+    @carteiras = Carteira.all
+    @puts_abertas = DerivaMove.all.where(:estado_id => 1).where(:deriva_tipo_id => 2)
+  end
+  
+  def meus_proventos 
+    @carteiras = Carteira.all
+  end
+  
+  def alocacao_puts
     @acoes = Ativo.all.where(:tipo_id => 3).order("ticker asc")
     @garantias = Investimento.all.where(:tipo_id => 2)
     @puts_abertas = DerivaMove.all.where(:estado_id => 1).where(:deriva_tipo_id => 2)
@@ -10,7 +23,7 @@ class CarteirasController < ApplicationController
     @carteiras = Carteira.all
   end
   
-  def radar_calls
+  def alocacao_calls
     @acoes = Ativo.all.where(:tipo_id => 3).order("ticker asc")
     @calls_abertas = DerivaMove.all.where(:estado_id => 1).where(:deriva_tipo_id => 1)
     @investimentos = Investimento.all
@@ -21,7 +34,11 @@ class CarteirasController < ApplicationController
     @carteiras = Carteira.all
   end
   
-  def show #derivamoves
+  def show
+    @carteiras = Carteira.all
+  end
+  
+  def dividendo_sintetico
     @carteiras = Carteira.all
     @vencimentos = Vencimento.all
     @deriva_moves = DerivaMove.all

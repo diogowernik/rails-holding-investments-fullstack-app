@@ -34,5 +34,8 @@ Rails.application.routes.draw do
 
   get 'carteiras/:id/radar_puts', to: 'carteiras#radar_puts', as: 'radar_puts'
   get 'carteiras/:id/radar_calls', to: 'carteiras#radar_calls', as: 'radar_calls'
-  get 'carteiras/:id/resultados_derivativos', to: 'carteiras#resultados_derivativos', as: 'resultados_derivativos'
+  get 'carteiras/:id/alocacao_puts', to: 'carteiras#alocacao_puts', as: 'alocacao_puts'
+  get 'carteiras/:id/alocacao_calls', to: 'carteiras#alocacao_calls', as: 'alocacao_calls'
+  get 'carteiras/:id/dividendo_sintetico', to: 'carteiras#dividendo_sintetico', as: 'dividendo_sintetico'
+  get 'carteiras/:id/meus_proventos', to: 'carteiras#meus_proventos', as: 'meus_proventos'
 end

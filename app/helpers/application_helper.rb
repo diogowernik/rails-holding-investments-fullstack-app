@@ -28,11 +28,23 @@ module ApplicationHelper
       if deriva_move.deriva_tipo_id == 2
         "Compra / #{deriva_move.quantidade}  
         #{deriva_move.ativo.ticker}   
-        #{number_with_precision(deriva_move.strike - deriva_move.valor, :precision => 2)}" 
+        #{number_with_precision((
+        (deriva_move.strike - deriva_move.valor) + 
+        (deriva_move.corretora.corretagem_opcoes / deriva_move.quantidade) + 
+        (deriva_move.corretora.corretagem_exerc / deriva_move.quantidade) + 
+        (deriva_move.strike * deriva_move.corretora.corretagem_exerc_porcent) +
+        (deriva_move.strike * deriva_move.corretora.corretagem_exerc_porcent) * deriva_move.corretora.corretagem_exerc_iss
+        ), :precision => 2 )}" 
       else
-        "Venda de #{deriva_move.quantidade}  
-        #{deriva_move.ativo.ticker} -
-        #{number_with_precision(deriva_move.strike + deriva_move.valor, :precision => 2)}" 
+        "Venda / #{deriva_move.quantidade}  
+        #{deriva_move.ativo.ticker} 
+        #{number_with_precision((
+        (deriva_move.strike + deriva_move.valor) -
+        (deriva_move.corretora.corretagem_opcoes / deriva_move.quantidade) - 
+        (deriva_move.corretora.corretagem_exerc / deriva_move.quantidade) - 
+        (deriva_move.strike * deriva_move.corretora.corretagem_exerc_porcent) -
+        ((deriva_move.strike * deriva_move.corretora.corretagem_exerc_porcent) * deriva_move.corretora.corretagem_exerc_iss)
+        ), :precision => 2)}" 
       end
     end
   end
@@ -61,5 +73,25 @@ module ApplicationHelper
     sintetico.out + sintetico.nov + sintetico.dez
   end
 
-
+  
+  def cotacao_strike(deriva_move)
+    (deriva_move.ativo.valor_atual.to_f / deriva_move.strike.to_f - 1)*100
+  end
+  
+  def strike_cotacao(deriva_move)
+    (deriva_move.strike.to_f / deriva_move.ativo.valor_atual.to_f - 1)*100
+  end
+  
+  def cor_strike_cotacao(deriva_move)
+    if (deriva_move.strike.to_f / deriva_move.ativo.valor_atual.to_f - 1)*100 < 0
+      "bg-gray-lighter"
+    end
+  end
+  
+  def cor_cotacao_strike(deriva_move)
+    if (deriva_move.ativo.valor_atual.to_f / deriva_move.strike.to_f - 1)*100 < 0
+      "bg-gray-lighter"
+    end
+  end
+  
 end

@@ -10,7 +10,8 @@
                 <th>Ativo</th>
                 <th>Código</th>
                 <th>Vencimento</th>
-                <th>Prêmio pago</th>
+                <th>Prêmio</th>
+                <th>Prêmio hj</th>
                 <th>Quant</th>
                 <th>Strike</th>
                 <th>Cotação</th>
@@ -27,6 +28,7 @@
                 
                 <td><%= dm.vencimento.data.strftime("%d/%m/%Y") %></td>
                 <td><%= number_with_delimiter(dm.valor, delimiter: '.', separator: ',') %></td>
+                <td></td>
                 <td><%= dm.quantidade %></td>
                 <td>
                 <% if dm.strike.present? %>
@@ -34,7 +36,7 @@
                 <% end %>
                 </td>
                 <td><%= number_to_currency(dm.ativo.valor_atual, precision: 2, unit: "", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
-                <td> <%= number_to_percentage(( dm.strike.to_f / dm.ativo.valor_atual.to_f - 1)*100, precision: 2) %></td>
+                <td class="<%= cor_strike_cotacao(dm)%>"> <%= number_to_percentage(strike_cotacao(dm), precision: 2) %></td>
             
                 
               </tr>

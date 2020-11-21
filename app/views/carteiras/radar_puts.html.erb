@@ -34,7 +34,7 @@
                 <% end %>
                 </td>
                 <td><%= number_to_currency(dm.ativo.valor_atual, precision: 2, unit: "", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
-                <td> <%= number_to_percentage((dm.ativo.valor_atual.to_f / dm.strike.to_f - 1)*100, precision: 2) %></td>
+                <td class="<%= cor_cotacao_strike(dm)%>"> <%= number_to_percentage(cotacao_strike(dm), precision: 2) %></td>
               </tr>
             <% end %>
           </tbody>

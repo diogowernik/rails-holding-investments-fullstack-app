@@ -89,10 +89,10 @@
                   <%= number_to_currency(dm.strike_total, unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true)  %>
                 <% end %>
                 </td>
-                <td style="width: 145px;">
+                <td style="width: 148px;">
                     <span class="text-primary"><%= number_to_currency(resultado_aberta(dm), unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></span>
                     <span class="text-primary"><%= number_to_currency(resultado_po(dm), unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></span>
-                    <span class="text-primary"><% if dm.strike.present? %><%= number_to_currency(resultado_exercicio(dm), unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %><% end %></span>
+                    <span class="text-primary"><% if dm.strike.present? %><%= resultado_exercicio(dm) %><% end %></span>
                     <span class="text-<%= cor_resultado_recompra(dm) %>"><%= number_to_currency(resultado_recompra(dm), unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></span>
                     
                 </td>

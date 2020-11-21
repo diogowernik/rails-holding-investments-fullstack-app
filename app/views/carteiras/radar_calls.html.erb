@@ -13,6 +13,8 @@
                 <th>Prêmio pago</th>
                 <th>Quant</th>
                 <th>Strike</th>
+                <th>Cotação</th>
+                <th>Strike/Cotação</th>
 
             </tr>
           </thead>
@@ -31,6 +33,8 @@
                   <%= number_with_delimiter(dm.strike, delimiter: '.', separator: ',')  %>
                 <% end %>
                 </td>
+                <td><%= number_to_currency(dm.ativo.valor_atual, precision: 2, unit: "", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+                <td> <%= number_to_percentage(( dm.strike.to_f / dm.ativo.valor_atual.to_f - 1)*100, precision: 2) %></td>
             
                 
               </tr>

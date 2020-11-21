@@ -34,5 +34,6 @@
 
 /db/seed.production.rb
 /db/seeds.rb
+/db/atualiza_ativos.py
 
 .env

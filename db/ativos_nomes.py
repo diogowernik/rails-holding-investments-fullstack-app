@@ -59,3 +59,5 @@ conn.commit()
     
 cursor.close()
 conn.close()
+
+print('Atualizado com sucesso')

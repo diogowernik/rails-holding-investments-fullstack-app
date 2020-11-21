@@ -16,9 +16,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#dashboard" data-toggle="dropdown">Admin</a>
             <div class="dropdown-menu animated fadeIn">
-                <%= link_to carteiras_path, class: 'dropdown-item mb-1' do %>
-                     Carteiras
-                <% end %>
+                
                 <%= link_to ativos_path, class: 'dropdown-item mb-1' do %>
                     Ativos
                 <% end %>
@@ -65,11 +63,11 @@
                       <% end %>
                   </li>
               <% else %>
-                    <li class="nav-item">
-                        <%= link_to pages_onde_investir_puts_path, class: 'nav-link nav-link-custom' do %>
-                             Alocação de Puts
-                        <% end %>
                         
+                    <li class="nav-item">
+                        <%= link_to carteiras_path, class: 'nav-link nav-link-custom' do %>
+                             Carteiras
+                        <% end %>
                     </li>
                     <li class="nav-item">
                         <%= link_to deriva_moves_path, class: 'nav-link nav-link-custom' do %>

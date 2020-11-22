@@ -7,9 +7,9 @@
 	<table class="table table-striped table-bordered table-hover" id="DerivaMoveTable">
           <thead>
             <tr class="header">
-                <th>Ativo</th>
                 <th>Código</th>
                 <th>Vencimento</th>
+                <th>Yield Sintético</th>
                 <th>Meu Prêmio</th>
                 <th>Prêmio Hoje</th>
                 <th>Prêmio Desejado</th>
@@ -17,17 +17,18 @@
                 <th>Strike</th>
                 <th>Exercicio</th>
                 <th>Cotação</th>
-                <th>Cotação/Strike</th>
-                <th>Cotação/Exercicio</th>
+                <th>Cotação / Strike</th>
+                <th>Cotação / Exercicio</th>
+                <th colspan="2"></th>
             </tr>
           </thead>
         
           <tbody>
             <% @puts_abertas.where(:carteira_id => @carteira.id).each do |dm| %>
             <tr>
-                <td><%= dm.ativo.ticker %></td>
                 <td><%= dm.codigo %></td>
                 <td><%= dm.vencimento.data.strftime("%d/%m/%Y") %></td>
+                <td><%= number_to_percentage(yield_sintetico(dm), precision: 2) %></td>
                 <td class="<%= cor_premio(dm)%>"><%= number_with_delimiter(dm.valor, delimiter: '.', separator: ',') %></td>
                 <td></td>
                 <td><%= number_to_currency(dm.strike * 0.012, precision: 2, unit: "", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
@@ -37,6 +38,8 @@
                 <td><%= number_to_currency(dm.ativo.valor_atual, precision: 2, unit: "", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
                 <td class="<%= cor_cotacao_strike(dm)%>"> <%= number_to_percentage(cotacao_strike(dm), precision: 2) %></td>
                 <td class="<%= cor_cotacao_exercicio(dm)%>"> <%=  number_to_percentage(cotacao_exercicio(dm), precision: 2) %> </td>
+                <td><%= link_to 'E', edit_deriva_move_path(dm) %></td>
+                <td><%= link_to 'D', dm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
             <% end %>
           </tbody>

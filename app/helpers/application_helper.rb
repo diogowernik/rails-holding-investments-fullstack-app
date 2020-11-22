@@ -112,6 +112,10 @@ module ApplicationHelper
     (exercicio(deriva_move).to_f / deriva_move.ativo.valor_atual.to_f - 1)*100
   end
   
+  def yield_sintetico(deriva_move)
+    ((deriva_move.quantidade * deriva_move.valor) / deriva_move.strike_total * 100)
+  end
+  
   def cor_strike_cotacao(deriva_move)
     if (deriva_move.strike.to_f / deriva_move.ativo.valor_atual.to_f - 1)*100 < 0
       "bg-gray-lighter"
@@ -137,7 +141,7 @@ module ApplicationHelper
   end
   
   def cor_premio(deriva_move)
-    if deriva_move.strike * 0.012 < 0
+    if deriva_move.strike * 0.012 < deriva_move.valor
       "bg-gray-lighter"
     end
   end

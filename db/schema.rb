@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_05_174503) do
+ActiveRecord::Schema.define(version: 2020_11_22_221735) do
 
   create_table "anos", force: :cascade do |t|
     t.integer "ano"
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 2020_11_05_174503) do
     t.string "codigo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "valor_hoje"
+    t.decimal "valor_ativo_lancamento"
     t.index ["ativo_id"], name: "index_deriva_moves_on_ativo_id"
     t.index ["carteira_id"], name: "index_deriva_moves_on_carteira_id"
     t.index ["corretora_id"], name: "index_deriva_moves_on_corretora_id"

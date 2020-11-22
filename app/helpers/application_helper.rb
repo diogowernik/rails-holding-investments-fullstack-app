@@ -141,7 +141,7 @@ module ApplicationHelper
   end
   
   def cor_premio(deriva_move)
-    if deriva_move.strike * 0.012 < deriva_move.valor
+    if deriva_move.strike * 0.01 < deriva_move.valor
       "bg-gray-lighter"
     end
   end

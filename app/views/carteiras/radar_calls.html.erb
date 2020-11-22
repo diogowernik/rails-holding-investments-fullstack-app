@@ -29,13 +29,15 @@
                 <td><%= dm.codigo %></td>
                 <td><%= dm.vencimento.data.strftime("%d/%m/%Y") %></td>
                 <td><%= number_to_percentage(yield_sintetico(dm), precision: 2) %></td>
-                <td class="<%= cor_premio(dm)%>"><%= number_with_delimiter(dm.valor, delimiter: '.', separator: ',') %></td>
-                <td><%= dm.valor_hoje %><%= texto_premio_hj(dm) %></td>
-                <td><%= number_to_currency(dm.strike * 0.012, precision: 2, unit: "", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+                <td><%= number_to_currency(dm.valor, precision: 2, unit: "") %></td>
+                <td><%= number_to_currency(dm.valor_hoje, precision: 2, unit: "") %>
+                </br><%= texto_premio_hj(dm) %></td>
+                <td><%= number_to_currency(dm.strike * 0.01, precision: 2, unit: "") %>
+                </br><%= texto_premio_desejado(dm) %></td>
                 <td><%= dm.quantidade %></td>
                 <td><%= number_with_delimiter(dm.strike, delimiter: '.', separator: ',')  %></td>
                 <td><%= number_with_delimiter(exercicio(dm), delimiter: '.', separator: ',')  %></td>
-                <td><%= number_to_currency(dm.ativo.valor_atual, precision: 2, unit: "", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+                <td><%= number_to_currency(dm.ativo.valor_atual, precision: 2, unit: "") %></td>
                 <td class="<%= cor_strike_cotacao(dm)%>"> <%= number_to_percentage(strike_cotacao(dm), precision: 2) %></td>
                 <td class="<%= cor_exercicio_cotacao(dm)%>"> <%=  number_to_percentage(exercicio_cotacao(dm), precision: 2) %> </td>
                 <td><%= link_to 'E', edit_deriva_move_path(dm) %></td>

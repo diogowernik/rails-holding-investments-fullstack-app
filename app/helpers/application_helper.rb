@@ -150,7 +150,7 @@ module ApplicationHelper
   
   def texto_premio_desejado(deriva_move)
     if deriva_move.valor_hoje != nil
-      if deriva_move.valor < deriva_move.valor_hoje / 2
+      if deriva_move.valor_hoje < deriva_move.valor / 2
         "Recomprar"
       end
     end

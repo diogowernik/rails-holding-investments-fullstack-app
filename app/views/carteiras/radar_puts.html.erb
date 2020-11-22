@@ -37,7 +37,7 @@
                 <td><%= dm.quantidade %></td>
                 <td><%= number_with_delimiter(dm.strike, delimiter: '.', separator: ',')  %></td>
                 <td><%= number_with_delimiter(exercicio(dm), delimiter: '.', separator: ',')  %></td>
-                <td><%= number_to_currency(dm.ativo.valor_atual, precision: 2, unit: "", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
+                <td><%= number_to_currency(dm.ativo.valor_atual, precision: 2, unit: "") %></td>
                 <td class="<%= cor_cotacao_strike(dm)%>"> <%= number_to_percentage(cotacao_strike(dm), precision: 2) %></td>
                 <td class="<%= cor_cotacao_exercicio(dm)%>"> <%=  number_to_percentage(cotacao_exercicio(dm), precision: 2) %> </td>
                 <td><%= link_to 'E', edit_deriva_move_path(dm) %></td>

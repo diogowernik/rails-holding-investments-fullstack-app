@@ -49,6 +49,28 @@ module ApplicationHelper
     end
   end
 
+  def exercicio(deriva_move) 
+    if deriva_move.estado_id == 1
+      if deriva_move.deriva_tipo_id == 2
+        number_with_precision((
+        (deriva_move.strike - deriva_move.valor) + 
+        (deriva_move.corretora.corretagem_opcoes / deriva_move.quantidade) + 
+        (deriva_move.corretora.corretagem_exerc / deriva_move.quantidade) + 
+        (deriva_move.strike * deriva_move.corretora.corretagem_exerc_porcent) +
+        (deriva_move.strike * deriva_move.corretora.corretagem_exerc_porcent) * deriva_move.corretora.corretagem_exerc_iss
+        ), :precision => 2 ) 
+      else
+        number_with_precision((
+        (deriva_move.strike + deriva_move.valor) -
+        (deriva_move.corretora.corretagem_opcoes / deriva_move.quantidade) - 
+        (deriva_move.corretora.corretagem_exerc / deriva_move.quantidade) - 
+        (deriva_move.strike * deriva_move.corretora.corretagem_exerc_porcent) -
+        ((deriva_move.strike * deriva_move.corretora.corretagem_exerc_porcent) * deriva_move.corretora.corretagem_exerc_iss)
+        ), :precision => 2)
+      end
+    end
+  end
+
   def resultado_recompra(deriva_move)
     if deriva_move.estado_id == 4
       (deriva_move.valor - deriva_move.valor_recompra) * deriva_move.quantidade
@@ -78,8 +100,16 @@ module ApplicationHelper
     (deriva_move.ativo.valor_atual.to_f / deriva_move.strike.to_f - 1)*100
   end
   
+  def cotacao_exercicio(deriva_move)
+    (deriva_move.ativo.valor_atual.to_f / exercicio(deriva_move).to_f - 1)*100
+  end
+  
   def strike_cotacao(deriva_move)
     (deriva_move.strike.to_f / deriva_move.ativo.valor_atual.to_f - 1)*100
+  end
+  
+  def exercicio_cotacao(deriva_move)
+    (exercicio(deriva_move).to_f / deriva_move.ativo.valor_atual.to_f - 1)*100
   end
   
   def cor_strike_cotacao(deriva_move)
@@ -88,8 +118,26 @@ module ApplicationHelper
     end
   end
   
+  def cor_exercicio_cotacao(deriva_move)
+    if (exercicio(deriva_move).to_f / deriva_move.ativo.valor_atual.to_f - 1)*100 < 0
+      "bg-gray-lighter"
+    end
+  end
+  
   def cor_cotacao_strike(deriva_move)
     if (deriva_move.ativo.valor_atual.to_f / deriva_move.strike.to_f - 1)*100 < 0
+      "bg-gray-lighter"
+    end
+  end
+  
+  def cor_cotacao_exercicio(deriva_move)
+    if (deriva_move.ativo.valor_atual.to_f / exercicio(deriva_move).to_f - 1)*100 < 0
+      "bg-gray-lighter"
+    end
+  end
+  
+  def cor_premio(deriva_move)
+    if deriva_move.strike * 0.012 < 0
       "bg-gray-lighter"
     end
   end

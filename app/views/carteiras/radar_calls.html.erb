@@ -30,7 +30,7 @@
                 <td><%= dm.vencimento.data.strftime("%d/%m/%Y") %></td>
                 <td><%= number_to_percentage(yield_sintetico(dm), precision: 2) %></td>
                 <td class="<%= cor_premio(dm)%>"><%= number_with_delimiter(dm.valor, delimiter: '.', separator: ',') %></td>
-                <td><%= dm.valor_hoje %></td>
+                <td><%= dm.valor_hoje %><%= texto_premio_hj(dm) %></td>
                 <td><%= number_to_currency(dm.strike * 0.012, precision: 2, unit: "", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %></td>
                 <td><%= dm.quantidade %></td>
                 <td><%= number_with_delimiter(dm.strike, delimiter: '.', separator: ',')  %></td>

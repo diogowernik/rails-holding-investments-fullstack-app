@@ -113,7 +113,7 @@ module ApplicationHelper
   end
   
   def yield_sintetico(deriva_move)
-    ((deriva_move.quantidade * deriva_move.valor) / deriva_move.strike_total * 100)
+    ((deriva_move.valor) / deriva_move.strike * 100)
   end
   
   def cor_strike_cotacao(deriva_move)
@@ -140,9 +140,19 @@ module ApplicationHelper
     end
   end
   
-  def cor_premio(deriva_move)
-    if deriva_move.strike * 0.01 < deriva_move.valor
-      "bg-gray-lighter"
+  def texto_premio_hj(deriva_move)
+    if deriva_move.valor_hoje != nil
+      if deriva_move.strike * 0.01 < deriva_move.valor_hoje
+        "Vender"
+      end
+    end
+  end
+  
+  def texto_premio_desejado(deriva_move)
+    if deriva_move.valor_hoje != nil
+      if deriva_move.valor < deriva_move.valor_hoje / 2
+        "Recomprar"
+      end
     end
   end
   

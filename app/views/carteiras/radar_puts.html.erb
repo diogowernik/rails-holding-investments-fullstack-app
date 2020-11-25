@@ -24,7 +24,7 @@
           </thead>
         
           <tbody>
-            <% @puts_abertas.where(:carteira_id => @carteira.id).each do |dm| %>
+            <% @puts_abertas.where(:carteira_id => @carteira.id).order("created_at desc").each do |dm| %>
             <tr>
                 <td><%= dm.codigo %></td>
                 <td><%= dm.vencimento.data.strftime("%d/%m/%Y") %></td>

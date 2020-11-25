@@ -92,6 +92,11 @@
     <%= form.text_field :strike_total, class: 'form-control' %>
   </div>
   
+  <div class="col-md-4 mt-4">
+    <%= form.label :valor_hoje %>
+    <%= form.text_field :valor_hoje, class: 'form-control' %>
+  </div>
+  
   <div class="col-md-4 mt-4" style="display:none">
     <%= form.label :movimento %>
     <%= form.select :movimento, [["Venda","Venda"], ["Compra","Compra"]], {}, {class: 'form-control'} %>

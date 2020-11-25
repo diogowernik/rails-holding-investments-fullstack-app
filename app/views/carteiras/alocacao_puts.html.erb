@@ -21,7 +21,7 @@
                <div class="card-body">
                    <!--Garantia está em investimentos-->
                    <% @garantias.where(:carteira_id => @carteira.id).each do |garantia| %>
-                       <% if garantia.quantidade != - %>
+                       <% if garantia.quantidade != 0 %>
                        <p class="mt-0">
                            <%= garantia.ativo.ticker %>  /  <%= garantia.corretora.nome  %></p>
                         <p class="text-right">   

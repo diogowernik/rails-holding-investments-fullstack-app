@@ -2,7 +2,7 @@
 
 
 <h3 class="h4-custom mt-4" id="minhas-paginas">
-	 Onde investir Puts
+	 Alocação das Puts
 </h3>
 
 <div class="row">
@@ -21,8 +21,9 @@
                <div class="card-body">
                    <!--Garantia está em investimentos-->
                    <% @garantias.where(:carteira_id => @carteira.id).each do |garantia| %>
+                       <% if garantia.quantidade != - %>
                        <p class="mt-0">
-                           <%= garantia.ativo.ticker %>  /  <%= garantia.corretora.nome  %>
+                           <%= garantia.ativo.ticker %>  /  <%= garantia.corretora.nome  %></p>
                         <p class="text-right">   
                            Disponível: 
                            <span class="badge badge-primary">
@@ -35,6 +36,7 @@
                         <p class="text-right">
                            Usada: <%= number_to_currency(@puts_abertas.where(:carteira_id => @carteira.id).where(:corretora_id => garantia.corretora.id).sum(:strike_total), unit: "R$ ", separator: ",", delimiter: ".", strip_insignificant_zeros: true) %>
                        </p>
+                       <% end %>
                    <% end %>
                </div>
         </div>

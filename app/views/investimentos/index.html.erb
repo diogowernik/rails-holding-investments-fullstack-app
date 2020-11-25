@@ -46,6 +46,7 @@
 
   <tbody>
     <% @investimentos.each do |investimento| %>
+    <% if investimento.quantidade != 0 %>
       <tr>
         <td><%= investimento.carteira.nome %></td>
         <td><%= investimento.ativo.ticker %></td>
@@ -64,7 +65,7 @@
         <td><%= link_to 'Edit', edit_investimento_path(investimento) %></td>
         <td><%= link_to 'Destroy', investimento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-            
+    <% end %>        
     <% end %>
   </tbody>
 </table>

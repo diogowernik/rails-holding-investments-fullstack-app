@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_22_221735) do
+ActiveRecord::Schema.define(version: 2021_06_05_152125) do
 
   create_table "anos", force: :cascade do |t|
     t.integer "ano"
@@ -182,8 +182,24 @@ ActiveRecord::Schema.define(version: 2020_11_22_221735) do
     t.index ["carteira_id"], name: "index_sinteticos_on_carteira_id"
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.string "title"
+    t.boolean "done"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tipos", force: :cascade do |t|
     t.string "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tutorials", force: :cascade do |t|
+    t.string "title"
+    t.boolean "published"
+    t.boolean "submitted"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

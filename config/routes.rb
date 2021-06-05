@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tutorials
+  resources :tasks
   resources :sinteticos
   resources :proventos
   resources :anos

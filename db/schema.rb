@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 2021_06_05_152125) do
     t.integer "tipo_id"
     t.decimal "valor_atual"
     t.string "ticker"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "ticker_base"
     t.string "ticker_yf"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["tipo_id"], name: "index_ativos_on_tipo_id"
   end
 

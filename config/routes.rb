@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get '/', to: 'dashboard#index', as: 'dashboard'
+    resources :anos
+  end
+
+  namespace :app do
+    resources :carteiras
+    
+  end
   resources :tutorials
   resources :tasks
   resources :sinteticos
   resources :proventos
-  resources :anos
+  
   resources :deriva_tipos
   resources :ativo_moves
   resources :vencimentos
@@ -28,7 +37,7 @@ Rails.application.routes.draw do
   get 'deriva_moves/new_put_from_investimentos/:carteira_id/:ativo_id/:corretora_id/:investimento_id', to: 'deriva_moves#new_put_from_investimentos', as: 'new_put_from_investimentos'
   get 'deriva_moves/:id/edit_put', to: 'deriva_moves#edit_put', as: 'edit_put'
   
-    get 'deriva_moves/new_call/:carteira_id/:ativo_id', to: 'deriva_moves#new_call', as: 'new_call'
+  get 'deriva_moves/new_call/:carteira_id/:ativo_id', to: 'deriva_moves#new_call', as: 'new_call'
   get 'deriva_moves/new_call_from_investimentos/:carteira_id/:ativo_id/:corretora_id/:investimento_id', to: 'deriva_moves#new_call_from_investimentos', as: 'new_call_from_investimentos'
   get 'deriva_moves/:id/edit_call', to: 'deriva_moves#edit_call', as: 'edit_call'
 

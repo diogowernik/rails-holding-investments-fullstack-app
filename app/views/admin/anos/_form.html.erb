@@ -1,4 +1,4 @@
-<%= form_with(model: ano, local: true) do |form| %>
+<%= simple_form_for([:admin, ano]) do |form| %>
   <% if ano.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(ano.errors.count, "error") %> prohibited this ano from being saved:</h2>

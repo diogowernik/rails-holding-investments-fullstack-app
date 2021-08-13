@@ -1,34 +1,34 @@
-class AnosController < ApplicationController
+class Admin::AnosController < AdminController
   before_action :set_ano, only: [:show, :edit, :update, :destroy]
 
-  # GET /anos
-  # GET /anos.json
+  # GET /admin/anos
+  # GET /admin/anos.json
   def index
     @anos = Ano.all
   end
 
-  # GET /anos/1
-  # GET /anos/1.json
+  # GET /admin/anos/1
+  # GET /admin/anos/1.json
   def show
   end
 
-  # GET /anos/new
+  # GET /admin/anos/new
   def new
     @ano = Ano.new
   end
 
-  # GET /anos/1/edit
+  # GET /admin/anos/1/edit
   def edit
   end
 
-  # POST /anos
-  # POST /anos.json
+  # POST /admin/anos
+  # POST /admin/anos.json
   def create
     @ano = Ano.new(ano_params)
 
     respond_to do |format|
       if @ano.save
-        format.html { redirect_to anos_url, notice: 'Ano was successfully created.' }
+        format.html { redirect_to admin_anos_path, notice: 'Ano was successfully created.' }
         format.json { render :show, status: :created, location: @ano }
       else
         format.html { render :new }
@@ -37,12 +37,12 @@ class AnosController < ApplicationController
     end
   end
 
-  # PATCH/PUT /anos/1
-  # PATCH/PUT /anos/1.json
+  # PATCH/PUT /admin/anos/1
+  # PATCH/PUT /admin/anos/1.json
   def update
     respond_to do |format|
       if @ano.update(ano_params)
-        format.html { redirect_to anos_url, notice: 'Ano was successfully updated.' }
+        format.html { redirect_to admin_ano_path(@ano), notice: 'Ano was successfully updated.' }
         format.json { render :show, status: :ok, location: @ano }
       else
         format.html { render :edit }
@@ -51,12 +51,12 @@ class AnosController < ApplicationController
     end
   end
 
-  # DELETE /anos/1
-  # DELETE /anos/1.json
+  # DELETE /admin/anos/1
+  # DELETE /admin/anos/1.json
   def destroy
     @ano.destroy
     respond_to do |format|
-      format.html { redirect_to anos_url, notice: 'Ano was successfully destroyed.' }
+      format.html { redirect_to admin_anos_path, notice: 'Ano was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,8 +67,8 @@ class AnosController < ApplicationController
       @ano = Ano.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Never trust parameters from the scary internet, only allow the white list through.
     def ano_params
-      params.require(:ano).permit(:ano)
+      params.require(:ano).permit!
     end
 end

@@ -1,4 +1,4 @@
-<div class="float-right"><%= link_to new_ano_path do %>
+<div class="float-right"><%= link_to new_admin_ano_path do %>
 	<button class="btn btn-outline-success">
 		<em class="fa fa-plus-circle"></em> &nbsp; Novo Ano
 	</button><% end %>
@@ -19,9 +19,9 @@
     <% @anos.each do |ano| %>
       <tr>
         <td><%= ano.ano %></td>
-        <td><%= link_to 'Show', ano %></td>
-        <td><%= link_to 'Edit', edit_ano_path(ano) %></td>
-        <td><%= link_to 'Destroy', ano, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_ano_path(ano.id) %></td>
+        <td><%= link_to 'Edit', edit_admin_ano_path(ano.id) %></td>
+        <td><%= link_to 'Destroy', admin_ano_path(ano.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

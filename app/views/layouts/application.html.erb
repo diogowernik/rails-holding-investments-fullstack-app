@@ -7,7 +7,6 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body class="layout-h">
@@ -16,7 +15,7 @@
       <section class="section-container">
 	       <div class="content-wrapper">
 	            <% if alert %><div class="alert alert-success m-5 text-center"><%= alert %></div><% end %>
-                <% if notice %><div class="alert alert-success m-5 text-center"><%= notice %></div><% end %>
+              <% if notice %><div class="alert alert-success m-5 text-center"><%= notice %></div><% end %>
                 <%= yield %>
         </div>
       </section>

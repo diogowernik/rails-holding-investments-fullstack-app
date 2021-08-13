@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Area Administrativa - Minha Holding</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <%= render partial: "layouts/admin_navbar" %>
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <div class="col-xl-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <%= link_to admin_anos_path, class: 'dropdown-item m-2' do %>
+                                Anos
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <% if alert %><div class="alert alert-success m-5 text-center"><%= alert %></div><% end %>
+                            <% if notice %><div class="alert alert-success m-5 text-center"><%= notice %></div><% end %>
+                            <%= yield %>
+                        </div>
+                    </div>
+                </div>
+                    
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

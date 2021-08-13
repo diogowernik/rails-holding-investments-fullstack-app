@@ -1,8 +1,8 @@
 <header class="topnavbar-wrapper">
     <nav class="navbar topnavbar navbar-expand-lg">
         <div class="navbar-header">
-           <a href="/" class="navbar-brand mt-3 text-success">
-              Minha Holding
+           <a href="/" class="navbar-brand text-success">
+              Minha Holding - Area Admin
            </a>
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topnavbar">
               <span class="navbar-toggler-icon"></span>
@@ -13,44 +13,7 @@
         <ul class="nav navbar-nav mr-auto flex-column flex-lg-row">
             
         <% if user_signed_in? %>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#dashboard" data-toggle="dropdown">Admin</a>
-            <div class="dropdown-menu animated fadeIn">
-                
-                <%= link_to ativos_path, class: 'dropdown-item mb-1' do %>
-                    Ativos
-                <% end %>
-                
-                <%= link_to corretoras_path, class: 'dropdown-item mb-1' do %>
-                    Corretoras
-                <% end %>
-                <%= link_to tipos_path, class: 'dropdown-item mb-1' do %>
-                     Tipos
-                <% end %>
-                <%= link_to estados_path, class: 'dropdown-item mb-1' do %>
-                     Status
-                <% end %>
-                <%= link_to investimentos_path, class: 'dropdown-item mb-1' do %>
-                     Investimentos
-                <% end %>
-                <%= link_to ativo_moves_path, class: 'dropdown-item mb-1' do %>
-                     Mov. de Ativos
-                <% end %>
-                
-                <%= link_to vencimentos_path, class: 'dropdown-item mb-1' do %>
-                     Venc. dos Derivativos
-                <% end %>
-                <%= link_to admin_anos_path, class: 'dropdown-item mb-1' do %>
-                     Anos
-                <% end %>
-                <%= link_to sinteticos_path, class: 'dropdown-item mb-1' do %>
-                     Sinteticos
-                <% end %>
-                <%= link_to proventos_path, class: 'dropdown-item mb-1' do %>
-                     Proventos
-                <% end %>
-            </div>
-        </li>
+
         <% end %>
         </ul>
            <ul class="navbar-nav flex-row">

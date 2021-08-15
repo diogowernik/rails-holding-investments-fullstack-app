@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_05_152125) do
+ActiveRecord::Schema.define(version: 2021_08_15_173103) do
 
   create_table "anos", force: :cascade do |t|
     t.integer "ano"
@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 2021_06_05_152125) do
     t.integer "tipo_id"
     t.decimal "valor_atual"
     t.string "ticker"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "ticker_base"
     t.string "ticker_yf"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["tipo_id"], name: "index_ativos_on_tipo_id"
   end
 
@@ -218,6 +218,13 @@ ActiveRecord::Schema.define(version: 2021_06_05_152125) do
 
   create_table "vencimentos", force: :cascade do |t|
     t.date "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "years", force: :cascade do |t|
+    t.string "title"
+    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

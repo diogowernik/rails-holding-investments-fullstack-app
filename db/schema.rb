@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_15_173103) do
+ActiveRecord::Schema.define(version: 2021_08_15_182232) do
 
   create_table "anos", force: :cascade do |t|
     t.integer "ano"
@@ -54,6 +54,13 @@ ActiveRecord::Schema.define(version: 2021_08_15_173103) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carteiras_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "corretoras", force: :cascade do |t|
@@ -138,6 +145,15 @@ ActiveRecord::Schema.define(version: 2021_08_15_173103) do
     t.index ["carteira_id"], name: "index_investimentos_on_carteira_id"
     t.index ["corretora_id"], name: "index_investimentos_on_corretora_id"
     t.index ["tipo_id"], name: "index_investimentos_on_tipo_id"
+  end
+
+  create_table "portfolios", force: :cascade do |t|
+    t.string "title"
+    t.string "slug"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
   create_table "proventos", force: :cascade do |t|

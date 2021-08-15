@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   
+  
+  resources :portfolios
   namespace :admin do
     get '/', to: 'dashboard#index', as: 'dashboard'
     resources :anos
     resources :years
+    resources :categories
+    resources :portfolios
   end
 
   namespace :app do
